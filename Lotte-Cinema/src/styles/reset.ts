@@ -84,12 +84,13 @@ const Reset = css`
   video {
     margin: 0;
     padding: 0;
-    border: 0;
-
-    font-size: 100%;
-    vertical-align: baseline;
 
     font: inherit;
+    font-size: 100%;
+
+    vertical-align: baseline;
+
+    border: 0;
   }
 
   /* HTML5 display-role reset for older browsers */
