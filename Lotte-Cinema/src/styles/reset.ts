@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
 const Reset = css`
   html,
@@ -84,12 +84,12 @@ const Reset = css`
   video {
     margin: 0;
     padding: 0;
+    border: 0;
 
-    font: inherit;
     font-size: 100%;
     vertical-align: baseline;
 
-    border: 0;
+    font: inherit;
   }
 
   /* HTML5 display-role reset for older browsers */
@@ -125,7 +125,7 @@ const Reset = css`
   blockquote::after,
   q::before,
   q::after {
-    content: '';
+    content: "";
     content: none;
   }
 

@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import Reset from './reset';
+import Reset from "./reset";
+import { css } from "@emotion/react";
 
 const GlobalStyle = css`
   ${Reset}
@@ -13,6 +13,7 @@ const GlobalStyle = css`
     width: 100%;
     margin: 0;
     padding: 0;
+
     font-size: 62.5%;
     scrollbar-width: none;
     scroll-behavior: smooth;

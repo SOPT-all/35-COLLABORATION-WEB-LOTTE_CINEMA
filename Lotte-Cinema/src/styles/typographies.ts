@@ -1,14 +1,14 @@
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
 // Font 정의
 // Noto Sans KR (font)
 const notoFont = css`
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 `;
 
 // Roboto (font)
 const robotoFont = css`
-  font-family: 'Roboto', sans-serif;
+  font-family: Roboto, sans-serif;
 `;
 
 // Noto Sans KR (head)
@@ -221,7 +221,7 @@ const robotoCaption = {
     font-size: 0.9rem;
     font-weight: 500;
     line-height: 10px;
-    letter-spacing: 0px;
+    letter-spacing: 0;
   `,
 };
 
