@@ -13,7 +13,7 @@ const GlobalStyle = css`
     width: 100%;
     margin: 0;
     padding: 0;
-    /* font-size: 62.5%; */
+    font-size: 62.5%;
     scrollbar-width: none;
     scroll-behavior: smooth;
   }

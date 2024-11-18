@@ -15,49 +15,49 @@ const robotoFont = css`
 const notoHead = {
   n_head01: css`
     ${notoFont};
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
     line-height: 28px;
     letter-spacing: -1px;
   `,
   n_head02_reg: css`
     ${notoFont};
-    font-size: 17px;
+    font-size: 1.7rem;
     font-weight: 400;
     line-height: 20px;
     letter-spacing: -0.5px;
   `,
   n_head02_bold: css`
     ${notoFont};
-    font-size: 17px;
+    font-size: 1.7rem;
     font-weight: 700;
     line-height: 20px;
     letter-spacing: -0.5px;
   `,
   n_head03_reg: css`
     ${notoFont};
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 400;
     line-height: 20px;
     letter-spacing: -1px;
   `,
   n_head03_med: css`
     ${notoFont};
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 500;
     line-height: 20px;
     letter-spacing: -1px;
   `,
   n_head03_bold: css`
     ${notoFont};
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 700;
     line-height: 20px;
     letter-spacing: -1px;
   `,
   n_head04: css`
     ${notoFont};
-    font-size: 15px;
+    font-size: 1.5rem;
     font-weight: 400;
     line-height: 20px;
     letter-spacing: -0.5px;
@@ -68,42 +68,42 @@ const notoHead = {
 const notoBody = {
   n_body01_reg: css`
     ${notoFont};
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 400;
     line-height: 16px;
     letter-spacing: -1px;
   `,
   n_body01_bold: css`
     ${notoFont};
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 400;
     line-height: 16px;
     letter-spacing: -1px;
   `,
   n_body02_reg: css`
     ${notoFont};
-    font-size: 13px;
+    font-size: 1.3rem;
     font-weight: 400;
     line-height: 16px;
     letter-spacing: -1px;
   `,
   n_body02_med: css`
     ${notoFont};
-    font-size: 13px;
+    font-size: 1.3rem;
     font-weight: 500;
     line-height: 18px;
     letter-spacing: -0.5px;
   `,
   n_body02_bold: css`
     ${notoFont};
-    font-size: 13px;
+    font-size: 1.3rem;
     font-weight: 700;
     line-height: 16px;
     letter-spacing: -0.5px;
   `,
   n_body02_underline: css`
     ${notoFont};
-    font-size: 13px;
+    font-size: 1.3rem;
     font-weight: 900;
     line-height: 18px;
     letter-spacing: -1px;
@@ -111,21 +111,21 @@ const notoBody = {
   `,
   n_body03_reg: css`
     ${notoFont};
-    font-size: 11px;
+    font-size: 1.1rem;
     font-weight: 400;
     line-height: 12px;
     letter-spacing: -0.5px;
   `,
   n_body03_med: css`
     ${notoFont};
-    font-size: 11px;
+    font-size: 1.1rem;
     font-weight: 500;
     line-height: 20px;
     letter-spacing: -0.5px;
   `,
   n_body03_bold: css`
     ${notoFont};
-    font-size: 11px;
+    font-size: 1.1rem;
     font-weight: 700;
     line-height: 12px;
     letter-spacing: -0.5px;
@@ -136,28 +136,28 @@ const notoBody = {
 const notoCaption = {
   n_caption01_reg: css`
     ${notoFont};
-    font-size: 10px;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 10px;
     letter-spacing: -0.5px;
   `,
   n_caption01_bold: css`
     ${notoFont};
-    font-size: 10px;
+    font-size: 1rem;
     font-weight: 700;
     line-height: 10px;
     letter-spacing: -1px;
   `,
   n_caption02_reg: css`
     ${notoFont};
-    font-size: 9px;
+    font-size: 0.9rem;
     font-weight: 400;
     line-height: 10px;
     letter-spacing: -0.5px;
   `,
   n_caption02_med: css`
     ${notoFont};
-    font-size: 9px;
+    font-size: 0.9rem;
     font-weight: 500;
     line-height: 10px;
     letter-spacing: -0.6px;
@@ -168,14 +168,14 @@ const notoCaption = {
 const robotoHead = {
   r_number: css`
     ${robotoFont};
-    font-size: 30px;
+    font-size: 3rem;
     font-weight: 700;
     line-height: 20px;
     letter-spacing: -1px;
   `,
   r_head01: css`
     ${robotoFont};
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 700;
     line-height: 18px;
     letter-spacing: -0.6px;
@@ -186,28 +186,28 @@ const robotoHead = {
 const robotoBody = {
   r_body01: css`
     ${robotoFont};
-    font-size: 15px;
+    font-size: 1.5rem;
     font-weight: 700;
     line-height: 20px;
     letter-spacing: -0.6px;
   `,
   r_body02_bold: css`
     ${robotoFont};
-    font-size: 13px;
+    font-size: 1.3rem;
     font-weight: 700;
     line-height: 13px;
     letter-spacing: -0.6px;
   `,
   r_body03_reg: css`
     ${robotoFont};
-    font-size: 11px;
+    font-size: 1.1rem;
     font-weight: 400;
     line-height: 16px;
     letter-spacing: -0.6px;
   `,
   r_body03_bold: css`
     ${robotoFont};
-    font-size: 11px;
+    font-size: 1.1rem;
     font-weight: 700;
     line-height: 16px;
     letter-spacing: -0.6px;
@@ -218,7 +218,7 @@ const robotoBody = {
 const robotoCaption = {
   r_caption: css`
     ${robotoFont};
-    font-size: 9px;
+    font-size: 0.9rem;
     font-weight: 500;
     line-height: 10px;
     letter-spacing: 0px;
