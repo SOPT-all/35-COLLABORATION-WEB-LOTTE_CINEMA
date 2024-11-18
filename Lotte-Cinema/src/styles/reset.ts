@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
 const Reset = css`
   html,
@@ -87,6 +87,7 @@ const Reset = css`
 
     font: inherit;
     font-size: 100%;
+
     vertical-align: baseline;
 
     border: 0;
@@ -125,7 +126,7 @@ const Reset = css`
   blockquote::after,
   q::before,
   q::after {
-    content: '';
+    content: "";
     content: none;
   }
 
