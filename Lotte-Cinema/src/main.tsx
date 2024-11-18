@@ -5,7 +5,7 @@ import App from './App.tsx';
 import GlobalStyle from './styles/global.ts';
 import theme from './styles/index.ts';
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
       <Global styles={GlobalStyle} />
