@@ -1,0 +1,42 @@
+{
+  "ignorePatterns": ["dist"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended", // Prettier 설정 통합
+    "plugin:react/recommended", // React 관련 기본 규칙
+    "plugin:jsx-a11y/recommended" // JSX 접근성 관련 규칙
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.{ts,tsx}"],
+      "parserOptions": {
+        "ecmaVersion": 2020
+      },
+      "env": {
+        "browser": true,
+        "es2021": true
+      },
+      "plugins": [
+        "react-hooks",
+        "react-refresh",
+        "prettier",
+        "react", // React 플러그인 추가
+        "jsx-a11y" // JSX 접근성 플러그인 추가
+      ],
+      "rules": {
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "react-refresh/only-export-components": [
+          "warn",
+          { "allowConstantExport": true }
+        ],
+        "prettier/prettier": "error", // Prettier 포맷팅 규칙을 ESLint 오류로 처리
+        "react/prop-types": "off", // TypeScript를 사용할 때 prop-types 검사 비활성화 (TypeScript는 타입 체크를 하므로)
+        "react/react-in-jsx-scope": "off", // React 17 이상에서는 JSX를 사용할 때 `React`를 임포트할 필요 없음
+        "jsx-a11y/anchor-is-valid": "warn", // anchor 요소의 유효성 검사
+        "jsx-a11y/no-onchange": "warn" // `onChange` 핸들러를 사용하는 접근성 문제 경고
+      }
+    }
+  ]
+}
