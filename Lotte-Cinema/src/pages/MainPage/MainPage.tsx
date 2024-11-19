@@ -1,10 +1,10 @@
-import ModbileLayout from '@/components/mobileLayout/MobileLayout';
+import MobileLayout from '@/components/mobileLayout/MobileLayout';
 
 const MainPage = () => {
 	return (
-		<ModbileLayout>
+		<MobileLayout>
 			<main>메인페이지</main>
-		</ModbileLayout>
+		</MobileLayout>
 	);
 };
 

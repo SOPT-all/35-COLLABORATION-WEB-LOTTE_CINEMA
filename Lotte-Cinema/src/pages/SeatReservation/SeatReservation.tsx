@@ -1,12 +1,12 @@
 import Header from '@/components/commons/header/Header';
-import ModbileLayout from '@/components/mobileLayout/MobileLayout';
+import MobileLayout from '@/components/mobileLayout/MobileLayout';
 
 const SeatReservation = () => {
 	return (
-		<ModbileLayout>
+		<MobileLayout>
 			<Header title="좌석 선택" />
 			<main>좌석선택 페이지</main>
-		</ModbileLayout>
+		</MobileLayout>
 	);
 };
 
