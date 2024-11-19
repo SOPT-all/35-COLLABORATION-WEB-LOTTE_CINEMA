@@ -1,5 +1,11 @@
+import ModbileLayout from "@/components/mobileLayout/MobileLayout";
+
 const MainPage = () => {
-  return <h1>메인페이지</h1>;
+  return (
+    <ModbileLayout>
+      <main>메인페이지</main>
+    </ModbileLayout>
+  );
 };
 
 export default MainPage;
