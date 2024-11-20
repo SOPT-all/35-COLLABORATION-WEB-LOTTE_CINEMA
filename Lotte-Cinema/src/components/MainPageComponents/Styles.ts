@@ -2,10 +2,10 @@ import styled from "@emotion/styled";
 
 export const HeaderWrapper = styled.header`
   display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
   width: 90%;
   margin: 0 auto;
-  justify-content: space-between;
-  align-items: flex-end;
 `;
 
 export const PopularRankingType = styled.h2`
@@ -17,32 +17,37 @@ export const FilterScrenning = styled.div`
   display: flex;
   width: 11.5rem;
   font-family: ${({ theme }) => theme.typographies.n_body03_med};
+
   /* text-align: right; 오른쪽으로 정렬해야 함 */
 `;
 
 export const ContentWrapper = styled.div`
-  margin: 1rem 0;
   display: flex;
-  height: 28rem;
-  overflow: scroll;
   gap: 1.6rem;
+  height: 28rem;
+  margin: 1rem 0;
+  overflow: scroll;
+
   & > :first-of-type {
     margin-left: 1.6rem;
   }
+
   & > :last-of-type {
     margin-right: 1.6rem;
   }
+
   /* width 값 주면 scroll 안 먹음 */
 `;
 
 export const EachContentWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.GRAY01};
-  border-radius: 6px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+
+  background-color: ${({ theme }) => theme.colors.GRAY01};
+  border-radius: 6px;
 `;
 
 // GridContainer 스타일
@@ -78,32 +83,37 @@ export const MovieTitle = styled.div`
 `;
 
 export const ReservationRate = styled.div`
-  font-family: ${({ theme }) => theme.typographies.n_caption02_reg};
-  color: ${({ theme }) => theme.colors.GRAY10};
   grid-area: reservationRate;
+
+  color: ${({ theme }) => theme.colors.GRAY10};
+  font-family: ${({ theme }) => theme.typographies.n_caption02_reg};
 `;
 
 export const StarReview = styled.div`
-  font-family: ${({ theme }) => theme.typographies.n_caption02_reg};
-  color: ${({ theme }) => theme.colors.GRAY10};
   grid-area: starReview;
+
+  color: ${({ theme }) => theme.colors.GRAY10};
+  font-family: ${({ theme }) => theme.typographies.n_caption02_reg};
 `;
 
 export const AdvertisingTitle = styled.div`
-  font-family: ${({ theme }) => theme.typographies.n_body02_bold};
-  color: ${({ theme }) => theme.colors.GRAY10};
   grid-area: advertisingTitle;
+
+  color: ${({ theme }) => theme.colors.GRAY10};
+  font-family: ${({ theme }) => theme.typographies.n_body02_bold};
 `;
 
 export const NoticeAdvertising = styled.div`
-  font-family: ${({ theme }) => theme.typographies.n_caption01_reg};
-  color: ${({ theme }) => theme.colors.GRAY10};
   grid-area: noticeAdvertising;
+
+  color: ${({ theme }) => theme.colors.GRAY10};
+  font-family: ${({ theme }) => theme.typographies.n_caption01_reg};
 `;
 
 export const ButtonAdvertising = styled.button`
   width: 11.8rem;
   height: 3.4rem;
+
   color: ${({ theme }) => theme.colors.GRAY08};
   font-family: ${({ theme }) => theme.typographies.n_body02_bold};
 `;
@@ -126,7 +136,8 @@ export const ButtonReservation = styled.button<{ firstRankButton?: boolean }>`
 export const EntireMovieSelect = styled.p`
   width: 90%;
   margin: 0 auto;
+
+  color: ${({ theme }) => theme.colors.GRAY09};
   text-align: right;
   font-family: ${({ theme }) => theme.typographies.n_body03_med};
-  color: ${({ theme }) => theme.colors.GRAY09};
 `;
