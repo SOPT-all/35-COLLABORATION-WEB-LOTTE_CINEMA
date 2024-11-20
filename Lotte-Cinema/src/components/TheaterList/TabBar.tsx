@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import { useState } from 'react';
 
-const TheaterTypeSelector = () => {
+const TabBar = () => {
 	const [activeTab, setActiveTab] = useState(1);
 	const handleTabClick = (tabId: number) => {
 		setActiveTab(tabId);
@@ -22,9 +22,9 @@ const TheaterTypeSelector = () => {
 	return (
 		<S.Wrapper>
 			{tabs.map(({ id, name }) => (
-				<S.Menu $isActive={activeTab === id} onClick={() => handleTabClick(id)}>
+				<S.Tab $isActive={activeTab === id} onClick={() => handleTabClick(id)}>
 					{name}
-				</S.Menu>
+				</S.Tab>
 			))}
 			<S.BarLayout>
 				<S.Bar $activeTab={activeTab} />
@@ -41,7 +41,7 @@ const S = {
 		box-shadow: inset 0 -1px 0 0 ${({ theme }) => theme.colors.GRAY05}; // border를 안쪽으로
 		position: relative;
 	`,
-	Menu: styled.div<{ $isActive: boolean }>`
+	Tab: styled.div<{ $isActive: boolean }>`
 		width: 100%;
 		padding: 1.1rem 0;
 		white-space: nowrap;
@@ -68,4 +68,4 @@ const S = {
 	`,
 };
 
-export default TheaterTypeSelector;
+export default TabBar;
