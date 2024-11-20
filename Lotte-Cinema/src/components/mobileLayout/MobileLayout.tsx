@@ -27,7 +27,9 @@ const S = {
 		flex-direction: column;
 		align-items: center;
 
-		width: 360px;
+		min-width: 360px;
+		max-width: 430px;
+		width: 100%;
 		min-height: 100vh;
 
 		background-color: ${({ theme }) => theme.colors.WHITE100};
