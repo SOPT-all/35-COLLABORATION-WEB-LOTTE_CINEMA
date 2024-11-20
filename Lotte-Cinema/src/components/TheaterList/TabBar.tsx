@@ -2,26 +2,17 @@ import styled from '@emotion/styled';
 
 import { useState } from 'react';
 
+import { THEATER_TABS } from '@/constants';
+
 const TabBar = () => {
 	const [activeTab, setActiveTab] = useState(1);
 	const handleTabClick = (tabId: number) => {
 		setActiveTab(tabId);
 	};
 
-	const tabs = [
-		{
-			id: 1,
-			name: '일반관',
-		},
-		{
-			id: 2,
-			name: '스페셜관',
-		},
-	];
-
 	return (
 		<S.Wrapper>
-			{tabs.map(({ id, name }) => (
+			{THEATER_TABS.map(({ id, name }) => (
 				<S.Tab $isActive={activeTab === id} onClick={() => handleTabClick(id)}>
 					{name}
 				</S.Tab>
