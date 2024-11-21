@@ -31,8 +31,8 @@ export default Header;
 
 const S = {
 	Header: styled.header`
-		width: 100%;
 		display: flex;
+		width: 100%;
 		height: 5rem;
 		padding: 1.3rem 12rem 1.3rem 1.4rem;
 		align-items: center;
