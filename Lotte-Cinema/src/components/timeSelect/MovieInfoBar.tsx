@@ -137,7 +137,7 @@ const S = {
 			height: 11rem;
 		}
 
-		& li:not(:first-child) {
+		& li:not(:first-of-type) {
 			filter: brightness(0.5);
 		}
 	`,
