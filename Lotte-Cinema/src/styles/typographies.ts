@@ -1,9 +1,9 @@
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
 // Font 정의
 // Noto Sans KR (font)
 const notoFont = css`
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 `;
 
 // Roboto (font)
