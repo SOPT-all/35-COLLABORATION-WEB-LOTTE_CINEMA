@@ -33,11 +33,9 @@ const S = {
   Header: styled.header`
     display: flex;
     gap: 4rem;
-    width: 100%;
     align-items: center;
     height: 5rem;
     padding: 1.3rem 12rem 1.3rem 1.4rem;
-    width: 100%;
   `,
   LeftContainer: styled.nav`
     display: flex;

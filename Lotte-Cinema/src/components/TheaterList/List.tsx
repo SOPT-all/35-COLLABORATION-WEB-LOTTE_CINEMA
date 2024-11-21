@@ -39,7 +39,7 @@ const S = {
 		width: 60%;
 		overflow-y: scroll;
 		background-color: white;
-		/* margin-top: 0.2rem; 디자이너 질문 */
+		/* margin-top: 0.2rem; > 디자이너 질문 */
 	`,
 
 	LeftRegion: styled.li`

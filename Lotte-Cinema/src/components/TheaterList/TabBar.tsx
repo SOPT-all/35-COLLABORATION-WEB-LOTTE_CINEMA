@@ -13,7 +13,7 @@ const TabBar = () => {
 	return (
 		<S.Wrapper>
 			{THEATER_TABS.map(({ id, name }) => (
-				<S.Tab $isActive={activeTab === id} onClick={() => handleTabClick(id)}>
+				<S.Tab key={id} $isActive={activeTab === id} onClick={() => handleTabClick(id)}>
 					{name}
 				</S.Tab>
 			))}
