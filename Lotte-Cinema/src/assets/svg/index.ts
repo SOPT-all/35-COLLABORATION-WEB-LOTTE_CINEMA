@@ -1,6 +1,7 @@
 export { default as BtnCircle } from './BtnCircle';
 export { default as IcArrowDown20 } from './IcArrowDown20';
 export { default as IcArrowLeftBlack24 } from './IcArrowLeftBlack24';
+export { default as IcArrowUnderGray1410 } from './IcArrowUnderGray1410';
 export { default as IcEventBlack24 } from './IcEventBlack24';
 export { default as IcHomeBlack24 } from './IcHomeBlack24';
 export { default as IcHorizontalbar10 } from './IcHorizontalbar10';
