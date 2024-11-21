@@ -1,14 +1,12 @@
-import MainPageHeader from "@/components/mainPage/MainPageHeader";
-import MobileLayout from "@/components/mobileLayout/MobileLayout";
+import MainPageHeader from '@/components/mainPage/MainPageHeader';
+import MobileLayout from '@/components/mobileLayout/MobileLayout';
 
 const MainPage = () => {
-  return (
-    <MobileLayout>
-      <main>
-        <MainPageHeader />
-      </main>
-    </MobileLayout>
-  );
+	return (
+		<MobileLayout>
+			<MainPageHeader />
+		</MobileLayout>
+	);
 };
 
 export default MainPage;

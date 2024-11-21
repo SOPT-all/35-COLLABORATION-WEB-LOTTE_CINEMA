@@ -27,20 +27,14 @@ export default MainPageHeader;
 const S = {
 	Header: styled.header`
 		background-color: ${({ theme }) => theme.colors.WHITE60};
-		height: 5.2rem;
+		padding: 1rem 1.8rem;
 		display: flex;
 		justify-content: space-between;
-		position: fixed;
-		z-index: 1;
+		position: sticky;
+		width: 100%;
 	`,
-	LeftContainer: styled.nav`
-		margin-left: 1.8rem;
-		padding: 1rem 0;
-	`,
-	RightContainer: styled.nav`
-		margin-right: 1rem;
-		padding: 1rem 0;
-	`,
+	LeftContainer: styled.nav``,
+	RightContainer: styled.nav``,
 
 	LotteCinemaLogo: styled.span``,
 	MenuBox: styled.li`
