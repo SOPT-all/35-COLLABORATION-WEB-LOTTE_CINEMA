@@ -13,7 +13,7 @@ import { IcAge1216, IcAge1916, IcAgeAll16 } from '@/assets/svg';
 
 import { runningTimeFormat } from '@/utils';
 
-import ArrowlBtn from '../commons/ArrowBtn';
+import ArrowBtn from '../commons/ArrowBtn';
 import TheaterLabel from './atom/TheaterLabel';
 
 const MovieInfoBar = () => {
@@ -49,7 +49,7 @@ const MovieInfoBar = () => {
               {ageIcon}
               <p>{`${runningTime}분 (${runningTimeFormat(runningTime)})`}</p>
             </S.MovieTextBox>
-            <ArrowlBtn label="전체 보기" />
+            <ArrowBtn label="전체 보기" />
           </S.MovieInfoContainer>
           <S.PosterContainer>
             {posters.map((poster, i) => (
@@ -66,7 +66,7 @@ const MovieInfoBar = () => {
                 </li>
               ))}
             </S.TheaterBox>
-            <ArrowlBtn
+            <ArrowBtn
               label="극장 추가"
               onClick={() => {
                 navigate('/theaters');

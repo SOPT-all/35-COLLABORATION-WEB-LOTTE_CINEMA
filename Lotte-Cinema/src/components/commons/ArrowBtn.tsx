@@ -6,17 +6,17 @@ interface BtnProps {
   label: string;
   onClick?: () => void;
 }
-const ArrowlBtn = ({ label, onClick }: BtnProps) => {
+const ArrowBtn = ({ label, onClick }: BtnProps) => {
   return (
     <S.BtnWrapper onClick={onClick}>
       <S.BtnContainer>
-        {label} <IcArrowRightWhite10 width="1.4rem" height="1.4rem" />
+        {label} <IcArrowRightWhite10 width="1.4rem" />
       </S.BtnContainer>
     </S.BtnWrapper>
   );
 };
 
-export default ArrowlBtn;
+export default ArrowBtn;
 
 const S = {
   BtnWrapper: styled.button`
@@ -29,13 +29,13 @@ const S = {
   `,
 
   BtnContainer: styled.div`
-		${({ theme }) => theme.typographies.n_body03_reg};
-		color: ${({ theme }) => theme.colors.GRAY04};
+    ${({ theme }) => theme.typographies.n_body03_reg};
+    color: ${({ theme }) => theme.colors.GRAY04};
 
-		display: flex;
-		width: 5.8rem;
-		align-items: flex-start
-		justify-content: center;
-		gap: 0.2rem;
-	`,
+    display: flex;
+    width: 5.8rem;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.2rem;
+  `,
 };
