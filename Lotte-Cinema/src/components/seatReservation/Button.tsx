@@ -21,7 +21,7 @@ const CommonButton = styled.button`
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
-  width: 15.7rem;
+  width: 100%;
   height: 4.4rem;
   padding: 1.1rem 3.7rem;
 

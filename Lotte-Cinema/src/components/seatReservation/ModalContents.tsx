@@ -55,6 +55,8 @@ const S = {
   `,
   ButtonWrapper: styled.div`
     align-self: center;
+    width: 100%;
     margin-bottom: 2.4rem;
+    padding: 0rem 5.3rem;
   `,
 };
