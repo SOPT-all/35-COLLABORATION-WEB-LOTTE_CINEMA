@@ -1,44 +1,40 @@
 import styled from '@emotion/styled';
 
-import { ButtonHTMLAttributes, ReactElement, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'secondary';
   children: ReactNode;
-  icon?: ReactElement;
 }
-const Button = ({ children, icon, ...props }: ButtonProps) => {
+const Button = ({ children, variant = 'default', ...props }: ButtonProps) => {
   return (
-    <S.BtnStyleSecondary {...props}>
-      {icon}
+    <S.BtnStyle variant={variant} {...props}>
       {children}
-    </S.BtnStyleSecondary>
+    </S.BtnStyle>
   );
 };
 
 export default Button;
 
 const CommonButton = styled.button`
-  width: 15.7rem;
-  height: 4.4rem;
   display: flex;
   gap: 0.5rem;
-  justify-content: center;
   align-items: center;
-  vertical-align: middle;
+  justify-content: center;
+  width: 15.7rem;
+  height: 4.4rem;
   padding: 1.1rem 3.7rem;
+
   border-radius: 4px;
 
   ${({ theme }) => theme.typographies.n_head03_reg};
 `;
 
 const S = {
-  BtnStyleDefault: styled(CommonButton)`
-    background-color: ${({ theme }) => theme.colors.RED02};
-    color: ${({ theme }) => theme.colors.WHITE100};
-  `,
-  BtnStyleSecondary: styled(CommonButton)`
-    color: ${({ theme }) => theme.colors.BLACK100};
-    border: solid 1px;
+  BtnStyle: styled(CommonButton)<{ variant: 'default' | 'secondary' }>`
+    color: ${({ variant, theme }) => (variant === 'default' ? theme.colors.WHITE100 : theme.colors.BLACK100)};
+
+    background-color: ${({ variant, theme }) => (variant === 'default' ? theme.colors.RED02 : 'transparent')};
+    border: ${({ variant, theme }) => (variant === 'secondary' ? `1px solid ${theme.colors.BLACK100}` : 'none')};
   `,
 };

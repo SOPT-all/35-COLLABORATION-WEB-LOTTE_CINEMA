@@ -134,11 +134,12 @@ const Reset = css`
     border-collapse: collapse;
     border-spacing: 0;
   }
+
   button {
-    border: none;
-    outline: none;
     background-color: inherit;
+    outline: none;
     cursor: pointer;
+    border: none;
   }
 `;
 
