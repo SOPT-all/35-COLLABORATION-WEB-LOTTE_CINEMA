@@ -4,10 +4,11 @@ import { IcArrowRightWhite10 } from '@/assets/svg';
 
 interface BtnProps {
 	label: string;
+	onClick?: () => void;
 }
-const ViewAllBtn = ({ label }: BtnProps) => {
+const ViewAllBtn = ({ label, onClick }: BtnProps) => {
 	return (
-		<S.BtnWrapper>
+		<S.BtnWrapper onClick={onClick}>
 			<S.BtnContainer>
 				{label} <IcArrowRightWhite10 width="1.4rem" height="1.4rem" />
 			</S.BtnContainer>
@@ -32,9 +33,9 @@ const S = {
 		color: ${({ theme }) => theme.colors.GRAY04};
 
 		display: flex;
-		width: 5.6rem;
+		width: 5.8rem;
+		align-items: flex-start
 		justify-content: center;
-		align-items: center;
 		gap: 0.2rem;
 	`,
 };

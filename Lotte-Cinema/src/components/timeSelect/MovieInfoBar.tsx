@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { useNavigate } from 'react-router-dom';
+
 import Img4m44s from '@/assets/img/Img4m44s.png';
 import ImgAmazonhms from '@/assets/img/ImgAmazonhms.png';
 import ImgDeadline from '@/assets/img/ImgDeadline.png';
@@ -15,6 +17,7 @@ import ViewAllBtn from '../commons/ViewAllBtn';
 import TheaterLabel from './atom/TheaterLabel';
 
 const MovieInfoBar = () => {
+	const navigate = useNavigate();
 	// TODO API 완성시, 로직 분리할 예정
 	const Title = '아마존 활명수';
 	const runningTime = 122;
@@ -46,7 +49,7 @@ const MovieInfoBar = () => {
 							{ageIcon}
 							<p>{`${runningTime}분 (${runningTimeFormat(runningTime)})`}</p>
 						</S.MovieTextBox>
-						<ViewAllBtn label="전체보기" />
+						<ViewAllBtn label="전체 보기" />
 					</S.MovieInfoContainer>
 					<S.PosterContainer>
 						{posters.map((poster, i) => (
@@ -63,7 +66,12 @@ const MovieInfoBar = () => {
 								</li>
 							))}
 						</S.TheaterBox>
-						<ViewAllBtn label="전체보기" />
+						<ViewAllBtn
+							label="극장 추가"
+							onClick={() => {
+								navigate('/theaters');
+							}}
+						/>
 					</S.TheaterContainer>
 				</S.Layout>
 			</S.Wrapper>
