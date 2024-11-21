@@ -4,7 +4,7 @@ import {
   ImgPosterLargeEvent,
   ImgPosterLargeGladiator,
 } from "@/assets/svg";
-import * as S from "@/components/MainPageComponents/Styles";
+import * as S from "@/components/MainPageComponents/StylesPopularMovieChart";
 
 const PopularMovieChart = () => {
   return (
