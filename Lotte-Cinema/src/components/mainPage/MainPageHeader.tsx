@@ -30,6 +30,8 @@ const S = {
 		height: 5.2rem;
 		display: flex;
 		justify-content: space-between;
+		position: fixed;
+		z-index: 1;
 	`,
 	LeftContainer: styled.nav`
 		margin-left: 1.8rem;
