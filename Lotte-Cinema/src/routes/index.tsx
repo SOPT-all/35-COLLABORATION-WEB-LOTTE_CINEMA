@@ -1,5 +1,6 @@
-import { RouteType } from '@/types/routeType';
 import { InfoCheck, MainPage, SeatReservation, TheaterList, TimeSelect } from '@/pages/index';
+
+import { RouteType } from '@/types/routeType';
 
 const router: RouteType[] = [
   {

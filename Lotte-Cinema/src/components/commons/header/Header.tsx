@@ -32,16 +32,16 @@ export default Header;
 const S = {
   Header: styled.header`
     display: flex;
+    gap: 4rem;
+    align-items: center;
     width: 100%;
     height: 5rem;
     padding: 1.3rem 12rem 1.3rem 1.4rem;
-    align-items: center;
-    gap: 4rem;
   `,
   LeftContainer: styled.nav`
     display: flex;
-    align-items: center;
     gap: 1.6rem;
+    align-items: center;
   `,
 
   MenuBox: styled.li`
