@@ -35,8 +35,6 @@ const S = {
 	`,
 	LeftContainer: styled.nav``,
 	RightContainer: styled.nav``,
-
-	LotteCinemaLogo: styled.span``,
 	MenuBox: styled.li`
 		height: 3.2rem;
 		list-style: none;
