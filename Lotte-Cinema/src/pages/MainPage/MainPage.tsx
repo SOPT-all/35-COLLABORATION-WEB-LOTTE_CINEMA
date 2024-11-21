@@ -1,9 +1,12 @@
+import Footer from '@/components/mainPage/Footer';
 import MobileLayout from '@/components/mobileLayout/MobileLayout';
 
 const MainPage = () => {
 	return (
 		<MobileLayout>
-			<main>메인페이지</main>
+			<main>
+				<Footer />
+			</main>
 		</MobileLayout>
 	);
 };
