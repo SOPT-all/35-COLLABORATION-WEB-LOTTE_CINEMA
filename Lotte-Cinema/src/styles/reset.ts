@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
 const Reset = css`
   html,
@@ -126,13 +126,19 @@ const Reset = css`
   blockquote::after,
   q::before,
   q::after {
-    content: "";
+    content: '';
     content: none;
   }
 
   table {
     border-collapse: collapse;
     border-spacing: 0;
+  }
+  button {
+    border: none;
+    outline: none;
+    background-color: inherit;
+    cursor: pointer;
   }
 `;
 
