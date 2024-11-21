@@ -34,7 +34,6 @@ const S = {
     display: flex;
     gap: 4rem;
     align-items: center;
-    width: 100%;
     height: 5rem;
     padding: 1.3rem 12rem 1.3rem 1.4rem;
   `,
