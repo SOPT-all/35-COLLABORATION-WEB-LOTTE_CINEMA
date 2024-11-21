@@ -14,11 +14,11 @@ export const PopularRankingType = styled.h2`
 `;
 
 export const FilterScrenning = styled.div`
-  display: flex;
   width: 11.5rem;
   font-family: ${({ theme }) => theme.typographies.n_body03_med};
-
-  /* text-align: right; 오른쪽으로 정렬해야 함 */
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 `;
 
 export const ContentWrapper = styled.div`
@@ -96,6 +96,23 @@ export const StarReview = styled.div`
   font-family: ${({ theme }) => theme.typographies.n_caption02_reg};
 `;
 
+export const ButtonReservation = styled.button<{ firstRankButton?: boolean }>`
+  width: 11.8rem;
+  height: 3.4rem;
+  font-family: ${({ theme }) => theme.typographies.n_body02_bold};
+  color: ${({ theme }) => theme.colors.GRAY12};
+  background-color: ${({ theme }) => theme.colors.WHITE100};
+  border-radius: 4px;
+
+  ${({ firstRankButton, theme }) =>
+    firstRankButton &&
+    `
+    background-color: ${theme.colors.RED02};
+    color: ${theme.colors.WHITE100};
+    `}
+`;
+
+// 광고 컴포넌트 스타일
 export const AdvertisingTitle = styled.div`
   grid-area: advertisingTitle;
 
@@ -116,21 +133,7 @@ export const ButtonAdvertising = styled.button`
 
   color: ${({ theme }) => theme.colors.GRAY08};
   font-family: ${({ theme }) => theme.typographies.n_body02_bold};
-`;
-
-export const ButtonReservation = styled.button<{ firstRankButton?: boolean }>`
-  width: 11.8rem;
-  height: 3.4rem;
-  font-family: ${({ theme }) => theme.typographies.n_body02_bold};
-
-  ${({ firstRankButton, theme }) =>
-    firstRankButton &&
-    `
-    background-color: ${theme.colors.RED02};
-    color: ${theme.colors.WHITE100};
-    border: none;
-    border-radius: 4px;
-    `}
+  background-color: ${({ theme }) => theme.colors.WHITE100};
 `;
 
 export const EntireMovieSelect = styled.p`
