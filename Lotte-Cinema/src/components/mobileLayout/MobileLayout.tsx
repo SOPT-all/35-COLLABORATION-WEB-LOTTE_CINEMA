@@ -20,16 +20,16 @@ const S = {
 	Wrapper: styled.div`
 		display: flex;
 		justify-content: center;
+
 		background-color: ${({ theme }) => theme.colors.GRAY03};
 	`,
 	Layout: styled.div`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-
+		width: 100%;
 		min-width: 360px;
 		max-width: 430px;
-		width: 100%;
 		min-height: 100vh;
 
 		background-color: ${({ theme }) => theme.colors.WHITE100};

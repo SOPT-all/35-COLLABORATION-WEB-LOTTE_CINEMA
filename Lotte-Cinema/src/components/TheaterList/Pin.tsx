@@ -19,13 +19,14 @@ const Pin = ({ children }: PinProps) => {
 
 const S = {
 	Wrapper: styled.div`
-		margin-top: 100px;
-		border-radius: 99px;
-		padding: 0.6rem 1rem;
 		display: flex;
-		align-items: center;
 		gap: 0.4rem;
+		align-items: center;
+		margin-top: 100px;
+		padding: 0.6rem 1rem;
+
 		background-color: ${({ theme }) => theme.colors.WHITE100};
+		border-radius: 99px;
 	`,
 	Text: styled.span`
 		white-space: nowrap;
