@@ -9,21 +9,42 @@ import ImgKiminonamaewa from '@/assets/img/ImgKiminonamaewa.png';
 import ImgSummerwars from '@/assets/img/ImgSummerwars.png';
 import { IcAge1216, IcAge1916, IcAgeAll16 } from '@/assets/svg';
 
+import { runningTimeFormat } from '@/utils';
+
 import ViewAllBtn from '../commons/ViewAllBtn';
-import TheaterLabel from './atom/theaterLabel';
+import TheaterLabel from './atom/TheaterLabel';
 
 const MovieInfoBar = () => {
+	// TODO API 완성시, 로직 분리할 예정
+	const Title = '아마존 활명수';
+	const runningTime = 122;
 	const posters = [ImgAmazonhms, Img4m44s, ImgDeadline, ImgGladiator, ImgHoshimachi, ImgKiminonamaewa, ImgSummerwars];
 	const locs = ['건대입구', '강동', '청량리'];
+	const ageLimit: string = '12';
+	let ageIcon: JSX.Element = <></>;
+
+	switch (ageLimit as '12' | '19' | 'All') {
+		case '12':
+			ageIcon = <IcAge1216 width="1.6rem" />;
+			break;
+		case '19':
+			ageIcon = <IcAge1916 width="1.6rem" />;
+			break;
+		case 'All':
+			ageIcon = <IcAgeAll16 width="1.6rem" />;
+			break;
+		default:
+			ageIcon = <></>;
+	}
 	return (
 		<>
 			<S.Wrapper>
 				<S.Layout>
 					<S.MovieInfoContainer>
 						<S.MovieTextBox>
-							<h1>아마존 활명수</h1>
-							<IcAge1216 width="1.6rem" />
-							<p>122분 (2시간 2분)</p>
+							<h1>{Title}</h1>
+							{ageIcon}
+							<p>{`${runningTime}분 (${runningTimeFormat(runningTime)})`}</p>
 						</S.MovieTextBox>
 						<ViewAllBtn label="전체보기" />
 					</S.MovieInfoContainer>
@@ -35,11 +56,14 @@ const MovieInfoBar = () => {
 						))}
 					</S.PosterContainer>
 					<S.TheaterContainer>
-						{locs.map((loc, i) => (
-							<li key={`chip-${i}`}>
-								<TheaterLabel label={loc} />
-							</li>
-						))}
+						<S.TheaterBox>
+							{locs.map((loc, i) => (
+								<li key={`chip-${i}`}>
+									<TheaterLabel label={loc} />
+								</li>
+							))}
+						</S.TheaterBox>
+						<ViewAllBtn label="전체보기" />
 					</S.TheaterContainer>
 				</S.Layout>
 			</S.Wrapper>
@@ -110,7 +134,13 @@ const S = {
 		}
 	`,
 
-	TheaterContainer: styled.ul`
+	TheaterContainer: styled.section`
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+	`,
+
+	TheaterBox: styled.ul`
 		display: flex;
 		gap: 0.6rem;
 	`,
