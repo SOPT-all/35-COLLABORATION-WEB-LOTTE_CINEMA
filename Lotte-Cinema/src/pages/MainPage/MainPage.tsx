@@ -1,4 +1,4 @@
-import PopularMovieChart from "@/components/MainPageComponents/PopularMovieChart";
+import PopularMovieChart from "@/components/mainPage/PopularMovieChart";
 import MobileLayout from "@/components/mobileLayout/MobileLayout";
 
 const MainPage = () => {
