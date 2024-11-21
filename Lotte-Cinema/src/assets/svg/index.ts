@@ -16,3 +16,5 @@ export { default as ImgLogo } from './ImgLogo';
 export { default as ImgLpayLogo } from './ImgLpayLogo';
 export { default as ImgPaymentComplete } from './ImgPaymentComplete';
 export { default as ImgPosterSmallAmazonhms } from './ImgPosterSmallAmazonhms';
+
+export { default as IcCloseGrayTemp } from './IcCloseGrayTemp';
