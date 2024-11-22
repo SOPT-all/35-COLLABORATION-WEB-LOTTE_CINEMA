@@ -1,8 +1,14 @@
 name: Synchronize to forked repo
+
 on:
-  push:
+  push: # 브랜치로 push될 때 실행
     branches:
       - main
+      - develop
+  pull_request: # PR 생성 및 업데이트 시 실행
+    branches:
+      - main # main 브랜치에 대한 PR
+      - develop # develop 브랜치에 대한 PR
 
 jobs:
   sync:
@@ -14,10 +20,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: yarn install
+        run: |
+          cd Lotte-Cinema
+          yarn install
 
       - name: Build project
-        run: yarn run build
+        run: |
+          cd Lotte-Cinema
+          yarn run build
 
       - name: Add remote-url
         run: |
