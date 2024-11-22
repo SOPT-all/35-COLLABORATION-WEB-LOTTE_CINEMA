@@ -15,22 +15,22 @@ const MovieTimeBox = () => {
           <IcArrowTop20 width="2rem" />
         </S.TitleContainer>
       </S.TitleHeader>
-      <S.InfosWrapper>
+      <S.InfoAccordion>
         <S.InfoContainer>
-          <S.InfoHeader>
+          <S.InfoTrigger>
             <p>4관 2D</p>
             <span />
             <p>리클라이너</p>
-          </S.InfoHeader>
-          <S.TimeCardsContainer>
+          </S.InfoTrigger>
+          <S.InfoContent>
             <TimeCard />
             <TimeCard />
             <TimeCard />
             <TimeCard />
             <TimeCard />
-          </S.TimeCardsContainer>
+          </S.InfoContent>
         </S.InfoContainer>
-      </S.InfosWrapper>
+      </S.InfoAccordion>
     </S.Wrapper>
   );
 };
@@ -70,7 +70,7 @@ const S = {
     }
   `,
 
-  InfosWrapper: styled.section`
+  InfoAccordion: styled.section`
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -84,9 +84,10 @@ const S = {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+    margin-bottom: 1.8rem;
   `,
 
-  InfoHeader: styled.header`
+  InfoTrigger: styled.header`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -103,7 +104,7 @@ const S = {
     }
   `,
 
-  TimeCardsContainer: styled.div`
+  InfoContent: styled.div`
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
