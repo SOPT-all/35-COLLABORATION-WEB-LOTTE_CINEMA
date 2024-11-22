@@ -24,6 +24,7 @@ export const FilterScrenning = styled.div`
 export const ContentWrapper = styled.div`
   display: flex;
   gap: 1.6rem;
+  width: 100%; // width 값 안 주면 스크롤이 적용되지 않는다
   height: 28rem;
   margin: 1rem 0;
   overflow: scroll;
