@@ -31,7 +31,7 @@ jobs:
 
       - name: Add remote-url
         run: |
-          git remote add forked-repo https://gonn-i:${{ secrets.AUTO_SYNC }}@github.com/gonn-i/35-COLLABORATION-WEB-LOTTE_CINEMA
+          git remote add forked-repo https://gonn-i:${{ secrets.FORKED_REPO_TOKEN }}@github.com/gonn-i/35-COLLABORATION-WEB-LOTTE_CINEMA
           git config user.name gonn-i
           git config user.email rlarhdms6828@naver.com
 
