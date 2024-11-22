@@ -4,11 +4,6 @@ on:
   push: # 브랜치로 push될 때 실행
     branches:
       - main
-      - develop
-  pull_request: # PR 생성 및 업데이트 시 실행
-    branches:
-      - main # main 브랜치에 대한 PR
-      - develop # develop 브랜치에 대한 PR
 
 jobs:
   sync:
@@ -31,7 +26,7 @@ jobs:
 
       - name: Add remote-url
         run: |
-          git remote add forked-repo https://gonn-i:${{ secrets.AUTO_SYNC }}@github.com/gonn-i/35-COLLABORATION-WEB-LOTTE_CINEMA
+          git remote add forked-repo https://gonn-i:${{ secrets.FORKED_REPO_TOKEN }}@github.com/gonn-i/35-COLLABORATION-WEB-LOTTE_CINEMA
           git config user.name gonn-i
           git config user.email rlarhdms6828@naver.com
 
