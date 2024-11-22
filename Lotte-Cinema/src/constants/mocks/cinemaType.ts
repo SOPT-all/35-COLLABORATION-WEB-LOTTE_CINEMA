@@ -1,7 +1,7 @@
 const CINEMA_TYPE = [
   {
     label: '전체',
-    value: 'aLL',
+    value: 'all',
     id: 1,
   },
   {
