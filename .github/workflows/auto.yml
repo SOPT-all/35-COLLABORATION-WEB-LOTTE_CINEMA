@@ -14,10 +14,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: yarn install
+        run: |
+          cd Lotte-Cinema
+          yarn install
 
       - name: Build project
-        run: yarn run build
+        run: |
+          cd Lotte-Cinema
+          yarn run build
 
       - name: Add remote-url
         run: |
