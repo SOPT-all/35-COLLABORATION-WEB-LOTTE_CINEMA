@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 const TimeCard = () => {
   return (
     <S.Wrapper>
-      <S.ContainerBottom></S.ContainerBottom>
       <S.TimeInfoItem>
         <span className="bold_time">11:55</span>
         <span className="thin_time">~ 13:17</span>
@@ -18,32 +17,25 @@ const TimeCard = () => {
 
 export default TimeCard;
 
+const InfoBasicContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 0.6rem 1.2rem;
+  align-items: center;
+  border-radius: 0.4rem;
+  gap: 0.4rem;
+  border: 1px solid ${({ theme }) => theme.colors.GRAY03};
+`;
+
 const S = {
   Wrapper: styled.div`
-    position: relative;
-    width: 11.2rem;
+    width: 100%;
     height: 5.4rem;
-    border-radius: 0.4rem;
-    border: 1px solid ${({ theme }) => theme.colors.GRAY03};
+    margin-bottom: 1rem;
+  `,
+
+  TimeInfoItem: styled(InfoBasicContainer)`
     background: ${({ theme }) => theme.colors.GRAY01};
-  `,
-
-  ContainerBottom: styled.div`
-    position: absolute;
-    bottom: 0;
-    width: 11.2rem;
-    height: 2.2rem;
-    background: ${({ theme }) => theme.colors.GRAY03};
-  `,
-
-  TimeInfoItem: styled.div`
-    position: absolute;
-    left: 1.9rem;
-    top: 0.5rem;
-    display: inline-flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 0.4rem;
 
     & .bold_time {
       ${({ theme }) => theme.typographies.r_body01}
@@ -54,12 +46,10 @@ const S = {
     }
   `,
 
-  SeatInfoItem: styled.div`
-    position: absolute;
-    bottom: 0;
-    bottom: 0.3rem;
-    left: 4rem;
+  SeatInfoItem: styled(InfoBasicContainer)`
+    border-radius: 0 0 0.4rem 0.4rem;
     ${({ theme }) => theme.typographies.r_body03_bold}
+    background: ${({ theme }) => theme.colors.GRAY03};
 
     & .filled_seat {
       color: ${({ theme }) => theme.colors.GREEN};

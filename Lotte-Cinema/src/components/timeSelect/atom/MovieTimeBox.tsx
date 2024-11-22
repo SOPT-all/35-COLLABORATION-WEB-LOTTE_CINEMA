@@ -107,6 +107,6 @@ const S = {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 0.9rem;
+    gap: 0.8rem;
   `,
 };
