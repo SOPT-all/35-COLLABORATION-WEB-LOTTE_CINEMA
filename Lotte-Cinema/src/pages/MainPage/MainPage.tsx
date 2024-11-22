@@ -1,14 +1,16 @@
-import PopularMovieChart from "@/components/mainPage/PopularMovieChart";
-import MobileLayout from "@/components/mobileLayout/MobileLayout";
+import MainPageHeader from '@/components/mainPage/MainPageHeader';
+import MobileLayout from '@/components/mobileLayout/MobileLayout';
+import PopularMovieChart from '@/components/mainPage/PopularMovieChart';
 
 const MainPage = () => {
-  return (
-    <MobileLayout>
-      <main>
-        <PopularMovieChart />
-      </main>
-    </MobileLayout>
-  );
+
+	return (
+		<MobileLayout>
+			<MainPageHeader />
+      <PopularMovieChart/>
+		</MobileLayout>
+	);
+
 };
 
 export default MainPage;

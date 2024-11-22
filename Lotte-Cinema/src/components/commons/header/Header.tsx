@@ -1,7 +1,8 @@
-import { IcArrowLeftBlack24, IcHomeBlack24 } from "@/assets/svg";
-import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
+import styled from '@emotion/styled';
 
+import { useNavigate } from 'react-router-dom';
+
+import { IcArrowLeftBlack24, IcHomeBlack24 } from '@/assets/svg';
 interface HeaderProps {
   title: string;
 }
@@ -14,7 +15,7 @@ const Header = ({ title }: HeaderProps) => {
         <S.MenuBox onClick={() => navigate(-1)}>
           <IcArrowLeftBlack24 width="24px" height="24px" />
         </S.MenuBox>
-        <S.MenuBox onClick={() => navigate("/")}>
+        <S.MenuBox onClick={() => navigate('/')}>
           <IcHomeBlack24 width="24px" height="24px" />
         </S.MenuBox>
       </S.LeftContainer>
