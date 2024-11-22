@@ -37,13 +37,14 @@ export default TimeTypeBar;
 const S = {
   Wrapper: styled.section`
     display: flex;
-    width: 100%
     height: 5.8rem;
     padding: 1.4rem 1.8rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+
+    border-bottom: 0.6rem solid ${({ theme }) => theme.colors.GRAY02};
   `,
 
   Container: styled.ul`

@@ -1,4 +1,5 @@
 import CinemaTypeBar from './atom/CinemaTypeBar';
+import MovieTimeBox from './atom/MovieTimeBox';
 import TimeTypeBar from './atom/TimeTypeBar';
 
 const TimeInfo = () => {
@@ -6,6 +7,7 @@ const TimeInfo = () => {
     <>
       <CinemaTypeBar />
       <TimeTypeBar />
+      <MovieTimeBox />
     </>
   );
 };
