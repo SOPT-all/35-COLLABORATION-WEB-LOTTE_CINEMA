@@ -90,11 +90,13 @@ export const ReservationRate = styled.div`
   font-family: ${({ theme }) => theme.typographies.n_caption02_reg};
 `;
 
-export const StarReview = styled.div`
+export const StarReview = styled.span`
   grid-area: starReview;
 
   color: ${({ theme }) => theme.colors.GRAY10};
   font-family: ${({ theme }) => theme.typographies.n_caption02_reg};
+  display: flex;
+  align-items: flex-start;
 `;
 
 export const ButtonReservation = styled.button<{ firstRankButton?: boolean }>`
@@ -140,8 +142,11 @@ export const ButtonAdvertising = styled.button`
 export const EntireMovieSelect = styled.p`
   width: 90%;
   margin: 0 auto;
-
   color: ${({ theme }) => theme.colors.GRAY09};
   text-align: right;
   font-family: ${({ theme }) => theme.typographies.n_body03_med};
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.4rem;
 `;
