@@ -1,0 +1,48 @@
+module.exports = {
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+  },
+  plugins: ['react', 'react-hooks', '@typescript-eslint', '@tanstack/query', 'jsx-a11y', 'prettier', 'import'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
+    'prettier',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    ecmaFeatures: { jsx: true },
+    sourceType: 'module',
+  },
+  ignorePatterns: ['build', 'dist', 'public'],
+  rules: {
+    'react/jsx-filename-extension': ['warn', { extensions: ['.ts', '.tsx'] }],
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-uses-react': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react/jsx-props-no-spreading': 'off',
+    'react/function-component-definition': [
+      'error',
+      { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
+    ],
+    'react-hooks/exhaustive-deps': 'warn',
+    'react/self-closing-comp': 'warn',
+    'react/prop-types': 'off',
+    'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
+    'no-shadow': 'off',
+
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    '@tanstack/query/exhaustive-deps': 'error',
+    '@tanstack/query/stable-query-client': 'error',
+    'prettier/prettier': 'error',
+    'import/order': 'off',
+  },
+};
