@@ -1,0 +1,34 @@
+name: Synchronize to forked repo
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    name: Sync forked repo
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build project
+        run: yarn run build
+
+      - name: Add remote-url
+        run: |
+          git remote add forked-repo https://gonn-i:${{ secrets.AUTO_SYNC }}@github.com/gonn-i/35-COLLABORATION-WEB-LOTTE_CINEMA
+          git config user.name gonn-i
+          git config user.email rlarhdms6828@naver.com
+
+      - name: Push changes to forked-repo
+        run: |
+          git push -f forked-repo main
+
+      - name: Clean up
+        run: |
+          git remote remove forked-repo
