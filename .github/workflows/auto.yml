@@ -9,10 +9,11 @@ on:
       - develop
 
 jobs:
-  sync:
+  sync_push:
     name: Sync forked repo
     runs-on: ubuntu-latest
 
+    if: github.event_name == 'push'
     steps:
       - name: Checkout main
         uses: actions/checkout@v4
@@ -39,6 +40,22 @@ jobs:
         run: |
           git push -f forked-repo HEAD:main
 
-      - name: Clean up
+  sync_pr:
+    name: Build project on pull_request
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout develop
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.AUTO_SYNC }}
+
+      - name: Install dependencies
         run: |
-          git remote remove forked-repo
+          cd Lotte-Cinema
+          yarn install
+
+      - name: Build project
+        run: |
+          cd Lotte-Cinema
+          yarn run build
