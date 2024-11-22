@@ -85,32 +85,33 @@ const S = {
   Wrapper: styled.section`
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     align-items: flex-start;
     height: 21.2rem;
     padding: 1.6rem 0 1.6rem 1.8rem;
-    gap: 1rem;
+
     background: ${({ theme }) => theme.colors.GRAY14};
   `,
 
   Layout: styled.div`
     display: flex;
-    width: 100%;
     flex-direction: column;
-    align-items: flex-start;
     gap: 1.2rem;
+    align-items: flex-start;
+    width: 100%;
   `,
 
   MovieInfoContainer: styled.header`
-    width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
   `,
 
   MovieTextBox: styled.div`
     display: flex;
-    align-items: center;
     gap: 0.8rem;
+    align-items: center;
     justify-content: space-between;
 
     & h1 {
@@ -127,8 +128,8 @@ const S = {
   PosterContainer: styled.ul`
     display: flex;
     flex-direction: row;
-    align-items: center;
     gap: 0.4rem;
+    align-items: center;
     align-self: stretch;
     overflow-x: auto;
 
