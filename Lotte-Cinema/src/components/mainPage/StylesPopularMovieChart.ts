@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const HeaderWrapper = styled.header`
   display: flex;
@@ -16,9 +16,10 @@ export const PopularRankingType = styled.h2`
 export const FilterScrenning = styled.div`
   width: 11.5rem;
   font-family: ${({ theme }) => theme.typographies.n_body03_med};
+  color: ${({ theme }) => theme.colors.GRAY10};
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ContentWrapper = styled.div`
@@ -58,10 +59,10 @@ export const GridContainer = styled.div<{ advertiseComponent?: boolean }>`
   justify-content: center;
   align-items: center;
   display: grid;
-  grid-template-columns: 1fr 3fr 2fr;
+  grid-template-columns: 1fr 2fr 2fr;
   grid-template-areas:
-    "ranking movieTitle ."
-    "ranking reservationRate starReview";
+    'ranking movieTitle .'
+    'ranking reservationRate starReview';
 
   ${({ advertiseComponent }) =>
     advertiseComponent &&
