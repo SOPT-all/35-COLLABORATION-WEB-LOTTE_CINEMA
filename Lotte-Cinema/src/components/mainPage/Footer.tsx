@@ -1,11 +1,8 @@
 import styled from '@emotion/styled';
 
-import { useState } from 'react';
-
-import { IcArrowDown20, IcArrowUnderGray1410, IcHorizontalbar10, ImgBannerFullKblivevent } from '@/assets/svg';
+import { IcArrowUnderGray1410, IcHorizontalbar10, ImgBannerFullKblivevent } from '@/assets/svg';
 
 const Footer = () => {
-	const [isClicked, setIsClicked] = useState(true);
 	return (
 		<>
 			<S.Footer>
@@ -23,20 +20,17 @@ const Footer = () => {
 					<ImgBannerFullKblivevent />
 				</S.Advertisement>
 				<S.LastContainer>
-					<S.CompanyRegulation onClick={() => setIsClicked((event) => !event)}>
+					<S.CompanyRegulation>
 						<span>롯데컬처윅스&#40;주&#41;</span>
-						{isClicked ? <IcArrowDown20 width="1rem" /> : <IcArrowUnderGray1410 width="1rem" />}
+						<IcArrowUnderGray1410 width="1rem" />
 					</S.CompanyRegulation>
-					{/* 토글하면 아래에 정보가 나오도록 하기 잠깐 이따가 하기 ㅠ.ㅠ*/}
-					{isClicked && (
-						<S.ToggleContainer>
-							<S.EachRegulation>이용약관</S.EachRegulation>
-							<S.SeperateLine>|</S.SeperateLine>
-							<S.EachRegulation>개인정보처리방침</S.EachRegulation>
-							<p>|</p>
-							<S.SeperateLine>고객센터</S.SeperateLine>
-						</S.ToggleContainer>
-					)}
+					<S.ToggleContainer>
+						<S.EachRegulation>이용약관</S.EachRegulation>
+						<S.SeperateLine>|</S.SeperateLine>
+						<S.EachRegulation>개인정보처리방침</S.EachRegulation>
+						<S.SeperateLine>|</S.SeperateLine>
+						<S.EachRegulation>고객센터</S.EachRegulation>
+					</S.ToggleContainer>
 				</S.LastContainer>
 			</S.Footer>
 		</>
@@ -95,6 +89,12 @@ const S = {
 	`,
 	EachRegulation: styled.li`
 		list-style: none;
+
+		&:hover,
+		&:active {
+			${({ theme }) => theme.typographies.n_caption01_bold};
+			color: ${({ theme }) => theme.colors.BLACK100};
+		}
 	`,
 	SeperateLine: styled.div``,
 };
