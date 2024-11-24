@@ -22,6 +22,13 @@ export const FilterScrenning = styled.div`
   align-items: center;
 `;
 
+export const ageLimitContainer = styled.div`
+  height: 1.6rem;
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+`;
+
 export const ContentWrapper = styled.div`
   display: flex;
   gap: 1.6rem;
@@ -42,26 +49,29 @@ export const ContentWrapper = styled.div`
 `;
 
 export const EachContentWrapper = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 
   background-color: ${({ theme }) => theme.colors.GRAY01};
   border-radius: 6px;
+  position: relative;
+  padding-bottom: 0.8rem;
 `;
 
 // GridContainer 스타일
 export const GridContainer = styled.div<{ advertiseComponent?: boolean }>`
   width: 11.8rem;
-  height: 3.1rem;
+  height: 3.2rem;
   justify-content: center;
   align-items: center;
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
   grid-template-areas:
-    'ranking movieTitle .'
+    'ranking movieTitle movieTitle'
     'ranking reservationRate starReview';
 
   ${({ advertiseComponent }) =>
@@ -100,20 +110,24 @@ export const StarReview = styled.span`
   align-items: flex-start;
 `;
 
-export const ButtonReservation = styled.button<{ firstRankButton?: boolean }>`
+export const ButtonReservation = styled.button`
   width: 11.8rem;
   height: 3.4rem;
   font-family: ${({ theme }) => theme.typographies.n_body02_bold};
   color: ${({ theme }) => theme.colors.GRAY12};
   background-color: ${({ theme }) => theme.colors.WHITE100};
   border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.GRAY07};
 
-  ${({ firstRankButton, theme }) =>
-    firstRankButton &&
-    `
-    background-color: ${theme.colors.RED02};
-    color: ${theme.colors.WHITE100};
-    `}
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.RED02};
+    color: ${({ theme }) => theme.colors.WHITE100};
+  }
+
+  &:index {
+    background-color: ${({ theme }) => theme.colors.RED02};
+    color: ${({ theme }) => theme.colors.WHITE100};
+  }
 `;
 
 // 광고 컴포넌트 스타일
@@ -131,13 +145,20 @@ export const NoticeAdvertising = styled.div`
   font-family: ${({ theme }) => theme.typographies.n_caption01_reg};
 `;
 
-export const ButtonAdvertising = styled.button`
+export const ButtonAdvertising = styled.button<{ isFirst?: boolean }>`
   width: 11.8rem;
   height: 3.4rem;
 
   color: ${({ theme }) => theme.colors.GRAY08};
   font-family: ${({ theme }) => theme.typographies.n_body02_bold};
   background-color: ${({ theme }) => theme.colors.WHITE100};
+  border: 1px solid ${({ theme }) => theme.colors.GRAY07};
+  border-radius: 4px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.RED02};
+    color: ${({ theme }) => theme.colors.WHITE100};
+  }
 `;
 
 export const EntireMovieSelect = styled.p`

@@ -1,6 +1,9 @@
 import * as S from '@/components/mainPage/StylesPopularMovieChart';
 
 import {
+  IcAge1216,
+  IcAge1916,
+  IcAgeAll16,
   IcArrowRightGray0910,
   IcHorizontalbarGrey,
   IcStarGray1010,
@@ -17,6 +20,41 @@ import {
 // 스크롤 영역 -> 캐러셀 사용하기
 
 const PopularMovieChart = () => {
+  const items = [
+    {
+      image: ImgPosterLargeAmazon,
+      ranking: 1,
+      title: '데드라인',
+      reservationRate: 18.7,
+      starReview: 4.3,
+      decisionDay: undefined,
+      ageLimit: IcAge1216,
+    },
+    {
+      image: ImgPosterLargeDeadline,
+      ranking: 2,
+      title: '글래디에이터',
+      reservationRate: 18.7,
+      starReview: 4.3,
+      decisionDay: undefined,
+      ageLimit: IcAge1916,
+    },
+    {
+      image: ImgPosterLargeEvent,
+      title: '헥토이노베이션',
+      description: 'AD',
+      ageLimit: undefined,
+    },
+    {
+      image: ImgPosterLargeGladiator,
+      ranking: 3,
+      title: '아마존 활명수',
+      reservationRate: 18.7,
+      starReview: 4.3,
+      decisionDay: undefined,
+      ageLimit: IcAgeAll16,
+    },
+  ];
   return (
     <>
       <S.HeaderWrapper>
@@ -30,55 +68,33 @@ const PopularMovieChart = () => {
         </S.FilterScrenning>
       </S.HeaderWrapper>
       <S.ContentWrapper>
-        <S.EachContentWrapper>
-          <ImgPosterLargeAmazon width="13.4rem" />
-          <S.GridContainer>
-            <S.Ranking>1</S.Ranking>
-            <S.MovieTitle>데드라인</S.MovieTitle>
-            <S.ReservationRate>예매율 18.2%</S.ReservationRate>
-            <S.StarReview>
-              <IcStarGray1010 width="1rem" height="1rem" />
-              4.7
-            </S.StarReview>
-          </S.GridContainer>
-          <S.ButtonReservation type="button" firstRankButton={true}>
-            예매하기
-          </S.ButtonReservation>
-        </S.EachContentWrapper>
-
-        <S.EachContentWrapper>
-          <ImgPosterLargeDeadline width="13.4rem" />
-          <S.GridContainer>
-            <S.Ranking>2</S.Ranking>
-            <S.MovieTitle>데드라인</S.MovieTitle>
-            <S.ReservationRate>예매율 18.2%</S.ReservationRate>
-            <S.StarReview>
-              <IcStarGray1010 width="1rem" height="1rem" />
-              4.7
-            </S.StarReview>
-          </S.GridContainer>
-          <S.ButtonReservation type="button">예매하기</S.ButtonReservation>
-        </S.EachContentWrapper>
-
-        <S.EachContentWrapper>
-          <ImgPosterLargeEvent width="13.4rem" />
-          <S.GridContainer advertiseComponent={true}>
-            <S.AdvertisingTitle>헥토네이베션</S.AdvertisingTitle>
-            <S.NoticeAdvertising>AD</S.NoticeAdvertising>
-          </S.GridContainer>
-          <S.ButtonAdvertising type="button">자세히 보기</S.ButtonAdvertising>
-        </S.EachContentWrapper>
-
-        <S.EachContentWrapper>
-          <ImgPosterLargeGladiator width="13.4rem" />
-          <S.GridContainer>
-            <S.Ranking>3</S.Ranking>
-            <S.MovieTitle>데드라인</S.MovieTitle>
-            <S.ReservationRate>예매율 18.2%</S.ReservationRate>
-            <S.StarReview>개봉 D-12</S.StarReview>
-          </S.GridContainer>
-          <S.ButtonReservation type="button">예매하기</S.ButtonReservation>
-        </S.EachContentWrapper>
+        {items.map((item, index) =>
+          index === 2 ? (
+            <S.EachContentWrapper key={index}>
+              <item.image width="13.4rem" />
+              <S.GridContainer advertiseComponent={true}>
+                <S.AdvertisingTitle>헥토네이베션</S.AdvertisingTitle>
+                <S.NoticeAdvertising>AD</S.NoticeAdvertising>
+              </S.GridContainer>
+              <S.ButtonAdvertising type="button">자세히 보기</S.ButtonAdvertising>
+            </S.EachContentWrapper>
+          ) : (
+            <S.EachContentWrapper key={index}>
+              <S.ageLimitContainer>{item.ageLimit && <item.ageLimit height="100%" />}</S.ageLimitContainer>
+              <item.image width="13.4rem" />
+              <S.GridContainer>
+                <S.Ranking>{item.ranking}</S.Ranking>
+                <S.MovieTitle>{item.title}</S.MovieTitle>
+                <S.ReservationRate>예매율 {item.reservationRate}</S.ReservationRate>
+                <S.StarReview>
+                  <IcStarGray1010 width="1rem" height="1rem" />
+                  {item.starReview}
+                </S.StarReview>
+              </S.GridContainer>
+              <S.ButtonReservation type="button">예매하기</S.ButtonReservation>
+            </S.EachContentWrapper>
+          ),
+        )}
       </S.ContentWrapper>
       <S.EntireMovieSelect>
         전체 보기 <IcArrowRightGray0910 height="1rem" width="1rem" />
