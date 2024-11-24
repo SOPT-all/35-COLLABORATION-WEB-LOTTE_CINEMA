@@ -37,6 +37,7 @@ const S = {
     align-items: center;
     height: 5rem;
     padding: 1.3rem 12rem 1.3rem 1.4rem;
+    width: 100%;
   `,
   LeftContainer: styled.nav`
     display: flex;
