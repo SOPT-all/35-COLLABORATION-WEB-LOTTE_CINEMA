@@ -5,7 +5,6 @@ import { createPortal } from 'react-dom';
 
 interface ModalWrapperProps {
   children: ReactNode;
-  backdrop?: boolean;
 }
 
 export interface ModalWrapperRef {
