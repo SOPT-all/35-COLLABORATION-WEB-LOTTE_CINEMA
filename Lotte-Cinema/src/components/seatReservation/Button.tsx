@@ -34,7 +34,7 @@ const S = {
   BtnStyle: styled(CommonButton)<{ variant: 'default' | 'secondary' }>`
     color: ${({ variant, theme }) => (variant === 'default' ? theme.colors.WHITE100 : theme.colors.BLACK100)};
 
-    background-color: ${({ variant, theme }) => (variant === 'default' ? theme.colors.RED02 : 'transparent')};
+    background-color: ${({ variant, theme }) => (variant === 'default' ? theme.colors.RED02 : theme.colors.WHITE100)};
     border: ${({ variant, theme }) => (variant === 'secondary' ? `1px solid ${theme.colors.BLACK100}` : 'none')};
   `,
 };

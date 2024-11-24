@@ -36,6 +36,7 @@ const S = {
     align-items: center;
     height: 5rem;
     padding: 1.3rem 12rem 1.3rem 1.4rem;
+    width: 100%;
   `,
   LeftContainer: styled.nav`
     display: flex;
@@ -48,7 +49,7 @@ const S = {
   `,
 
   CenterContainer: styled.section`
-    width: 12.2rem;
+    width: 100%;
 
     & h1 {
       ${({ theme }) => theme.typographies.n_head02_reg};
