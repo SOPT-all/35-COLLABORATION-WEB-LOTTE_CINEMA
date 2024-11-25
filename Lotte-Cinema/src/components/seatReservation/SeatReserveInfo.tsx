@@ -46,7 +46,9 @@ const S = {
     display: flex;
     flex-direction: column;
     width: 100%;
+
     background-color: ${({ theme }) => theme.colors.WHITE100};
+
   `,
   SeatTypeInfo: styled.div`
     display: flex;

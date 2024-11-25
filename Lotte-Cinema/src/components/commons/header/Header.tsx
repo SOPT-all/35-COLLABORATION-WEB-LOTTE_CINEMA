@@ -31,12 +31,19 @@ export default Header;
 
 const S = {
   Header: styled.header`
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 100%;
     display: flex;
+
     gap: 4rem;
     width: 100%;
+
     align-items: center;
     height: 5rem;
     padding: 1.3rem 12rem 1.3rem 1.4rem;
+    background-color: ${({ theme }) => theme.colors.WHITE100};
   `,
   LeftContainer: styled.nav`
     display: flex;

@@ -35,7 +35,9 @@ const S = {
     width: 100%;
     height: 11.2rem;
     padding: 1.6rem 1.7rem;
+
     z-index: 1;
+
     background-color: ${({ theme }) => theme.colors.GRAY01};
   `,
   TotalPriceWrapper: styled.div`
