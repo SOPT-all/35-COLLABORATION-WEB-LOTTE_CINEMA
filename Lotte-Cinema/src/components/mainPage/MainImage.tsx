@@ -1,20 +1,20 @@
-import styled from "@emotion/styled"
-import { ImgPosterMainAprilcomeshewill } from "@/assets/svg"
+import styled from '@emotion/styled';
 
+import { ImgPosterMainAprilcomeshewill } from '@/assets/svg';
 
 const MainImage = () => {
   return (
     <S.MainImageContainer>
-        <ImgPosterMainAprilcomeshewill width="100%"/>
+      <ImgPosterMainAprilcomeshewill width="100%" />
     </S.MainImageContainer>
-  )
-}
+  );
+};
 
-export default MainImage
+export default MainImage;
 
 const S = {
-    MainImageContainer: styled.div`
+  MainImageContainer: styled.div`
     width: 90%;
     margin-bottom: 1.4rem;
-    `
-}
+  `,
+};
