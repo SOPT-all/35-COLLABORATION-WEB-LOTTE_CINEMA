@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+// 다음 이슈에서 캘린더 넣을 예정입니다!
 const Calendar = () => {
   return <S.Wrapper></S.Wrapper>;
 };

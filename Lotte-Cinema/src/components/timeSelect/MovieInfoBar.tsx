@@ -26,6 +26,7 @@ const MovieInfoBar = () => {
   const ageLimit: string = '12';
   let ageIcon: JSX.Element = <></>;
 
+  // 영화 연령에 따라, 연령제한 ICON 선택적 랜더링
   switch (ageLimit as '12' | '19' | 'All') {
     case '12':
       ageIcon = <IcAge1216 width="1.6rem" />;

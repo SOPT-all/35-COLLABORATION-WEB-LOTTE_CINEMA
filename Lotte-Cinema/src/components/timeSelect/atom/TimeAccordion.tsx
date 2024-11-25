@@ -6,7 +6,8 @@ import { IcArrowDown20, IcArrowTop20 } from '@/assets/svg';
 
 import TimeCard from './TimeCard';
 
-const TimeAccordian = () => {
+// TODO API res 값에 따라 내부 정보 채울 예정
+const TimeAccordion = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleAccordion = () => {
@@ -15,13 +16,13 @@ const TimeAccordian = () => {
   return (
     <>
       <S.TitleHeader onClick={toggleAccordion}>
-        <S.TitleContainer $isopen={isOpen}>
+        <S.TitleContainer $isOpen={isOpen}>
           <h1>건대 입구</h1>
           {isOpen ? <IcArrowTop20 width="2rem" /> : <IcArrowDown20 width="2rem" />}
         </S.TitleContainer>
       </S.TitleHeader>
       {isOpen && (
-        <S.InfoAccordion $isopen={isOpen}>
+        <S.InfoAccordion $isOpen={isOpen}>
           <S.InfoContainer>
             <S.InfoTitle>
               <p>4관 2D</p>
@@ -43,7 +44,7 @@ const TimeAccordian = () => {
   );
 };
 
-export default TimeAccordian;
+export default TimeAccordion;
 
 const S = {
   TitleHeader: styled.header`
@@ -55,25 +56,25 @@ const S = {
     align-self: stretch;
   `,
 
-  TitleContainer: styled.div<{ $isopen: boolean }>`
+  TitleContainer: styled.div<{ $isOpen: boolean }>`
     display: flex;
     width: 100%;
     padding: 1.8rem;
     justify-content: space-between;
     align-items: center;
-    border-bottom: ${({ $isopen, theme }) => (!$isopen ? `0.6rem solid ${theme.colors.GRAY02}` : `none`)};
+    border-bottom: ${({ $isOpen, theme }) => (!$isOpen ? `0.6rem solid ${theme.colors.GRAY02}` : `none`)};
     & h1 {
       ${({ theme }) => theme.typographies.n_head02_bold}
     }
   `,
 
-  InfoAccordion: styled.section<{ $isopen: boolean }>`
+  InfoAccordion: styled.section<{ $isOpen: boolean }>`
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
 
-  border-bottom : ${({ $isopen, theme }) => ($isopen ? `0.6rem solid ${theme.colors.GRAY02}` : `none`)}
+  border-bottom : ${({ $isOpen, theme }) => ($isOpen ? `0.6rem solid ${theme.colors.GRAY02}` : `none`)}
   }
 `,
 
