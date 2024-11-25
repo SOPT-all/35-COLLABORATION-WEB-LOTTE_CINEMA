@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import AgeInfo from '@/components/InfoCheck/AgeInfo';
 import MovieInfoBanner from '@/components/InfoCheck/MovieInfoBanner';
+import SeatInfo from '@/components/InfoCheck/SeatInfo';
 import TimeInfoList from '@/components/InfoCheck/TimeInfoList';
 import Header from '@/components/commons/header/Header';
 import MobileLayout from '@/components/mobileLayout/MobileLayout';
@@ -14,6 +15,7 @@ const InfoCheck = () => {
         <MovieInfoBanner />
         <TimeInfoList />
         <AgeInfo />
+        <SeatInfo />
       </S.Wrapper>
     </MobileLayout>
   );
