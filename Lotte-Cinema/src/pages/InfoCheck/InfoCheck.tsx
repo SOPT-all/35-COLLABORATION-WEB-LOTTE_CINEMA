@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import AgeInfo from '@/components/InfoCheck/AgeInfo';
 import MovieInfoBanner from '@/components/InfoCheck/MovieInfoBanner';
 import TimeInfoList from '@/components/InfoCheck/TimeInfoList';
 import Header from '@/components/commons/header/Header';
@@ -12,6 +13,7 @@ const InfoCheck = () => {
       <S.Wrapper>
         <MovieInfoBanner />
         <TimeInfoList />
+        <AgeInfo />
       </S.Wrapper>
     </MobileLayout>
   );
