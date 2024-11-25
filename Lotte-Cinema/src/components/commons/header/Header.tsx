@@ -53,7 +53,7 @@ const S = {
   `,
 
   CenterContainer: styled.section`
-    width: 12.2rem;
+    width: 100%;
 
     & h1 {
       ${({ theme }) => theme.typographies.n_head02_reg};
