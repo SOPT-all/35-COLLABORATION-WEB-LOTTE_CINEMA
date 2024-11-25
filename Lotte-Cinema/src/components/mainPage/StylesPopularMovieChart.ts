@@ -4,8 +4,8 @@ export const HeaderWrapper = styled.header`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 1.8rem;
 `;
 
 export const PopularRankingType = styled.h2`
@@ -13,13 +13,39 @@ export const PopularRankingType = styled.h2`
   width: 7.1rem;
 `;
 
-export const FilterScrenning = styled.div`
+export const FilterScrenning = styled.ul`
   width: 11.5rem;
   font-family: ${({ theme }) => theme.typographies.n_body03_med};
   color: ${({ theme }) => theme.colors.GRAY10};
   display: flex;
   justify-content: center;
   align-items: center;
+  list-style: none;
+`;
+
+export const SelectAllMovie = styled.li<{ active: boolean }>`
+  color: ${(props) => (props.active ? props.theme.colors.BLACK100 : props.theme.colors.GRAY10)};
+  cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.BLACK100};
+  }
+`;
+export const SelectPlayingMovie = styled.li<{ active: boolean }>`
+  color: ${(props) => (props.active ? props.theme.colors.BLACK100 : props.theme.colors.GRAY10)};
+  cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.BLACK100};
+  }
+`;
+export const SelectComingSoonMovie = styled.li<{ active: boolean }>`
+  color: ${(props) => (props.active ? props.theme.colors.BLACK100 : props.theme.colors.GRAY10)};
+  cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.BLACK100};
+  }
 `;
 
 export const ageLimitContainer = styled.div`
