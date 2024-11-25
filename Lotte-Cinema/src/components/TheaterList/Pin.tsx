@@ -22,11 +22,10 @@ const S = {
     display: flex;
     gap: 0.4rem;
     align-items: center;
-    margin-top: 100px;
     padding: 0.6rem 1rem;
 
     background-color: ${({ theme }) => theme.colors.WHITE100};
-    border-radius: 99px;
+    border-radius: 9.9rem;
   `,
   Text: styled.span`
     white-space: nowrap;
