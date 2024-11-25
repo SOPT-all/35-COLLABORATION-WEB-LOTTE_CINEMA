@@ -17,7 +17,7 @@ const SeatReservePayment = () => {
       <S.PayButtonWrapper>
         <Button variant="default">결제</Button>
         <Button variant="secondary">
-          <ImgLpayLogo width={'4.8rem'} height={'1.7rem'} />
+          <ImgLpayLogo width={'4.8rem'} />
           결제
         </Button>
       </S.PayButtonWrapper>
@@ -47,7 +47,6 @@ const S = {
 
   TotalPrice: styled.div`
     display: flex;
-    flex-direction: row;
     gap: 0.2rem;
     ${({ theme }) => theme.typographies.n_caption01_reg};
     align-items: center;
@@ -58,7 +57,6 @@ const S = {
 
   PayButtonWrapper: styled.div`
     display: flex;
-    flex-direction: row;
     gap: 1rem;
     width: 100%;
   `,
