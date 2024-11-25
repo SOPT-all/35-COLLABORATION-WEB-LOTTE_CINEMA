@@ -18,3 +18,5 @@ export const SEAT_INFO: string[] = (() => {
 
   return seatInfo;
 })();
+
+export const SEAT_ROWS = ['B', 'C', 'D', 'E', 'F', 'G'];

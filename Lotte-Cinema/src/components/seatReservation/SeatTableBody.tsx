@@ -1,14 +1,23 @@
 import styled from '@emotion/styled';
 
+import { useEffect, useRef } from 'react';
+
 import { BtnSeatDefaultLarge } from '@/assets/svg';
 
-import { SEAT_INFO } from '@/constants';
+import { SEAT_INFO, SEAT_ROWS } from '@/constants';
 
 const SeatTableBody = () => {
-  const rows = ['B', 'C', 'D', 'E', 'F', 'G'];
+  const seatTableWrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const wrapper = seatTableWrapperRef.current;
+    if (wrapper) {
+      wrapper.scrollLeft = (wrapper.scrollWidth - wrapper.clientWidth) / 2;
+    }
+  }, []);
 
   return (
-    <S.SeatTableWrapper>
+    <S.SeatTableWrapper ref={seatTableWrapperRef}>
       <S.SeatTableContainer>
         <S.ScreenComment>
           <p>S</p>
@@ -19,23 +28,21 @@ const SeatTableBody = () => {
           <p>N</p>
         </S.ScreenComment>
         <S.SeatTableBody>
-          <div>
-            {rows.map((row) => (
-              <S.SeatRowWrapper key={row}>
-                {SEAT_INFO.filter((seat) => seat.startsWith(row)).map((seat) => (
-                  <BtnSeatDefaultLarge
-                    key={seat}
-                    width={'2.8rem'}
-                    seat={seat}
-                    style={{
-                      marginRight: [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0',
-                      cursor: 'pointer',
-                    }}
-                  />
-                ))}
-              </S.SeatRowWrapper>
-            ))}
-          </div>
+          {SEAT_ROWS.map((row) => (
+            <S.SeatRowWrapper key={row}>
+              {SEAT_INFO.filter((seat) => seat.startsWith(row)).map((seat) => (
+                <BtnSeatDefaultLarge
+                  key={seat}
+                  width={'2.8rem'}
+                  seat={seat}
+                  style={{
+                    marginRight: [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0',
+                    cursor: 'pointer',
+                  }}
+                />
+              ))}
+            </S.SeatRowWrapper>
+          ))}
         </S.SeatTableBody>
       </S.SeatTableContainer>
     </S.SeatTableWrapper>
@@ -46,19 +53,15 @@ export default SeatTableBody;
 
 const S = {
   SeatTableWrapper: styled.div`
-    display: flex;
-    justify-content: center;
-    width: 100%;
     height: 100%;
-    /* overflow: scroll; */
-
+    overflow: scroll;
     background-color: ${({ theme }) => theme.colors.BG_THEATER};
   `,
   SeatTableContainer: styled.div`
     display: flex;
     flex-direction: column;
-    width: 65rem;
-
+    width: 59rem;
+    margin: 0 auto;
     background-color: ${({ theme }) => theme.colors.BG_THEATER};
   `,
   ScreenComment: styled.div`
