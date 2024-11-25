@@ -17,3 +17,4 @@ export { default as ImgPosterLargeDeadline } from './ImgPosterLargeDeadline';
 export { default as ImgPosterLargeEvent } from './ImgPosterLargeEvent';
 export { default as ImgPosterLargeGladiator } from './ImgPosterLargeGladiator';
 export { default as ImgPosterMainAprilcomeshewill } from './ImgPosterMainAprilcomeshewill';
+export { default as ImgPosterSmallAmazonhms } from './ImgPosterSmallAmazonhms'; // develop에 추가된 부분
