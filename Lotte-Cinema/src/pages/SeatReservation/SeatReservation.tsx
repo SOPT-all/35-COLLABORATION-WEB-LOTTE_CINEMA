@@ -11,7 +11,9 @@ const SeatReservation = () => {
       <S.SeatReserveLayout>
         <Header title="좌석 선택" />
         <SeatTableBody />
-        <SeatReserveInfo />
+        <S.SeatReserveInfoWrapper>
+          <SeatReserveInfo />
+        </S.SeatReserveInfoWrapper>
       </S.SeatReserveLayout>
     </MobileLayout>
   );
@@ -24,6 +26,16 @@ const S = {
     justify-content: space-between;
     width: 100%;
     height: 100%;
+  `,
+  SeatReserveInfoWrapper: styled.div`
+    position: relative;
+
+    & > * {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   `,
 };
 

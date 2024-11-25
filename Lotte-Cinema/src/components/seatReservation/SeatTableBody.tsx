@@ -26,7 +26,6 @@ const SeatTableBody = () => {
                   <BtnSeatDefaultLarge
                     key={seat}
                     width={'2.8rem'}
-                    height={'2.1rem'}
                     seat={seat}
                     style={{
                       marginRight: [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0',
@@ -50,6 +49,7 @@ const S = {
     display: flex;
     justify-content: center;
     width: 100%;
+    height: 100%;
     /* overflow: scroll; */
 
     background-color: ${({ theme }) => theme.colors.BG_THEATER};
