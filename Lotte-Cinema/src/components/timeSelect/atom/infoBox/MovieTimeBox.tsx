@@ -5,10 +5,12 @@ import TimeAccordion from './TimeAccordion';
 // 상영관별 시간 테이블을 담은 컴포넌트입니다.
 // TODO API res 값에 따라 TimeAccordian 생성할 예정
 const MovieTimeBox = () => {
+  const theaters = [1, 2];
   return (
     <S.Wrapper>
-      <TimeAccordion />
-      <TimeAccordion />
+      {theaters.map((e) => (
+        <TimeAccordion key={e} />
+      ))}
     </S.Wrapper>
   );
 };

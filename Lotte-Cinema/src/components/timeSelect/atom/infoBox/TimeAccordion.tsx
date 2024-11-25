@@ -9,6 +9,7 @@ import TimeCard from './TimeCard';
 // TODO API res 값에 따라 내부 정보 채울 예정
 const TimeAccordion = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
+  const times = [1, 2, 3, 4, 5];
 
   const toggleAccordion = () => {
     setIsOpen((prev) => !prev);
@@ -30,11 +31,9 @@ const TimeAccordion = () => {
               <p>리클라이너</p>
             </S.InfoTitle>
             <S.InfoContent>
-              <TimeCard />
-              <TimeCard />
-              <TimeCard />
-              <TimeCard />
-              <TimeCard />
+              {times.map((e) => (
+                <TimeCard key={e} />
+              ))}
             </S.InfoContent>
           </S.InfoContainer>
         </S.InfoAccordion>
