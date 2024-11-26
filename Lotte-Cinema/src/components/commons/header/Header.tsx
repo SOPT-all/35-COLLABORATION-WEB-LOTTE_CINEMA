@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
 import { IcArrowLeftBlack24, IcHomeBlack24 } from '@/assets/svg';
-
 interface HeaderProps {
   title: string;
 }
@@ -36,7 +35,10 @@ const S = {
     z-index: 1;
     width: 100%;
     display: flex;
-    gap: 21%;
+
+    gap: 4rem;
+    width: 100%;
+
     align-items: center;
     height: 5rem;
     padding: 1.3rem 12rem 1.3rem 1.4rem;
