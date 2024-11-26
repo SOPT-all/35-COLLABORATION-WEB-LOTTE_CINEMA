@@ -1,12 +1,7 @@
-import type { SVGProps } from "react";
+import type { SVGProps } from 'react';
 
 const SvgIcTicketBlack32 = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 32 32"
-    {...props}
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" {...props}>
     <path fill="#000" d="M20 13a.5.5 0 0 0-1 0v6a.5.5 0 1 0 1 0z" />
     <path
       fill="#000"
