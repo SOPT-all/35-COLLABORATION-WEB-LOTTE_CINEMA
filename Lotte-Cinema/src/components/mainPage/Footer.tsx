@@ -27,7 +27,7 @@ const Footer = () => {
           <S.ToggleContainer>
             <S.EachRegulation>이용약관</S.EachRegulation>
             <S.SeperateLine>|</S.SeperateLine>
-            <S.EachRegulation>개인정보처리방침</S.EachRegulation>
+            <S.EachRegulation className="InformationRegulation">개인정보처리방침</S.EachRegulation>
             <S.SeperateLine>|</S.SeperateLine>
             <S.EachRegulation>고객센터</S.EachRegulation>
           </S.ToggleContainer>
@@ -89,8 +89,7 @@ const S = {
   EachRegulation: styled.li`
     list-style: none;
 
-    &:hover,
-    &:active {
+    &.InformationRegulation {
       ${({ theme }) => theme.typographies.n_caption01_bold};
       color: ${({ theme }) => theme.colors.BLACK100};
     }
