@@ -1,19 +1,15 @@
-<<<<<<< HEAD
-export { default as BtnCircle } from './BtnCircle'
-export { default as IcArrowDown20 } from './IcArrowDown20'
-export { default as IcArrowLeftBlack24 } from './IcArrowLeftBlack24'
-export { default as IcArrowUnderGray1410 } from './IcArrowUnderGray1410'
-export { default as IcEventBlack24 } from './IcEventBlack24'
-export { default as IcHomeBlack24 } from './IcHomeBlack24'
-export { default as IcHorizontalbar10 } from './IcHorizontalbar10'
-export { default as IcMenuBlack24 } from './IcMenuBlack24'
-export { default as IcMyBlack24 } from './IcMyBlack24'
-export { default as IcTicketWhite24 } from './IcTicketWhite24'
-export { default as IcTimeBlack24 } from './IcTimeBlack24'
-export { default as ImgBannerFullKblivevent } from './ImgBannerFullKblivevent'
-export { default as ImgCircle56 } from './ImgCircle56'
-=======
+export { default as BtnCircle } from './BtnCircle';
 
+export { default as IcArrowUnderGray1410 } from './IcArrowUnderGray1410';
+export { default as IcEventBlack24 } from './IcEventBlack24';
+
+export { default as IcHorizontalbar10 } from './IcHorizontalbar10';
+export { default as IcMenuBlack24 } from './IcMenuBlack24';
+export { default as IcMyBlack24 } from './IcMyBlack24';
+export { default as IcTicketWhite24 } from './IcTicketWhite24';
+export { default as IcTimeBlack24 } from './IcTimeBlack24';
+export { default as ImgBannerFullKblivevent } from './ImgBannerFullKblivevent';
+export { default as ImgCircle56 } from './ImgCircle56';
 export { default as BtnSeatDefaultLarge } from './BtnSeatDefaultLarge';
 
 export { default as BtnXsmall } from './BtnXsmall';
@@ -28,7 +24,6 @@ export { default as IcCloseGrayTemp } from './IcCloseGrayTemp';
 export { default as IcEntrance10 } from './IcEntrance10';
 export { default as IcHomeBlack24 } from './IcHomeBlack24';
 
-
 export { default as IcArrowDown20 } from './IcArrowDown20';
 
 export { default as IcArrowTop20 } from './IcArrowTop20';
@@ -40,5 +35,3 @@ export { default as ImgLogo } from './ImgLogo';
 export { default as ImgLpayLogo } from './ImgLpayLogo';
 export { default as ImgPaymentComplete } from './ImgPaymentComplete';
 export { default as ImgPosterSmallAmazonhms } from './ImgPosterSmallAmazonhms';
-
->>>>>>> 01da3102aa26a77c87ee1fa7749e21c7e47beb89
