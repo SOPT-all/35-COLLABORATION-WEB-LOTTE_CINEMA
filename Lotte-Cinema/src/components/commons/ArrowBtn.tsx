@@ -21,11 +21,11 @@ export default ArrowBtn;
 const S = {
   BtnWrapper: styled.button`
     display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
     width: 7.1rem;
     padding: 0.2rem 0.5rem;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
   `,
 
   BtnContainer: styled.div`

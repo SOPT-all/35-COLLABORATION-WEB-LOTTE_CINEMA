@@ -30,13 +30,12 @@ const S = {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     width: 26.4rem;
     height: 27.6rem;
   `,
   IcStyle: styled.div`
-    justify-content: center;
     align-self: center;
+    justify-content: center;
     margin-top: 1.6rem;
     margin-bottom: 0.4rem;
   `,
@@ -50,6 +49,7 @@ const S = {
     justify-content: center;
     align-self: center;
     margin-bottom: 2.4rem;
+
     color: ${({ theme }) => theme.colors.GRAY08};
     ${({ theme }) => theme.typographies.n_body03_reg}
   `,
@@ -57,6 +57,6 @@ const S = {
     align-self: center;
     width: 100%;
     margin-bottom: 2.4rem;
-    padding: 0rem 5.3rem;
+    padding: 0 5.3rem;
   `,
 };
