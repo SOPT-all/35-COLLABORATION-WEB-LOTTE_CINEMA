@@ -9,40 +9,23 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const PopularRankingType = styled.h2`
-  font-family: ${({ theme }) => theme.typographies.n_head01};
-  width: 7.1rem;
+  ${({ theme }) => theme.typographies.n_head01};
+  width: 100%;
 `;
 
 export const FilterScrenning = styled.ul`
-  width: 11.5rem;
-  font-family: ${({ theme }) => theme.typographies.n_body03_med};
+  width: 100%;
+  ${({ theme }) => theme.typographies.n_body03_med};
   color: ${({ theme }) => theme.colors.GRAY10};
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   list-style: none;
 `;
 
-export const SelectAllMovie = styled.li<{ active: boolean }>`
+export const FilterMovie = styled.li<{ active: boolean }>`
   color: ${(props) => (props.active ? props.theme.colors.BLACK100 : props.theme.colors.GRAY10)};
   cursor: pointer;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.BLACK100};
-  }
-`;
-export const SelectPlayingMovie = styled.li<{ active: boolean }>`
-  color: ${(props) => (props.active ? props.theme.colors.BLACK100 : props.theme.colors.GRAY10)};
-  cursor: pointer;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.BLACK100};
-  }
-`;
-export const SelectComingSoonMovie = styled.li<{ active: boolean }>`
-  color: ${(props) => (props.active ? props.theme.colors.BLACK100 : props.theme.colors.GRAY10)};
-  cursor: pointer;
-
   &:hover {
     color: ${({ theme }) => theme.colors.BLACK100};
   }
@@ -111,27 +94,29 @@ export const GridContainer = styled.div<{ advertiseComponent?: boolean }>`
 
 // GridContainer 하위 컴포넌트 스타일
 export const Ranking = styled.div`
-  font-family: ${({ theme }) => theme.typographies.r_number};
+  ${({ theme }) => theme.typographies.r_number};
   grid-area: ranking;
 `;
 
 export const MovieTitle = styled.div`
-  font-family: ${({ theme }) => theme.typographies.n_body02_bold};
+  ${({ theme }) => theme.typographies.n_body02_bold};
   grid-area: movieTitle;
 `;
 
 export const ReservationRate = styled.div`
   grid-area: reservationRate;
+  white-space: nowrap;
+  margin-right: 0.375rem;
 
   color: ${({ theme }) => theme.colors.GRAY10};
-  font-family: ${({ theme }) => theme.typographies.n_caption02_reg};
+  ${({ theme }) => theme.typographies.n_caption02_reg};
 `;
 
 export const StarReview = styled.span`
   grid-area: starReview;
 
   color: ${({ theme }) => theme.colors.GRAY10};
-  font-family: ${({ theme }) => theme.typographies.n_caption02_reg};
+  ${({ theme }) => theme.typographies.n_caption02_reg};
   display: flex;
   align-items: flex-start;
 `;
@@ -139,7 +124,7 @@ export const StarReview = styled.span`
 export const ButtonReservation = styled.button`
   width: 11.8rem;
   height: 3.4rem;
-  font-family: ${({ theme }) => theme.typographies.n_body02_bold};
+  ${({ theme }) => theme.typographies.n_body02_bold};
   color: ${({ theme }) => theme.colors.GRAY12};
   background-color: ${({ theme }) => theme.colors.WHITE100};
   border-radius: 4px;
@@ -161,14 +146,14 @@ export const AdvertisingTitle = styled.div`
   grid-area: advertisingTitle;
 
   color: ${({ theme }) => theme.colors.GRAY10};
-  font-family: ${({ theme }) => theme.typographies.n_body02_bold};
+  ${({ theme }) => theme.typographies.n_body02_bold};
 `;
 
 export const NoticeAdvertising = styled.div`
   grid-area: noticeAdvertising;
 
   color: ${({ theme }) => theme.colors.GRAY10};
-  font-family: ${({ theme }) => theme.typographies.n_caption01_reg};
+  ${({ theme }) => theme.typographies.n_caption01_reg};
 `;
 
 export const ButtonAdvertising = styled.button<{ isFirst?: boolean }>`
@@ -176,7 +161,7 @@ export const ButtonAdvertising = styled.button<{ isFirst?: boolean }>`
   height: 3.4rem;
 
   color: ${({ theme }) => theme.colors.GRAY08};
-  font-family: ${({ theme }) => theme.typographies.n_body02_bold};
+  ${({ theme }) => theme.typographies.n_body02_bold};
   background-color: ${({ theme }) => theme.colors.WHITE100};
   border: 1px solid ${({ theme }) => theme.colors.GRAY07};
   border-radius: 4px;
@@ -185,16 +170,4 @@ export const ButtonAdvertising = styled.button<{ isFirst?: boolean }>`
     background-color: ${({ theme }) => theme.colors.RED02};
     color: ${({ theme }) => theme.colors.WHITE100};
   }
-`;
-
-export const EntireMovieSelect = styled.p`
-  width: 90%;
-  margin: 0 auto;
-  color: ${({ theme }) => theme.colors.GRAY09};
-  text-align: right;
-  font-family: ${({ theme }) => theme.typographies.n_body03_med};
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 0.4rem;
 `;

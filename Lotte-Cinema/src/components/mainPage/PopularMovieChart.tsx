@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
+import EntireClickButton from '@/components/commons/EntireClickButton';
 import * as S from '@/components/mainPage/StylesPopularMovieChart';
 
 import { items } from '@/constants/PopularMovieChartConstant';
 
-import { IcArrowRightGray0910, IcHorizontalbarGrey, IcStarGray1010 } from '@/assets/svg';
+import { IcHorizontalbarGrey, IcStarGray1010 } from '@/assets/svg';
 
 // 전체 / 상영중 / 상영예정 -> 디폴트로 전체로 해놓고, 눌러진 부분은 검정색, 안 눌러진 부분은 회색으로 수정
 
@@ -28,22 +29,23 @@ const PopularMovieChart = () => {
   };
 
   const FilteredItems = FilteredMovies();
+
   return (
     <>
       <S.HeaderWrapper>
         <S.PopularRankingType>인기 차트</S.PopularRankingType>
         <S.FilterScrenning>
-          <S.SelectAllMovie onClick={() => setFilter('all')} active={filter === 'all'}>
+          <S.FilterMovie onClick={() => setFilter('all')} active={filter === 'all'}>
             전체
-          </S.SelectAllMovie>
+          </S.FilterMovie>
           <IcHorizontalbarGrey width="1rem" />
-          <S.SelectPlayingMovie onClick={() => setFilter('playing')} active={filter === 'playing'}>
+          <S.FilterMovie onClick={() => setFilter('playing')} active={filter === 'playing'}>
             상영중
-          </S.SelectPlayingMovie>
+          </S.FilterMovie>
           <IcHorizontalbarGrey width="1rem" />
-          <S.SelectComingSoonMovie onClick={() => setFilter('comingSoon')} active={filter === 'comingSoon'}>
+          <S.FilterMovie onClick={() => setFilter('comingSoon')} active={filter === 'comingSoon'}>
             상영예정
-          </S.SelectComingSoonMovie>
+          </S.FilterMovie>
         </S.FilterScrenning>
       </S.HeaderWrapper>
 
@@ -82,9 +84,7 @@ const PopularMovieChart = () => {
           ),
         )}
       </S.ContentWrapper>
-      <S.EntireMovieSelect>
-        전체 보기 <IcArrowRightGray0910 height="1rem" width="1rem" />
-      </S.EntireMovieSelect>
+      <EntireClickButton />
     </>
   );
 };
