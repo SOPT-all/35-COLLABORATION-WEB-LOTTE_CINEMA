@@ -19,7 +19,6 @@ const S = {
   Wrapper: styled.div`
     display: flex;
     justify-content: center;
-
     background-color: ${({ theme }) => theme.colors.GRAY03};
   `,
   Layout: styled.div`
@@ -30,6 +29,7 @@ const S = {
     min-width: 360px;
     max-width: 430px;
     min-height: 100vh;
+    overflow-y: scroll;
 
     background-color: ${({ theme }) => theme.colors.WHITE100};
 
