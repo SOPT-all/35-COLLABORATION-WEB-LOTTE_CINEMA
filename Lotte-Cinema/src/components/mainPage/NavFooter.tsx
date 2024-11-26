@@ -42,7 +42,8 @@ const S = {
     width: 100%;
     height: 5.4rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 2rem;
   `,
   MenuBox: styled.div`
     width: 6.4rem;
@@ -57,7 +58,7 @@ const S = {
       position: relative;
       width: 5.4rem;
       height: 5.4rem;
-      transform: translateY(-0.8rem);
+      transform: translateY(-0.4rem);
     }
   `,
   MenuCenter: styled.div`
