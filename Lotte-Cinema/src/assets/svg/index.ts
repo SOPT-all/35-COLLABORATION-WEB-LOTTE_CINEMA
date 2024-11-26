@@ -10,6 +10,7 @@ export { default as IcTicketWhite24 } from './IcTicketWhite24';
 export { default as IcTimeBlack24 } from './IcTimeBlack24';
 export { default as ImgBannerFullKblivevent } from './ImgBannerFullKblivevent';
 export { default as ImgCircle56 } from './ImgCircle56';
+
 export { default as BtnSeatDefaultLarge } from './BtnSeatDefaultLarge';
 
 export { default as BtnXsmall } from './BtnXsmall';
