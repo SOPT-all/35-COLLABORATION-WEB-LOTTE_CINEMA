@@ -25,22 +25,23 @@ const MainPageHeader = () => {
 export default MainPageHeader;
 
 const S = {
-	Header: styled.header`
-		position: sticky;
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-		padding: 1rem 1.8rem;
+  Header: styled.header`
+    z-index: 999;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 1.8rem;
 
-		background-color: ${({ theme }) => theme.colors.WHITE60};
-	`,
-	LeftContainer: styled.nav``,
-	RightContainer: styled.nav``,
-	MenuBox: styled.li`
-		display: flex;
-		align-items: center;
-		height: 3.2rem;
+    background-color: ${({ theme }) => theme.colors.WHITE100};
+  `,
+  LeftContainer: styled.nav``,
+  RightContainer: styled.nav``,
+  MenuBox: styled.li`
+    display: flex;
+    align-items: center;
+    height: 3.2rem;
 
-		list-style: none;
-	`,
+    list-style: none;
+  `,
 };

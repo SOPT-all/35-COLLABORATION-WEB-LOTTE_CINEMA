@@ -16,6 +16,6 @@ const S = {
   MainImageContainer: styled.div`
     width: 100%;
     padding: 0 1.8rem;
-    margin-bottom: 1.4rem;
+    margin: 5.2rem 0 1.8rem;
   `,
 };
