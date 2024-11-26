@@ -11,6 +11,7 @@ const MainPage = () => {
       <NavFooter />
     </MobileLayout>
   );
+
 };
 
 export default MainPage;
