@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import MovieInfoBanner from '@/components/InfoCheck/MovieInfoBanner';
+import TimeInfoList from '@/components/InfoCheck/TimeInfoList';
 import Header from '@/components/commons/header/Header';
 import MobileLayout from '@/components/mobileLayout/MobileLayout';
 
@@ -10,6 +11,7 @@ const InfoCheck = () => {
       <Header title="인원 선택" />
       <S.Wrapper>
         <MovieInfoBanner />
+        <TimeInfoList />
       </S.Wrapper>
     </MobileLayout>
   );

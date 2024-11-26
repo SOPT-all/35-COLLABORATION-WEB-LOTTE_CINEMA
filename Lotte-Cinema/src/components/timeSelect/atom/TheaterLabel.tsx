@@ -22,12 +22,13 @@ export default TheaterLabel;
 const S = {
   Wrapper: styled.div`
     display: flex;
-    padding: 0.5rem 1rem 0.6rem 1rem;
-    justify-content: center;
-    align-items: center;
     gap: 0.4rem;
-    border-radius: 2rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem 0.6rem;
+
     background-color: ${({ theme }) => theme.colors.RED02};
+    border-radius: 2rem;
 
     & p {
       ${({ theme }) => theme.typographies.n_body03_reg}

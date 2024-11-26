@@ -26,19 +26,21 @@ export default MainPageHeader;
 
 const S = {
 	Header: styled.header`
-		background-color: ${({ theme }) => theme.colors.WHITE60};
-		padding: 1rem 1.8rem;
+		position: sticky;
 		display: flex;
 		justify-content: space-between;
-		position: sticky;
 		width: 100%;
+		padding: 1rem 1.8rem;
+
+		background-color: ${({ theme }) => theme.colors.WHITE60};
 	`,
 	LeftContainer: styled.nav``,
 	RightContainer: styled.nav``,
 	MenuBox: styled.li`
-		height: 3.2rem;
-		list-style: none;
 		display: flex;
 		align-items: center;
+		height: 3.2rem;
+
+		list-style: none;
 	`,
 };
