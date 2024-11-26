@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
 import { IcArrowLeftBlack24, IcHomeBlack24 } from '@/assets/svg';
-
 interface HeaderProps {
   title: string;
 }
