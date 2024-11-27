@@ -4,7 +4,11 @@ import Button from '@/components/seatReservation/Button';
 
 import { ImgLpayLogo } from '@/assets/svg';
 
-const SeatReservePayment = () => {
+interface PaymentProps {
+  reservatedNumber: number;
+}
+
+const SeatReservePayment = ({ reservatedNumber }: PaymentProps) => {
   return (
     <S.PaymentInfoWrapper>
       <S.TotalPriceWrapper>

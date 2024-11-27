@@ -6,7 +6,12 @@ import { BtnSeatDefaultLarge } from '@/assets/svg';
 
 import { SEAT_INFO, SEAT_ROWS } from '@/constants';
 
-const SeatTableBody = () => {
+interface SeatTableBodyProps {
+  handleClickSeat: (seatId: string) => void;
+  selectedSeats: string[];
+}
+
+const SeatTableBody = ({ handleClickSeat, selectedSeats }: SeatTableBodyProps) => {
   const seatTableWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,6 +40,7 @@ const SeatTableBody = () => {
                   key={seat}
                   width={'2.8rem'}
                   seat={seat}
+                  onClick={() => handleClickSeat(seat)}
                   style={{
                     marginRight: [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0',
                     cursor: 'pointer',

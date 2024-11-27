@@ -1,10 +1,17 @@
 import styled from '@emotion/styled';
 
+import { useState } from 'react';
+
 import SeatReservePayment from '@/components/seatReservation/SeatReservePayment';
 
 import { BtnXsmall, IcArrowRightWhite10, IcEntrance10, IcSeatDisabled10, IcSeatRecliner10 } from '@/assets/svg';
 
-const SeatReserveInfo = () => {
+interface SeatReserveInfoProps {
+  selectedSeats: string[];
+  reservatedNumber: number;
+}
+
+const SeatReserveInfo = ({ selectedSeats, reservatedNumber }: SeatReserveInfoProps) => {
   return (
     <S.SeatReserveInfoWrapper>
       <S.SeatTypeInfo>
@@ -36,7 +43,7 @@ const SeatReserveInfo = () => {
           </S.SeatInfoRow>
         </S.SeatInfo>
       </S.MovieInfoWrapper>
-      <SeatReservePayment />
+      {selectedSeats.length === reservatedNumber && <SeatReservePayment reservatedNumber={reservatedNumber} />}
     </S.SeatReserveInfoWrapper>
   );
 };
@@ -48,7 +55,6 @@ const S = {
     width: 100%;
 
     background-color: ${({ theme }) => theme.colors.WHITE100};
-
   `,
   SeatTypeInfo: styled.div`
     display: flex;
