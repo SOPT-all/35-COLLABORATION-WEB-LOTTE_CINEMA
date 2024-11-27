@@ -25,22 +25,26 @@ const MainPageHeader = () => {
 export default MainPageHeader;
 
 const S = {
-	Header: styled.header`
-		position: sticky;
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-		padding: 1rem 1.8rem;
+  Header: styled.header`
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 430px;
+    height: 5rem;
+    padding: 1rem 1.8rem;
 
-		background-color: ${({ theme }) => theme.colors.WHITE60};
-	`,
-	LeftContainer: styled.nav``,
-	RightContainer: styled.nav``,
-	MenuBox: styled.li`
-		display: flex;
-		align-items: center;
-		height: 3.2rem;
+    background-color: ${({ theme }) => theme.colors.WHITE100};
+  `,
+  LeftContainer: styled.nav``,
+  RightContainer: styled.nav``,
+  MenuBox: styled.li`
+    display: flex;
+    align-items: center;
+    height: 3.2rem;
 
-		list-style: none;
-	`,
+    list-style: none;
+  `,
 };
