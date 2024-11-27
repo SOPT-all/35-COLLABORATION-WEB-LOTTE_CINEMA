@@ -28,7 +28,11 @@ const SeatReservation = () => {
     <MobileLayout>
       <S.SeatReserveLayout>
         <Header title="좌석 선택" />
-        <SeatTableBody handleClickSeat={handleClickSeat} selectedSeats={selectedSeats} />
+        <SeatTableBody
+          handleClickSeat={handleClickSeat}
+          selectedSeats={selectedSeats}
+          reservatedNumber={reservatedNumber}
+        />
         <S.SeatReserveInfoWrapper>
           <SeatReserveInfo selectedSeats={selectedSeats} reservatedNumber={reservatedNumber} />
         </S.SeatReserveInfoWrapper>

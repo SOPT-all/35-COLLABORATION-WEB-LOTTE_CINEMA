@@ -37,7 +37,7 @@ const SeatReserveInfo = ({ selectedSeats, reservatedNumber }: SeatReserveInfoPro
           <S.SeatInfoRow>
             <p>인원</p>
             <S.ChangeSelection>
-              <p>성인2</p>
+              <p>성인{reservatedNumber}</p>
               <BtnXsmall width={'7rem'} height={'2.5rem'} />
             </S.ChangeSelection>
           </S.SeatInfoRow>
