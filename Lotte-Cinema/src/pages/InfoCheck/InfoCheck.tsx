@@ -26,19 +26,16 @@ const InfoCheck = () => {
       <Header title="인원 선택" />
       <S.Wrapper>
         <MovieInfoBanner />
+        <TimeInfoList />
+        <AgeInfo />
+        <SeatInfo />
 
-        <S.MidContainer>
-          <TimeInfoList />
-          <AgeInfo />
-          <SeatInfo />
-        </S.MidContainer>
-
-        <S.BottomContainer>
+        <S.BottomSheet>
           <SeatNumSelect onCountChange={handleBtnActive} />
           <S.ButtonContainer>
             <NextButton isActive={isBtnActive}>다음</NextButton>
           </S.ButtonContainer>
-        </S.BottomContainer>
+        </S.BottomSheet>
       </S.Wrapper>
     </MobileLayout>
   );
@@ -50,20 +47,16 @@ const S = {
     height: 100%;
     display: flex;
     flex-direction: column;
-  `,
-
-  MidContainer: styled.div`
-    width: 100%;
-    height: 100%;
     background-color: ${({ theme }) => theme.colors.GRAY02};
   `,
 
   ButtonContainer: styled.div`
     width: 100%;
     padding: 2rem 1.8rem;
+    background-color: ${({ theme }) => theme.colors.WHITE100};
   `,
 
-  BottomContainer: styled.div`
+  BottomSheet: styled.div`
     width: 100%;
     margin-top: auto;
   `,

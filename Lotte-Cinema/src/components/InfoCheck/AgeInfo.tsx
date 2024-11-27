@@ -23,7 +23,9 @@ const S = {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: auto; // temp
   `,
+
   AgeTitle: styled.p`
     display: flex;
     ${({ theme }) => theme.typographies.n_body02_reg}
