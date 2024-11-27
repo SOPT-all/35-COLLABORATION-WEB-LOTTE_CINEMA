@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import { EveryAdvertisement } from '@/constants/mocks/advertisement';
+import EntireClickButton from '@/components/commons/EntireClickButton';
 
-import { IcArrowRightGray0910 } from '@/assets/svg';
+import { EveryAdvertisement } from '@/constants/mocks/advertisement';
 
 // 캐러셀 다운로드 하기는 했는데 적용 제대로 해보기 !
 
@@ -11,12 +11,7 @@ const EventAdvertising = () => {
     <S.EventAdsContainer>
       <S.EventAdsHeader>
         <S.Title>이벤트</S.Title>
-        <S.EveryEvent>
-          <li>전체 보기&nbsp;</li>
-          <li>
-            <IcArrowRightGray0910 width="1rem" />
-          </li>
-        </S.EveryEvent>
+        <EntireClickButton />
       </S.EventAdsHeader>
       <S.AdsCollection>
         {EveryAdvertisement.map((item, index) => (
@@ -46,7 +41,7 @@ const S = {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 0 1.8rem;
+    padding-left: 1.8rem;
     margin-bottom: 0.8rem;
   `,
   Title: styled.h2`

@@ -14,8 +14,10 @@ const Footer = () => {
               <span>롯데시네마 영상정보처리기기 운영 및 관리방침 개정 안내</span>
             </p>
             <S.EntireNoticement>
-              <p>전체 보기</p>
-              <IcArrowRightGray0910 height="0.8rem" />
+              <li>전체 보기</li>
+              <li>
+                <IcArrowRightGray0910 height="0.8rem" />
+              </li>
             </S.EntireNoticement>
           </S.Noticement>
         </S.TopContainer>
@@ -67,6 +69,12 @@ const S = {
     ${({ theme }) => theme.typographies.n_caption02_reg};
     color: ${({ theme }) => theme.colors.GRAY09};
     gap: 0.2rem;
+    display: flex;
+    cursor: pointer;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.BLACK100};
+    }
   `,
   Advertisement: styled.div``,
 
@@ -83,6 +91,8 @@ const S = {
     display: flex;
     align-items: center;
     gap: 0.3rem;
+
+    cursor: pointer;
   `,
   ToggleContainer: styled.div`
     display: flex;
@@ -92,8 +102,14 @@ const S = {
   `,
   EachRegulation: styled.li`
     list-style: none;
+    cursor: pointer;
 
     &.InformationRegulation {
+      ${({ theme }) => theme.typographies.n_caption01_bold};
+      color: ${({ theme }) => theme.colors.BLACK100};
+    }
+
+    &:hover {
       ${({ theme }) => theme.typographies.n_caption01_bold};
       color: ${({ theme }) => theme.colors.BLACK100};
     }

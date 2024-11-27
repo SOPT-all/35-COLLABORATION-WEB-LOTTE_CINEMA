@@ -23,5 +23,10 @@ export const S = {
     justify-content: flex-end;
     align-items: center;
     gap: 0.4rem;
+    cursor: pointer;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.BLACK100};
+    }
   `,
 };
