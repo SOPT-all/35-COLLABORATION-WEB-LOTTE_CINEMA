@@ -60,6 +60,7 @@ const S = {
     width: 100%;
     height: 28rem;
     overflow: scroll;
+    scroll-behavior: smooth;
     margin: 1rem 0;
 
     & > :first-of-type {

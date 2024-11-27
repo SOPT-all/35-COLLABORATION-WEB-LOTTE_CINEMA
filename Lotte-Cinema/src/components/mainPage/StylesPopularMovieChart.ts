@@ -45,6 +45,7 @@ export const ContentWrapper = styled.div`
   height: 28rem;
   margin: 1rem 0;
   overflow: scroll;
+  scroll-behavior: smooth;
 
   & > :first-of-type {
     margin-left: 1.6rem;
