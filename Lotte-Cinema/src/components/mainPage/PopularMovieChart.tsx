@@ -3,7 +3,7 @@ import { useState } from 'react';
 import EntireClickButton from '@/components/commons/EntireClickButton';
 import * as S from '@/components/mainPage/StylesPopularMovieChart';
 
-import { items } from '@/constants/popularMovie';
+import { items } from '@/constants/mocks/popularMovie';
 
 import { IcHorizontalbarGrey, IcStarGray1010 } from '@/assets/svg';
 

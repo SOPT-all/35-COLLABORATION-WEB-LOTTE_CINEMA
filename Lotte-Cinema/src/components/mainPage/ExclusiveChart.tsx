@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { exclusiveItems } from '@/constants/exclusiveMovie';
+import { exclusiveItems } from '@/constants/mocks/exclusiveMovie';
 
 import { IcPic2816 } from '@/assets/svg';
 
