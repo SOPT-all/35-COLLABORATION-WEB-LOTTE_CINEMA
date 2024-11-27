@@ -4,7 +4,13 @@ import { useState } from 'react';
 
 import { IcMinus24, IcPlus24 } from '@/assets/svg';
 
-const SeatNumSelect = () => {
+import { SeatNum } from '@/types/infoCheckType';
+
+interface SeatNumSelectProps {
+  onCountChange: (counts: SeatNum) => void;
+}
+
+const SeatNumSelect = ({ onCountChange }: SeatNumSelectProps) => {
   const [counts, setCounts] = useState({
     adult: 0,
     teen: 0,
@@ -12,10 +18,14 @@ const SeatNumSelect = () => {
   });
 
   const handleCountChange = (type: keyof typeof counts, increment: number) => {
-    setCounts((prev) => ({
-      ...prev,
-      [type]: Math.max(0, prev[type] + increment), // 0아래로 안내려가도록
-    }));
+    setCounts((prev) => {
+      const updatedCounts = {
+        ...prev,
+        [type]: Math.max(0, prev[type] + increment), // 0아래로 안내려가도록
+      };
+      onCountChange(updatedCounts);
+      return updatedCounts;
+    });
   };
 
   return (
@@ -73,7 +83,7 @@ const S = {
     padding: 1.6rem 2.4rem 0 2.4rem;
     gap: 1.2rem;
   `,
-  
+
   InnerLayout: styled.div`
     width: 100%;
     display: flex;
