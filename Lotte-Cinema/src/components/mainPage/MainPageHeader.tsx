@@ -26,11 +26,14 @@ export default MainPageHeader;
 
 const S = {
   Header: styled.header`
-    z-index: 999;
-    position: sticky;
+    position: fixed;
+    top: 0;
+    z-index: 1;
     display: flex;
     justify-content: space-between;
     width: 100%;
+    max-width: 430px;
+    height: 5rem;
     padding: 1rem 1.8rem;
 
     background-color: ${({ theme }) => theme.colors.WHITE100};

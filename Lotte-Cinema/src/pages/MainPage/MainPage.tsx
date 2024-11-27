@@ -11,14 +11,16 @@ import MobileLayout from '@/components/mobileLayout/MobileLayout';
 const MainPage = () => {
   return (
     <MobileLayout>
-      <MainPageHeader />
-      <MainImage />
-      <PopularMovieChart />
-      <ExclusiveChart />
-      <SideAdvertisement />
-      <EventAdvertising />
-      <Footer />
-      <NavFooter />
+      <main>
+        <MainPageHeader />
+        <MainImage />
+        <PopularMovieChart />
+        <ExclusiveChart />
+        <SideAdvertisement />
+        <EventAdvertising />
+        <Footer />
+        <NavFooter />
+      </main>
     </MobileLayout>
   );
 };
