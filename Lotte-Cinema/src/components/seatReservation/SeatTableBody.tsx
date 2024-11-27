@@ -41,27 +41,22 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: Sea
               {SEAT_INFO.filter((seat) => seat.startsWith(row)).map((seat) => {
                 const isSelected = selectedSeats.includes(seat);
                 const isDisabled = !isSelected && isSeatDisabled;
+                const marginRight = [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0';
+                const commonProps = {
+                  key: seat,
+                  width: '2.8rem',
+                  style: { marginRight },
+                };
 
                 return isDisabled ? (
-                  <BtnSeatDisabledLarge
-                    key={seat}
-                    width={'2.8rem'}
-                    style={{
-                      marginRight: [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0',
-                      cursor: 'not-allowed',
-                    }}
-                  />
+                  <BtnSeatDisabledLarge {...commonProps} style={{ ...commonProps.style, cursor: 'not-allowed' }} />
                 ) : (
                   <BtnSeatDefaultLarge
-                    key={seat}
-                    width={'2.8rem'}
                     seat={seat}
                     onClick={() => handleClickSeat(seat)}
                     fill={isSelected ? '#FF243E' : '#1EAFFD'}
-                    style={{
-                      marginRight: [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0',
-                      cursor: 'pointer',
-                    }}
+                    {...commonProps}
+                    style={{ ...commonProps.style, cursor: 'pointer' }}
                   />
                 );
               })}

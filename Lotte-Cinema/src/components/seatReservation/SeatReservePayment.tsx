@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '@/components/seatReservation/Button';
 import ModalContents from '@/components/seatReservation/ModalContents';
@@ -10,12 +11,14 @@ import { ImgLpayLogo } from '@/assets/svg';
 
 const SeatReservePayment = () => {
   const dialogRef = useRef<ModalWrapperRef>(null);
+  const navigate = useNavigate();
   const showModal = () => {
     dialogRef.current?.open();
   };
 
   const closeModal = () => {
     dialogRef.current?.close();
+    navigate('/');
   };
   return (
     <S.PaymentInfoWrapper>
@@ -27,7 +30,7 @@ const SeatReservePayment = () => {
       </S.TotalPriceWrapper>
 
       <S.PayButtonWrapper>
-        <Button variant="default" onClick={() => showModal()}>
+        <Button variant="default" onClick={showModal}>
           결제
         </Button>
         <ModalWrapper ref={dialogRef}>
