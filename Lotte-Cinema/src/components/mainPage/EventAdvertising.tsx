@@ -22,7 +22,7 @@ const EventAdvertising = () => {
         {EveryAdvertisement.map((item, index) => (
           <S.AdItem key={index}>
             <S.AdImage>
-              <item.image width="100%" style={{ borderRadius: '4px' }} />
+              <item.image width="100%" />
             </S.AdImage>
             <S.AdInformation>
               <S.AdTitle>{item.title}</S.AdTitle>
@@ -61,7 +61,7 @@ const S = {
   `,
   AdsCollection: styled.div`
     display: grid;
-    grid-template-columns: repeat(2, 83.89%);
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(4, 1fr);
     overflow: scroll;
     gap: 0.6rem 1rem;
@@ -69,6 +69,7 @@ const S = {
   AdItem: styled.div`
     background-color: ${({ theme }) => theme.colors.GRAY01};
     border-radius: 4px;
+    overflow: hidden;
     height: 4.8rem;
     display: flex;
     gap: 1rem;
@@ -82,6 +83,12 @@ const S = {
   AdImage: styled.div`
     width: 4.8rem;
   `,
-  AdTitle: styled.div``,
-  AdDescription: styled.div``,
+  AdTitle: styled.div`
+    ${({ theme }) => theme.typographies.n_body03_bold};
+    color: ${({ theme }) => theme.colors.BLACK100};
+  `,
+  AdDescription: styled.div`
+    ${({ theme }) => theme.typographies.n_caption02_med};
+    color: ${({ theme }) => theme.colors.GRAY08};
+  `,
 };
