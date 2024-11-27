@@ -27,7 +27,7 @@ export default MainPageHeader;
 const S = {
   Header: styled.header`
     z-index: 999;
-    position: fixed;
+    position: sticky;
     display: flex;
     justify-content: space-between;
     width: 100%;

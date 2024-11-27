@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { IcArrowUnderGray1410, IcHorizontalbar10, ImgBannerFullKblivevent } from '@/assets/svg';
+import { IcArrowRightGray0910, IcArrowUnderGray1410, IcHorizontalbar10, ImgBannerFullKblivevent } from '@/assets/svg';
 
 const Footer = () => {
   return (
@@ -13,7 +13,10 @@ const Footer = () => {
               <IcHorizontalbar10 height="1rem" />
               <span>롯데시네마 영상정보처리기기 운영 및 관리방침 개정 안내</span>
             </p>
-            <S.EntireNoticement>전체 보기</S.EntireNoticement>
+            <S.EntireNoticement>
+              <p>전체 보기</p>
+              <IcArrowRightGray0910 height="0.8rem" />
+            </S.EntireNoticement>
           </S.Noticement>
         </S.TopContainer>
         <S.Advertisement>
@@ -63,6 +66,7 @@ const S = {
     text-align: right;
     ${({ theme }) => theme.typographies.n_caption02_reg};
     color: ${({ theme }) => theme.colors.GRAY09};
+    gap: 0.2rem;
   `,
   Advertisement: styled.div``,
 
