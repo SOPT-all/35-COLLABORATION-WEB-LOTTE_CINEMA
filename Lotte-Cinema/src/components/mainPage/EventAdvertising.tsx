@@ -76,7 +76,6 @@ const S = {
     height: 4.8rem;
     display: flex;
     gap: 1rem;
-    padding: 0 1.8;
   `,
   AdInformation: styled.div`
     display: flex;
