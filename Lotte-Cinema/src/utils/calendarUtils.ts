@@ -14,7 +14,7 @@ export const getDayClassName = (date: Date, today: Date): string => {
 };
 
 // 날짜에 해당하는 클래스 이름을 반환하는 함수
-export const getTileClassName = (date: Date, today: Date, selectDate: Date | null): string => {
+export const getTileClassName = (date: Date, today: Date, selectDate: Date): string => {
   if (date < today) return 'hidden';
 
   if (selectDate && date.toDateString() === selectDate.toDateString()) {

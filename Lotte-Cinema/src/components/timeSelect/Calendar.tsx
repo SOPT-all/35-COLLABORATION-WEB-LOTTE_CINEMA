@@ -19,12 +19,10 @@ const CalendarBox = () => {
 
   // 캘린더 하단의 요일 출력 로직 (오늘, 화, 수, .., 일)
   const tileContent = ({ date, view }: CalendarTileProperties) => {
-    if (view === 'month') {
-      if (isToday(date, today)) return <S.Weekday className="today">오늘</S.Weekday>;
-      const weekday = getWeekday(date);
-      return <S.Weekday className={getDayClassName(date, today)}>{weekday}</S.Weekday>;
-    }
-    return null;
+    if (view !== 'month') return null;
+    if (isToday(date, today)) return <S.Weekday className="today">오늘</S.Weekday>;
+    const weekday = getWeekday(date);
+    return <S.Weekday className={getDayClassName(date, today)}>{weekday}</S.Weekday>;
   };
 
   return (
@@ -34,9 +32,9 @@ const CalendarBox = () => {
         <Calendar
           calendarType="gregory"
           view="month"
-          defaultValue={new Date(2024, 10, 5)}
-          defaultActiveStartDate={new Date(2024, 10, 5)}
-          activeStartDate={new Date(2024, 10, 5)}
+          defaultValue={today}
+          defaultActiveStartDate={today}
+          activeStartDate={today}
           showNavigation={false}
           formatDay={(_, date) => `${date.getDate()}`} // 날짜만 출력
           tileClassName={({ date }) => getTileClassName(date, today, selectDate)}
