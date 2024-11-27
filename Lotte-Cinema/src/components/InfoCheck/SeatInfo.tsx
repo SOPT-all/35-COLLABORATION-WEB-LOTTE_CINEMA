@@ -9,7 +9,7 @@ const SeatInfo = () => {
   const SEAT_PER_ROW = [11, 13, 13, 12, 13, 13];
 
   // 좌석 배치 배열을 생성하는 함수
-  const generateSeatMatrix = () => {
+  const generateSeats = () => {
     return ROW.map((row) => {
       const seatCount = SEAT_PER_ROW[row];
       const startIdx = SEAT_PER_ROW.slice(0, row).reduce((sum, cur) => sum + cur, 0);
@@ -29,7 +29,7 @@ const SeatInfo = () => {
   return (
     <S.Wrapper>
       <S.SeatTableLayout>
-        {generateSeatMatrix().map((row, rowIdx) => (
+        {generateSeats().map((row, rowIdx) => (
           <S.SeatRowContainer key={rowIdx}>
             {row.map((seatIdx, colIdx) => renderSeatIcon(seatIdx, colIdx))}
           </S.SeatRowContainer>
