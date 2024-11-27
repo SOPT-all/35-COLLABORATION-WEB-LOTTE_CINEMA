@@ -61,7 +61,7 @@ const S = {
       align-items: center;
     }
   `,
-  EntireNoticement: styled.p`
+  EntireNoticement: styled.div`
     list-style: none;
     text-align: right;
     ${({ theme }) => theme.typographies.n_caption02_reg};
