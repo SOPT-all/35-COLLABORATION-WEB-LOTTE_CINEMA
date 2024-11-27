@@ -30,7 +30,7 @@ const SeatReserveInfo = ({ selectedSeats, reservatedNumber }: SeatReserveInfoPro
         <S.SeatInfo>
           <S.SeatInfoRow>
             <p>좌석</p>
-            <p>E4,E5</p>
+            <p>{selectedSeats.join(',')}</p>
           </S.SeatInfoRow>
           <S.SeatInfoRow>
             <p>인원</p>
