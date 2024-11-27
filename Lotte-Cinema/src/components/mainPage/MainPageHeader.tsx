@@ -38,8 +38,12 @@ const S = {
 
     background-color: ${({ theme }) => theme.colors.WHITE100};
   `,
-  LeftContainer: styled.nav``,
-  RightContainer: styled.nav``,
+  LeftContainer: styled.nav`
+    cursor: pointer;
+  `,
+  RightContainer: styled.nav`
+    cursor: pointer;
+  `,
   MenuBox: styled.li`
     display: flex;
     align-items: center;

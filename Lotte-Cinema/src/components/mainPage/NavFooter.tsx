@@ -46,6 +46,7 @@ const S = {
     padding: 0 2rem;
   `,
   MenuBox: styled.div`
+    cursor: pointer;
     width: 6.4rem;
     height: 6.4rem; // height도 지정해주기
     display: flex;
@@ -53,6 +54,11 @@ const S = {
     align-items: center;
     justify-content: center;
     ${({ theme }) => theme.typographies.n_caption02_med};
+
+    &:hover {
+      transform: scale(1.1);
+      transition-duration: 0.5s;
+    }
 
     &.CenterMenu {
       position: relative;
