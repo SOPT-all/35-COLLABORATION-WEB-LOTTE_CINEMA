@@ -16,16 +16,18 @@ const InfoCheck = () => {
       <S.Wrapper>
         <MovieInfoBanner />
 
-        <S.InnerContainer>
+        <S.MidContainer>
           <TimeInfoList />
           <AgeInfo />
           <SeatInfo />
-        </S.InnerContainer>
+        </S.MidContainer>
 
-        <SeatNumSelect />
-        <S.ButtonContainer>
-          <NextButton>다음</NextButton>
-        </S.ButtonContainer>
+        <S.BottomContainer>
+          <SeatNumSelect />
+          <S.ButtonContainer>
+            <NextButton>다음</NextButton>
+          </S.ButtonContainer>
+        </S.BottomContainer>
       </S.Wrapper>
     </MobileLayout>
   );
@@ -35,16 +37,24 @@ const S = {
   Wrapper: styled.div`
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
   `,
-  InnerContainer: styled.div`
+
+  MidContainer: styled.div`
     width: 100%;
+    height: 100%;
     background-color: ${({ theme }) => theme.colors.GRAY02};
   `,
+
   ButtonContainer: styled.div`
     width: 100%;
     padding: 2rem 1.8rem;
-    /* position: absolute; // 디자이너 질문
-    bottom: 0; */
+  `,
+
+  BottomContainer: styled.div`
+    width: 100%;
+    margin-top: auto;
   `,
 };
 export default InfoCheck;
