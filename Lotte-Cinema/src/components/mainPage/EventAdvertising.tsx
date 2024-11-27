@@ -39,14 +39,14 @@ export default EventAdvertising;
 
 const S = {
   EventAdsContainer: styled.section`
-    width: 90%;
+    width: 100%;
     margin: 3.2rem 0;
   `,
   EventAdsHeader: styled.header`
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    padding: 0 1.8rem;
     margin-bottom: 0.8rem;
   `,
   Title: styled.h2`
@@ -59,20 +59,24 @@ const S = {
     color: ${({ theme }) => theme.colors.GRAY09};
     display: flex;
   `,
-  AdsCollection: styled.div`
+  AdsCollection: styled.ul`
+    list-style: none;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 90%);
     grid-template-rows: repeat(4, 1fr);
-    overflow: scroll;
+    padding: 0 1.8rem;
     gap: 0.6rem 1rem;
+    overflow: scroll;
   `,
-  AdItem: styled.div`
+  AdItem: styled.li`
     background-color: ${({ theme }) => theme.colors.GRAY01};
     border-radius: 4px;
     overflow: hidden;
     height: 4.8rem;
     display: flex;
     gap: 1rem;
+    padding: 0 1.8;
   `,
   AdInformation: styled.div`
     display: flex;
