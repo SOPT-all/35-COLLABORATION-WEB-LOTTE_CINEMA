@@ -73,6 +73,7 @@ const S = {
   EachContentWrapper: styled.div`
     display: flex;
     flex-direction: column;
+    background-color: ${({ theme }) => theme.colors.GRAY01};
   `,
   ImageWrapper: styled.div`
     position: relative;
