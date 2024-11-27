@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { useNavigate } from 'react-router-dom';
+
 import Button from '@/components/seatReservation/Button';
 
 import SvgIcPaymentComplete from '@/assets/svg/IcPaymentComplete';
@@ -9,6 +11,7 @@ interface ModalProps {
 }
 
 const ModalContents = ({ handleCloseModal }: ModalProps) => {
+  const navigate = useNavigate();
   return (
     <S.ModalStyle>
       <S.IcStyle>
@@ -17,7 +20,14 @@ const ModalContents = ({ handleCloseModal }: ModalProps) => {
       <S.CompleteComment>예매가 완료되었어요!</S.CompleteComment>
       <S.SmallComment>모웹2조 합동세미나 수고했어요! 앱잼도 파이팅~</S.SmallComment>
       <S.ButtonWrapper>
-        <Button onClick={handleCloseModal}>처음으로</Button>
+        <Button
+          onClick={() => {
+            handleCloseModal();
+            navigate('/');
+          }}
+        >
+          처음으로
+        </Button>
       </S.ButtonWrapper>
     </S.ModalStyle>
   );

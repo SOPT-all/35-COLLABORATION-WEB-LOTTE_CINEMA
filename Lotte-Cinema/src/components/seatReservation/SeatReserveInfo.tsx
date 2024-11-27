@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 
-import { useState } from 'react';
-
 import SeatReservePayment from '@/components/seatReservation/SeatReservePayment';
 
 import { BtnXsmall, IcArrowRightWhite10, IcEntrance10, IcSeatDisabled10, IcSeatRecliner10 } from '@/assets/svg';
@@ -43,7 +41,7 @@ const SeatReserveInfo = ({ selectedSeats, reservatedNumber }: SeatReserveInfoPro
           </S.SeatInfoRow>
         </S.SeatInfo>
       </S.MovieInfoWrapper>
-      {selectedSeats.length === reservatedNumber && <SeatReservePayment reservatedNumber={reservatedNumber} />}
+      {selectedSeats.length === reservatedNumber && <SeatReservePayment />}
     </S.SeatReserveInfoWrapper>
   );
 };
