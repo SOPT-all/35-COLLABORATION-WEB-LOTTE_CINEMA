@@ -4,7 +4,12 @@ import SeatReservePayment from '@/components/seatReservation/SeatReservePayment'
 
 import { BtnXsmall, IcArrowRightWhite10, IcEntrance10, IcSeatDisabled10, IcSeatRecliner10 } from '@/assets/svg';
 
-const SeatReserveInfo = () => {
+interface SeatReserveInfoProps {
+  selectedSeats: string[];
+  reservatedNumber: number;
+}
+
+const SeatReserveInfo = ({ selectedSeats, reservatedNumber }: SeatReserveInfoProps) => {
   return (
     <S.SeatReserveInfoWrapper>
       <S.SeatTypeInfo>
@@ -25,18 +30,18 @@ const SeatReserveInfo = () => {
         <S.SeatInfo>
           <S.SeatInfoRow>
             <p>좌석</p>
-            <p>E4,E5</p>
+            <p>{selectedSeats.join(',')}</p>
           </S.SeatInfoRow>
           <S.SeatInfoRow>
             <p>인원</p>
             <S.ChangeSelection>
-              <p>성인2</p>
+              <p>성인{reservatedNumber}</p>
               <BtnXsmall width={'7rem'} height={'2.5rem'} />
             </S.ChangeSelection>
           </S.SeatInfoRow>
         </S.SeatInfo>
       </S.MovieInfoWrapper>
-      <SeatReservePayment />
+      {selectedSeats.length === reservatedNumber && <SeatReservePayment />}
     </S.SeatReserveInfoWrapper>
   );
 };
@@ -48,7 +53,6 @@ const S = {
     width: 100%;
 
     background-color: ${({ theme }) => theme.colors.WHITE100};
-
   `,
   SeatTypeInfo: styled.div`
     display: flex;

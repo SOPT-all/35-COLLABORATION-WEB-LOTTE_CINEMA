@@ -2,11 +2,17 @@ import styled from '@emotion/styled';
 
 import { useEffect, useRef } from 'react';
 
-import { BtnSeatDefaultLarge } from '@/assets/svg';
+import { BtnSeatDefaultLarge, BtnSeatDisabledLarge } from '@/assets/svg';
 
 import { SEAT_INFO, SEAT_ROWS } from '@/constants';
 
-const SeatTableBody = () => {
+interface SeatTableBodyProps {
+  handleClickSeat: (seatId: string) => void;
+  selectedSeats: string[];
+  reservatedNumber: number;
+}
+
+const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: SeatTableBodyProps) => {
   const seatTableWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -15,6 +21,8 @@ const SeatTableBody = () => {
       wrapper.scrollLeft = (wrapper.scrollWidth - wrapper.clientWidth) / 2;
     }
   }, []);
+
+  const isSeatDisabled = selectedSeats.length >= reservatedNumber;
 
   return (
     <S.SeatTableWrapper ref={seatTableWrapperRef}>
@@ -30,17 +38,28 @@ const SeatTableBody = () => {
         <S.SeatTableBody>
           {SEAT_ROWS.map((row) => (
             <S.SeatRowWrapper key={row}>
-              {SEAT_INFO.filter((seat) => seat.startsWith(row)).map((seat) => (
-                <BtnSeatDefaultLarge
-                  key={seat}
-                  width={'2.8rem'}
-                  seat={seat}
-                  style={{
-                    marginRight: [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0',
-                    cursor: 'pointer',
-                  }}
-                />
-              ))}
+              {SEAT_INFO.filter((seat) => seat.startsWith(row)).map((seat) => {
+                const isSelected = selectedSeats.includes(seat);
+                const isDisabled = !isSelected && isSeatDisabled;
+                const marginRight = [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0';
+                const commonProps = {
+                  key: seat,
+                  width: '2.8rem',
+                  style: { marginRight },
+                };
+
+                return isDisabled ? (
+                  <BtnSeatDisabledLarge {...commonProps} style={{ ...commonProps.style, cursor: 'not-allowed' }} />
+                ) : (
+                  <BtnSeatDefaultLarge
+                    seat={seat}
+                    onClick={() => handleClickSeat(seat)}
+                    fill={isSelected ? '#FF243E' : '#1EAFFD'}
+                    {...commonProps}
+                    style={{ ...commonProps.style, cursor: 'pointer' }}
+                  />
+                );
+              })}
             </S.SeatRowWrapper>
           ))}
         </S.SeatTableBody>
