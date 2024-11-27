@@ -15,9 +15,11 @@ const S = {
   Button: styled.button<{ $isActive: boolean }>`
     width: 100%;
     height: 4.5rem;
+    border-radius: 0.4rem;
     ${({ theme }) => theme.typographies.n_head04}
     color: ${({ theme }) => theme.colors.WHITE100};
     background-color: ${({ theme, $isActive }) => ($isActive ? theme.colors.RED02 : theme.colors.GRAY09)};
+    cursor: ${({ $isActive }) => ($isActive ? 'pointer' : 'not-allowed')};
   `,
 };
 export default NextButton;

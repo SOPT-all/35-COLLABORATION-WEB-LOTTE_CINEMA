@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 
 import { useState } from 'react';
 
+import { USER_TYPES } from '@/constants/mocks/userTypes';
+
 import { IcMinus24, IcPlus24 } from '@/assets/svg';
 
 import { SeatNum } from '@/types/infoCheckType';
@@ -30,28 +32,20 @@ const SeatNumSelect = ({ onCountChange }: SeatNumSelectProps) => {
 
   return (
     <S.Wrapper>
-      <UserCounter
-        userType="성인"
-        count={counts.adult}
-        onIncrement={() => handleCountChange('adult', 1)}
-        onDecrement={() => handleCountChange('adult', -1)}
-      />
-      <UserCounter
-        userType="청소년"
-        count={counts.teen}
-        onIncrement={() => handleCountChange('teen', 1)}
-        onDecrement={() => handleCountChange('teen', -1)}
-      />
-      <UserCounter
-        userType="경로"
-        count={counts.senior}
-        onIncrement={() => handleCountChange('senior', 1)}
-        onDecrement={() => handleCountChange('senior', -1)}
-      />
+      {USER_TYPES.map(({ label, key }) => (
+        <UserCounter
+          key={key}
+          userType={label}
+          count={counts[key]}
+          onIncrement={() => handleCountChange(key, 1)}
+          onDecrement={() => handleCountChange(key, -1)}
+        />
+      ))}
     </S.Wrapper>
   );
 };
 
+// UserCounter 컴포넌트 분리
 interface UserCounterProps {
   userType: string;
   count: number;
