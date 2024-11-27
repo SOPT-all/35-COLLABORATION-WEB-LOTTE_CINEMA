@@ -5,8 +5,8 @@ import { ImgBannerAprilMedium, ImgBannerMvssadaguMedium } from '@/assets/svg';
 const SideAdvertisement = () => {
   return (
     <S.AdsContainer>
-      <ImgBannerAprilMedium width="90%" />
-      <ImgBannerMvssadaguMedium width="90%" />
+      <ImgBannerAprilMedium width="100%" />
+      <ImgBannerMvssadaguMedium width="100%" />
     </S.AdsContainer>
   );
 };
@@ -20,6 +20,6 @@ const S = {
     flex-direction: column;
     align-items: center;
     gap: 2.4rem 0;
-    padding: 3.2rem 0 0 0;
+    padding: 3.2rem 1.8rem 0 1.8rem;
   `,
 };
