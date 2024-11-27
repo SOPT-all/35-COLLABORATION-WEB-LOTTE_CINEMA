@@ -1,3 +1,4 @@
+import ExclusiveChart from '@/components/mainPage/ExclusiveChart';
 import Footer from '@/components/mainPage/Footer';
 import MainImage from '@/components/mainPage/MainImage';
 import MainPageHeader from '@/components/mainPage/MainPageHeader';
@@ -11,6 +12,7 @@ const MainPage = () => {
       <MainPageHeader />
       <MainImage />
       <PopularMovieChart />
+      <ExclusiveChart />
       <Footer />
       <NavFooter />
     </MobileLayout>
