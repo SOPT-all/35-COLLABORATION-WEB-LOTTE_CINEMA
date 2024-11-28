@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 
 import { useEffect, useRef } from 'react';
 
+import { useSeatInfoQuery } from '@/hooks/query/useSeatInfoQuery';
+
 import { BtnSeatDefaultLarge, BtnSeatDisabledLarge } from '@/assets/svg';
 
 import { SEAT_INFO, SEAT_ROWS } from '@/constants';
@@ -21,6 +23,10 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: Sea
       wrapper.scrollLeft = (wrapper.scrollWidth - wrapper.clientWidth) / 2;
     }
   }, []);
+  const { data, isLoading, error } = useSeatInfoQuery(1);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading seat info.</div>;
 
   const isSeatDisabled = selectedSeats.length >= reservatedNumber;
 
@@ -43,16 +49,20 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: Sea
                 const isDisabled = !isSelected && isSeatDisabled;
                 const marginRight = [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0';
                 const commonProps = {
-                  key: seat,
                   width: '2.8rem',
                   style: { marginRight },
                 };
 
                 return isDisabled ? (
-                  <BtnSeatDisabledLarge {...commonProps} style={{ ...commonProps.style, cursor: 'not-allowed' }} />
+                  <BtnSeatDisabledLarge
+                    {...commonProps}
+                    key={seat}
+                    style={{ ...commonProps.style, cursor: 'not-allowed' }}
+                  />
                 ) : (
                   <BtnSeatDefaultLarge
                     seat={seat}
+                    key={seat}
                     onClick={() => handleClickSeat(seat)}
                     fill={isSelected ? '#FF243E' : '#1EAFFD'}
                     {...commonProps}

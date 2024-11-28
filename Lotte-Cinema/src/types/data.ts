@@ -1,3 +1,3 @@
 export interface SeatListType {
-  seatList: number[];
+  data: { seatList: number[] };
 }
