@@ -66,6 +66,7 @@ const S = {
     overflow-y: scroll;
     background-color: white;
     /* margin-top: 0.2rem; > 디자이너 질문 */
+    padding-bottom: 20rem;
   `,
 
   Region: styled.li<{ $isActive: boolean }>`
