@@ -1,17 +1,13 @@
 import styled from '@emotion/styled';
+import { useQuery } from '@tanstack/react-query';
 
-// import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// import { getPopularList } from '@/apis/movie';
-// import getExclusiveList from '@/apis/movie/getexclusiveList';
-import Img4m44s from '@/assets/img/Img4m44s.png';
-import ImgAmazonhms from '@/assets/img/ImgAmazonhms.png';
-import ImgDeadline from '@/assets/img/ImgDeadline.png';
-import ImgGladiator from '@/assets/img/ImgGladiator.png';
-import ImgHoshimachi from '@/assets/img/ImgHoshimachi.png';
-import ImgKiminonamaewa from '@/assets/img/ImgKiminonamaewa.png';
-import ImgSummerwars from '@/assets/img/ImgSummerwars.png';
+import { useMovieListQuery } from '@/hooks/query';
+
+import { getExclusiveList, getPopularList } from '@/apis/movie';
+
 import { IcAge1216, IcAge1916, IcAgeAll16 } from '@/assets/svg';
 
 import { runningTimeFormat } from '@/utils';
@@ -19,56 +15,54 @@ import { runningTimeFormat } from '@/utils';
 import ArrowBtn from '../commons/ArrowBtn';
 import TheaterLabel from './atom/TheaterLabel';
 
-const MovieInfoBar = () => {
+type MovieInfoBarProps = {
+  locs: string[];
+};
+
+const MovieInfoBar = ({ locs }: MovieInfoBarProps) => {
   const navigate = useNavigate();
-  // const [movieList, setMovieList] = useState([
-  //   { movieId: 0, title: '', showtime: 0, rating: '', releasedDate: '', imageUrl: '', reservedRate: '' },
-  // ]);
+  const [selectedMovie, setSelectedMovie] = useState({ title: '', rating: '', showtime: 0 });
+  const selectedTitle = '청설';
 
-  // const [res1, res2] = await Promise.all([getPopularList({ filter: '전체' }), getExclusiveList()]);
-  // console.log(res1, res2);
-  // return [res1, res2];
+  const { data, isLoading, isError } = useMovieListQuery();
 
-  // TODO API 완성시, 로직 분리할 예정
-  const Title = '아마존 활명수';
-  const runningTime = 122;
-  const posters = [ImgAmazonhms, Img4m44s, ImgDeadline, ImgGladiator, ImgHoshimachi, ImgKiminonamaewa, ImgSummerwars];
-  const locs = ['건대입구', '강동', '청량리'];
-  const ageLimit: string = '12';
-  let ageIcon: JSX.Element = <></>;
+  useEffect(() => {
+    if (data) {
+      const movieInfo = data.find((e) => e.title === selectedTitle);
+      if (movieInfo) {
+        setSelectedMovie(movieInfo);
+      }
+    }
+  }, [data, selectedTitle]);
 
-  // 영화 연령에 따라, 연령제한 ICON 선택적 랜더링
-  switch (ageLimit as '12' | '19' | 'All') {
-    case '12':
-      ageIcon = <IcAge1216 width="1.6rem" />;
-      break;
-    case '19':
-      ageIcon = <IcAge1916 width="1.6rem" />;
-      break;
-    case 'All':
-      ageIcon = <IcAgeAll16 width="1.6rem" />;
-      break;
-    default:
-      ageIcon = <></>;
-  }
+  const { title, showtime, rating } = selectedMovie;
+
+  const ageIcons: Record<string, JSX.Element> = {
+    '12': <IcAge1216 width="1.6rem" />,
+    청불: <IcAge1916 width="1.6rem" />,
+    ALL: <IcAgeAll16 width="1.6rem" />,
+  };
+  const ageIcon = ageIcons[rating] || <></>;
+
   return (
     <>
       <S.Wrapper>
         <S.Layout>
           <S.MovieInfoContainer>
             <S.MovieTextBox>
-              <h1>{Title}</h1>
+              <h1>{title}</h1>
               {ageIcon}
-              <p>{`${runningTime}분 (${runningTimeFormat(runningTime)})`}</p>
+              <p>{`${showtime}분 (${runningTimeFormat(showtime)})`}</p>
             </S.MovieTextBox>
             <ArrowBtn label="전체 보기" />
           </S.MovieInfoContainer>
           <S.PosterContainer>
-            {posters.map((poster, i) => (
-              <li key={`poster-${i}`}>
-                <img src={poster}></img>
-              </li>
-            ))}
+            {data &&
+              data.map((poster, i) => (
+                <li key={`poster-${poster.movieId}`}>
+                  <img src={poster.imageUrl}></img>
+                </li>
+              ))}
           </S.PosterContainer>
           <S.TheaterContainer>
             <S.TheaterBox>
