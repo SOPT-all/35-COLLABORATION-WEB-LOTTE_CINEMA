@@ -27,8 +27,10 @@ const SeatReservation = () => {
 
   return (
     <MobileLayout>
-      <MiniMap />
-      {/* <S.SeatReserveLayout>
+      <S.MiniMapWrapper>
+        <MiniMap />
+      </S.MiniMapWrapper>
+      <S.SeatReserveLayout>
         <Header title="좌석 선택" />
         <SeatTableBody
           handleClickSeat={handleClickSeat}
@@ -38,12 +40,21 @@ const SeatReservation = () => {
         <S.SeatReserveInfoWrapper>
           <SeatReserveInfo selectedSeats={selectedSeats} reservatedNumber={reservatedNumber} />
         </S.SeatReserveInfoWrapper>
-      </S.SeatReserveLayout> */}
+      </S.SeatReserveLayout>
     </MobileLayout>
   );
 };
 
 const S = {
+  MiniMapWrapper: styled.div`
+    position: relative;
+
+    & > * {
+      position: absolute;
+      top: 6.5rem;
+      left: -20rem;
+    }
+  `,
   SeatReserveLayout: styled.div`
     display: flex;
     flex-direction: column;
