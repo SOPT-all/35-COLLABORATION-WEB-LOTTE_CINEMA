@@ -16,7 +16,7 @@ interface SeatReserveInfoProps {
 const SeatReserveInfo = ({ selectedSeats, reservatedNumber }: SeatReserveInfoProps) => {
   const seatIndexes = selectedSeats.map((seat) => SEAT_INFO.findIndex((info) => info === seat));
 
-  const { mutate, error, data } = useReserveMutation(1, seatIndexes);
+  const { mutate } = useReserveMutation(1, seatIndexes);
 
   const handleSubmit = () => {
     mutate({ movieId: 1, seats: seatIndexes }); // mutate 함수로 movieId와 seats 전달

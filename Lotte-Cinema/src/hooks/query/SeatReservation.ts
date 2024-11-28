@@ -20,13 +20,12 @@ export const useReserveMutation = (
 ): UseMutationResult<SeatListType, AxiosError, { movieId: number; seats: number[] }> => {
   return useMutation({
     mutationFn: ({ movieId, seats }) => postReserve(movieId, seats),
-    onSuccess: (data) => {
-      console.log('요청 성공!', data);
+    onSuccess: () => {
       //TODO: API 다 연결하고 main꺼 쿼리키 추가
       queryClient.invalidateQueries({});
     },
-    onError: (error) => {
-      console.error('예약 실패:', error);
+    onError: () => {
+      console.error(movieId, seats);
     },
   });
 };
