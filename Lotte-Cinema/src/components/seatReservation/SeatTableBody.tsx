@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useSeatInfoQuery } from '@/hooks/query/SeatReservation';
 
@@ -18,11 +18,9 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: Sea
   const seatTableWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log(seatTableWrapperRef.current);
     const wrapper = seatTableWrapperRef.current;
     if (wrapper) {
       wrapper.scrollLeft = (wrapper.scrollWidth - wrapper.clientWidth) / 2;
-      console.log('useEffect');
     }
   }, []);
 
