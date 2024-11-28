@@ -9,7 +9,7 @@ interface SelectButtonProps {
 
 const SelectButton = ({ children, selectedNum }: SelectButtonProps) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper $isActive={selectedNum !== 0}>
       <S.Text>{children}</S.Text>
       <S.SelectedNum>({selectedNum})</S.SelectedNum>
     </S.Wrapper>
@@ -17,7 +17,7 @@ const SelectButton = ({ children, selectedNum }: SelectButtonProps) => {
 };
 
 const S = {
-  Wrapper: styled.button`
+  Wrapper: styled.button<{ $isActive: boolean }>`
     display: flex;
     gap: 0.4rem;
     align-items: center;
@@ -25,9 +25,9 @@ const S = {
     width: 100%;
     height: 4.5rem;
 
-    color: ${({ theme }) => theme.colors.WHITE100};
+    color: ${({ theme, $isActive }) => ($isActive ? theme.colors.WHITE100 : theme.colors.RED02)};
 
-    background-color: ${({ theme }) => theme.colors.RED02};
+    background-color: ${({ theme, $isActive }) => ($isActive ? theme.colors.RED02 : theme.colors.WHITE100)};
     border-radius: 4px;
   `,
   Text: styled.span`
