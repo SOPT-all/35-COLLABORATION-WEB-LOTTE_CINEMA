@@ -5,11 +5,12 @@ import { ReactNode } from 'react';
 interface SelectButtonProps {
   children: ReactNode;
   selectedNum: number;
+  onClick: () => void;
 }
 
-const SelectButton = ({ children, selectedNum }: SelectButtonProps) => {
+const SelectButton = ({ children, onClick, selectedNum }: SelectButtonProps) => {
   return (
-    <S.Wrapper $isActive={selectedNum !== 0}>
+    <S.Wrapper $isActive={selectedNum !== 0} onClick={onClick}>
       <S.Text>{children}</S.Text>
       <S.SelectedNum>({selectedNum})</S.SelectedNum>
     </S.Wrapper>
