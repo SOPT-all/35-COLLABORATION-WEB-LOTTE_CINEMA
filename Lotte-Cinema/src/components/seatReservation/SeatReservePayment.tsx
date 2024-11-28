@@ -9,7 +9,11 @@ import ModalWrapper, { ModalWrapperRef } from '@/components/seatReservation/Moda
 
 import { ImgLpayLogo } from '@/assets/svg';
 
-const SeatReservePayment = () => {
+interface PaymentProps {
+  handleSubmit: () => void;
+}
+
+const SeatReservePayment = ({ handleSubmit }: PaymentProps) => {
   const dialogRef = useRef<ModalWrapperRef>(null);
   const navigate = useNavigate();
   const showModal = () => {
@@ -30,13 +34,25 @@ const SeatReservePayment = () => {
       </S.TotalPriceWrapper>
 
       <S.PayButtonWrapper>
-        <Button variant="default" onClick={showModal}>
+        <Button
+          variant="default"
+          onClick={() => {
+            showModal();
+            handleSubmit();
+          }}
+        >
           결제
         </Button>
         <ModalWrapper ref={dialogRef}>
           <ModalContents handleCloseModal={closeModal} />
         </ModalWrapper>
-        <Button variant="secondary">
+        <Button
+          variant="secondary"
+          onClick={() => {
+            showModal();
+            handleSubmit();
+          }}
+        >
           <ImgLpayLogo width={'4.8rem'} />
           결제
         </Button>
