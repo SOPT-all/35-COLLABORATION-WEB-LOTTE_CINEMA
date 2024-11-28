@@ -11,20 +11,26 @@ import MobileLayout from '@/components/mobileLayout/MobileLayout';
 const TheaterList = () => {
   const [selectedDetail, setSelectedDetail] = useState<string[]>([]);
 
+  // detail 상태 삭제 로직 (리스트 + 핀)
+  const deleteDetail = (name: string) => {
+    setSelectedDetail((prev) => {
+      const filterDetail = prev.filter((detail) => detail !== name);
+      return filterDetail;
+    });
+    return;
+  };
+
+  // detail 클릭 (리스트)
   const handleDetailClick = (name: string) => {
     // 이미 선택된 세부 지역을 다시 선택한 경우 지우기
     if (selectedDetail.includes(name)) {
-      setSelectedDetail((prev) => {
-        const filterDetail = prev.filter((detail) => detail !== name);
-        return filterDetail;
-      });
-      return;
+      deleteDetail(name);
     }
 
     // 3개 이상일 때 누르면 아무 동작 X
     if (selectedDetail.length >= 3) return;
 
-    setSelectedDetail((prev) => [...prev, name]); // 정상 배열 추가
+    setSelectedDetail((prev) => [...prev, name]);
   };
 
   return (
@@ -33,7 +39,7 @@ const TheaterList = () => {
       <S.Wrapper>
         <TabBar />
         <List onClick={handleDetailClick} />
-        <SelectActions detailList={selectedDetail} />
+        <SelectActions selectedDetail={selectedDetail} deleteDetail={deleteDetail} />
       </S.Wrapper>
     </MobileLayout>
   );

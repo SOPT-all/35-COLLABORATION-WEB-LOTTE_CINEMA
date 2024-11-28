@@ -4,16 +4,21 @@ import Pin from './Pin';
 import SelectButton from './SelectButton';
 
 interface SelectActionsProps {
-  detailList: string[];
+  selectedDetail: string[];
+  deleteDetail: (name: string) => void;
 }
 
-const SelectActions = ({ detailList }: SelectActionsProps) => {
+const SelectActions = ({ selectedDetail, deleteDetail }: SelectActionsProps) => {
   return (
     <S.Wrapper>
       <S.PinContainer>
-        {detailList.length === 0
+        {selectedDetail.length === 0
           ? '영화관은 최대 3개까지 선택할 수 있습니다.'
-          : detailList.map((detail, idx) => <Pin key={idx}>{detail}</Pin>)}
+          : selectedDetail.map((detail, idx) => (
+              <Pin name={detail} deleteDetail={deleteDetail} key={idx}>
+                {detail}
+              </Pin>
+            ))}
       </S.PinContainer>
       <S.ButtonContainer>
         <SelectButton>영화관 선택</SelectButton>
