@@ -1,22 +1,21 @@
 import styled from '@emotion/styled';
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { getExclusiveList } from '@/apis/movie';
-
-import { exclusiveItems } from '@/constants/mocks/exclusiveMovie';
 
 import { IcAge1216, IcAge1916, IcAgeAll16 } from '@/assets/svg';
 import { IcPic2816 } from '@/assets/svg';
 
 const ExclusiveChart = () => {
+  const navigate = useNavigate();
   const [exclusiveList, setExclusiveList] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         const movieList = await getExclusiveList();
-        console.log('hello', movieList);
         setExclusiveList(movieList);
       } catch (err) {
         console.error('Error fetching movie list:', err);
@@ -51,7 +50,7 @@ const ExclusiveChart = () => {
                       case '12':
                         return <IcAge1216 height="100%" />;
                       default:
-                        return null;
+                        return <IcAgeAll16 height="100%" />;
                     }
                   })()}
                 </S.AgeLimitContainer>
@@ -59,7 +58,18 @@ const ExclusiveChart = () => {
               </S.ImageWrapper>
               <S.TextWrapper>
                 <S.MovieTitle>{title}</S.MovieTitle>
-                <S.ButtonReservation type="button">예매하기</S.ButtonReservation>
+                <S.ButtonReservation
+                  type="button"
+                  onClick={() => {
+                    navigate('/theaters', {
+                      state: {
+                        title,
+                      },
+                    });
+                  }}
+                >
+                  예매하기
+                </S.ButtonReservation>
               </S.TextWrapper>
             </S.EachContentWrapper>
           );
@@ -89,6 +99,8 @@ const S = {
   MovieImage: styled.img`
     width: 13.4rem;
     height: 100%;
+    border-radius: 0.6rem;
+    overflow: hidden;
   `,
 
   ContentWrapper: styled.section`
