@@ -24,10 +24,8 @@ const TheaterList = () => {
     // 3개 이상일 때 누르면 아무 동작 X
     if (selectedDetail.length >= 3) return;
 
-    setSelectedDetail((prev) => [...prev, name]);
+    setSelectedDetail((prev) => [...prev, name]); // 정상 배열 추가
   };
-
-  console.log(selectedDetail);
 
   return (
     <MobileLayout>
@@ -35,7 +33,7 @@ const TheaterList = () => {
       <S.Wrapper>
         <TabBar />
         <List onClick={handleDetailClick} />
-        <SelectActions />
+        <SelectActions detailList={selectedDetail} />
       </S.Wrapper>
     </MobileLayout>
   );
