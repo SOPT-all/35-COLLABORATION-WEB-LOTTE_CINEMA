@@ -15,12 +15,13 @@ import TheaterLabel from './atom/TheaterLabel';
 type MovieInfoBarProps = {
   locs: string[];
   onDelete: (loc: string) => void;
+  setSelectTitle: (value: string) => void;
+  selectTitle: string;
 };
 
-const MovieInfoBar = ({ locs, onDelete }: MovieInfoBarProps) => {
+const MovieInfoBar = ({ locs, onDelete, setSelectTitle, selectTitle }: MovieInfoBarProps) => {
   const navigate = useNavigate();
   const [selectedMovie, setSelectedMovie] = useState({ title: '', rating: '', showtime: 0 });
-  const [selectTitle, setSelectTitle] = useState('청설');
 
   const { data } = useMovieListQuery();
 

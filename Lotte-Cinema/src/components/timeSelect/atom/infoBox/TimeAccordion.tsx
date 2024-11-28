@@ -18,9 +18,11 @@ type MovieTimeType = {
     }[];
   };
   locs: string[];
+  selectTitle: string;
+  selectDate: Date;
 };
 
-const TimeAccordion = ({ num, info, locs }: MovieTimeType) => {
+const TimeAccordion = ({ num, info, locs, selectTitle, selectDate }: MovieTimeType) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleAccordion = () => {
@@ -45,7 +47,14 @@ const TimeAccordion = ({ num, info, locs }: MovieTimeType) => {
             <S.Description>{info.description}</S.Description>
             <S.InfoContent>
               {info.timesList.map((timesList, i) => (
-                <TimeCard key={i} timesList={timesList} />
+                <TimeCard
+                  key={i}
+                  timesList={timesList}
+                  selectTitle={selectTitle}
+                  theater={info.name}
+                  subTheaterInfo={info.subname}
+                  selectDate={selectDate}
+                />
               ))}
             </S.InfoContent>
           </S.InfoContainer>
