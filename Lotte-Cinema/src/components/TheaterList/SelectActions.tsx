@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { useNavigate } from 'react-router-dom';
+
 import Pin from './Pin';
 import SelectButton from './SelectButton';
 
@@ -9,6 +11,13 @@ interface SelectActionsProps {
 }
 
 const SelectActions = ({ selectedDetail, deleteDetail }: SelectActionsProps) => {
+  const navigate = useNavigate();
+
+  const moveTimeSelectPage = () => {
+    navigate('/tickets', {
+      state: selectedDetail,
+    });
+  };
   return (
     <S.Wrapper>
       <S.PinContainer>
@@ -21,7 +30,9 @@ const SelectActions = ({ selectedDetail, deleteDetail }: SelectActionsProps) => 
             ))}
       </S.PinContainer>
       <S.ButtonContainer>
-        <SelectButton selectedNum={selectedDetail.length}>영화관 선택</SelectButton>
+        <SelectButton onClick={moveTimeSelectPage} selectedNum={selectedDetail.length}>
+          영화관 선택
+        </SelectButton>
       </S.ButtonContainer>
     </S.Wrapper>
   );

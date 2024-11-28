@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 
 import { useState } from 'react';
 
-import { THEATER_DETAIL_REGION, THEATER_REGION } from '@/constants/mocks/theaterRegion';
+import { useGetDetailRegionsQuery } from '@/hooks/query/useGetDetailRegionsQuery';
+import { useGetRegionsQuery } from '@/hooks/query/useGetRegionsQuery';
 
 import { IcCheckRed20 } from '@/assets/svg';
 
@@ -14,7 +15,9 @@ interface ListProps {
 }
 
 const List = ({ onClick, selectedDetail }: ListProps) => {
-  const [selectedRegion, setSelectedRegion] = useState(0); // idx로 판단
+  const [selectedRegion, setSelectedRegion] = useState(1);
+  const { data: region } = useGetRegionsQuery();
+  const { data: detailRegion } = useGetDetailRegionsQuery(selectedRegion);
 
   const handleClickRegion = (idx: number) => {
     setSelectedRegion(idx);
@@ -23,10 +26,10 @@ const List = ({ onClick, selectedDetail }: ListProps) => {
   return (
     <S.Wrapper>
       <S.RegionContainer>
-        {THEATER_REGION.map(({ name, theaterCount }, idx) => {
-          const isActive = idx === selectedRegion;
+        {region?.data.regionList.map(({ id, name, theaterCount }) => {
+          const isActive = id === selectedRegion;
           return (
-            <S.Region $isActive={isActive} onClick={() => handleClickRegion(idx)} key={idx}>
+            <S.Region $isActive={isActive} onClick={() => handleClickRegion(id)} key={id}>
               <S.RegionText $isActive={isActive}>{name}</S.RegionText>
               <S.RegionNum>{theaterCount}</S.RegionNum>
             </S.Region>
@@ -35,10 +38,10 @@ const List = ({ onClick, selectedDetail }: ListProps) => {
       </S.RegionContainer>
 
       <S.DetailRegionContainer>
-        {THEATER_DETAIL_REGION.map(({ id, name }) => {
+        {detailRegion?.data.theaterList.map((name, idx) => {
           const isActive = selectedDetail.includes(name);
           return (
-            <S.DetailRegion $isActive={isActive} onClick={() => onClick(name)} key={id}>
+            <S.DetailRegion $isActive={isActive} onClick={() => onClick(name)} key={idx}>
               {name}
               {isActive && <IcCheckRed20 width={'2rem'} />}
             </S.DetailRegion>
