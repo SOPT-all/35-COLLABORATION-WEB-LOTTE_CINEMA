@@ -1,35 +1,15 @@
 import styled from '@emotion/styled';
 
-import { useState } from 'react';
-
 import { USER_TYPES } from '@/constants/mocks/userTypes';
 
 import { IcMinus24, IcPlus24 } from '@/assets/svg';
 
-import { SeatNum } from '@/types/infoCheckType';
-
 interface SeatNumSelectProps {
-  onCountChange: (counts: SeatNum) => void;
+  counts: { adult: number; teen: number; senior: number };
+  handleCountChange: (type: 'adult' | 'teen' | 'senior', increment: number) => void;
 }
 
-const SeatNumSelect = ({ onCountChange }: SeatNumSelectProps) => {
-  const [counts, setCounts] = useState({
-    adult: 0,
-    teen: 0,
-    senior: 0,
-  });
-
-  const handleCountChange = (type: keyof typeof counts, increment: number) => {
-    setCounts((prev) => {
-      const updatedCounts = {
-        ...prev,
-        [type]: Math.max(0, prev[type] + increment), // 0아래로 안내려가도록
-      };
-      onCountChange(updatedCounts);
-      return updatedCounts;
-    });
-  };
-
+const SeatNumSelect = ({ counts, handleCountChange }: SeatNumSelectProps) => {
   return (
     <S.Wrapper>
       {USER_TYPES.map(({ label, key }) => (
