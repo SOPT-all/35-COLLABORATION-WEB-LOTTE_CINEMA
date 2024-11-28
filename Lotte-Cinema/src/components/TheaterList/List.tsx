@@ -4,13 +4,16 @@ import { useState } from 'react';
 
 import { THEATER_DETAIL_REGION, THEATER_REGION } from '@/constants/mocks/theaterRegion';
 
+import { IcCheckRed20 } from '@/assets/svg';
+
 import theme from '@/styles';
 
 interface ListProps {
   onClick: (name: string) => void;
+  selectedDetail: string[];
 }
 
-const List = ({ onClick }: ListProps) => {
+const List = ({ onClick, selectedDetail }: ListProps) => {
   const [selectedRegion, setSelectedRegion] = useState(0); // idx로 판단
 
   const handleClickRegion = (idx: number) => {
@@ -32,11 +35,15 @@ const List = ({ onClick }: ListProps) => {
       </S.RegionContainer>
 
       <S.DetailRegionContainer>
-        {THEATER_DETAIL_REGION.map(({ id, name }) => (
-          <S.DetailRegion onClick={() => onClick(name)} key={id}>
-            {name}
-          </S.DetailRegion>
-        ))}
+        {THEATER_DETAIL_REGION.map(({ id, name }) => {
+          const isActive = selectedDetail.includes(name);
+          return (
+            <S.DetailRegion $isActive={isActive} onClick={() => onClick(name)} key={id}>
+              {name}
+              {isActive && <IcCheckRed20 width={'2rem'} />}
+            </S.DetailRegion>
+          );
+        })}
       </S.DetailRegionContainer>
     </S.Wrapper>
   );
@@ -83,11 +90,17 @@ const S = {
     color: 	${({ theme }) => theme.colors.GRAY08};
   `,
 
-  DetailRegion: styled.li`
+  DetailRegion: styled.li<{ $isActive: boolean }>`
     width: 100%;
-    padding: 1.4rem 17.2rem 1.4rem 1.8rem;
-    ${({ theme }) => theme.typographies.n_body01_reg}
-    color: 	${({ theme }) => theme.colors.BLACK100};
+    height: 4.4rem;
+    padding: 1.4rem 1.8rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ${({ theme, $isActive }) => ($isActive ? theme.typographies.n_body01_bold : theme.typographies.n_body01_reg)}
+    color: 	${({ theme, $isActive }) => ($isActive ? theme.colors.RED02 : theme.colors.BLACK100)};
     border-bottom: 1px solid ${({ theme }) => theme.colors.GRAY03};
     white-space: nowrap;
     cursor: pointer;

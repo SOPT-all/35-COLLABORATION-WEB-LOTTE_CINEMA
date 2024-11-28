@@ -17,7 +17,6 @@ const TheaterList = () => {
       const filterDetail = prev.filter((detail) => detail !== name);
       return filterDetail;
     });
-    return;
   };
 
   // detail 클릭 (리스트)
@@ -25,6 +24,7 @@ const TheaterList = () => {
     // 이미 선택된 세부 지역을 다시 선택한 경우 지우기
     if (selectedDetail.includes(name)) {
       deleteDetail(name);
+      return;
     }
 
     // 3개 이상일 때 누르면 아무 동작 X
@@ -38,7 +38,7 @@ const TheaterList = () => {
       <Header title="영화관 선택" />
       <S.Wrapper>
         <TabBar />
-        <List onClick={handleDetailClick} />
+        <List onClick={handleDetailClick} selectedDetail={selectedDetail} />
         <SelectActions selectedDetail={selectedDetail} deleteDetail={deleteDetail} />
       </S.Wrapper>
     </MobileLayout>

@@ -21,7 +21,7 @@ const SelectActions = ({ selectedDetail, deleteDetail }: SelectActionsProps) => 
             ))}
       </S.PinContainer>
       <S.ButtonContainer>
-        <SelectButton>영화관 선택</SelectButton>
+        <SelectButton selectedNum={selectedDetail.length}>영화관 선택</SelectButton>
       </S.ButtonContainer>
     </S.Wrapper>
   );
