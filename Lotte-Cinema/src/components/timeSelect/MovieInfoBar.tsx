@@ -1,12 +1,9 @@
 import styled from '@emotion/styled';
-import { useQuery } from '@tanstack/react-query';
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useMovieListQuery } from '@/hooks/query';
-
-import { getExclusiveList, getPopularList } from '@/apis/movie';
 
 import { IcAge1216, IcAge1916, IcAgeAll16 } from '@/assets/svg';
 
@@ -22,18 +19,23 @@ type MovieInfoBarProps = {
 const MovieInfoBar = ({ locs }: MovieInfoBarProps) => {
   const navigate = useNavigate();
   const [selectedMovie, setSelectedMovie] = useState({ title: '', rating: '', showtime: 0 });
-  const selectedTitle = '청설';
+  const [selectTitle, setSelectTitle] = useState('청설');
 
   const { data, isLoading, isError } = useMovieListQuery();
 
+  const handlePosterClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const value = e.currentTarget.dataset.value;
+    if (value) setSelectTitle(value);
+  };
+
   useEffect(() => {
     if (data) {
-      const movieInfo = data.find((e) => e.title === selectedTitle);
+      const movieInfo = data.find((e) => e.title === selectTitle);
       if (movieInfo) {
         setSelectedMovie(movieInfo);
       }
     }
-  }, [data, selectedTitle]);
+  }, [data, selectTitle]);
 
   const { title, showtime, rating } = selectedMovie;
 
@@ -59,7 +61,12 @@ const MovieInfoBar = ({ locs }: MovieInfoBarProps) => {
           <S.PosterContainer>
             {data &&
               data.map((poster, i) => (
-                <li key={`poster-${poster.movieId}`}>
+                <li
+                  key={`poster-${poster.movieId}`}
+                  data-value={poster.title}
+                  onClick={handlePosterClick}
+                  className={poster.title !== selectTitle ? 'shadow' : ''}
+                >
                   <img src={poster.imageUrl}></img>
                 </li>
               ))}
@@ -144,7 +151,7 @@ const S = {
       height: 11rem;
     }
 
-    & li:not(:first-of-type) {
+    & li.shadow {
       filter: brightness(0.5);
     }
   `,
