@@ -4,7 +4,7 @@ const END_POINTS = {
   REGION: `/api/v1/region`,
   REGION_THEATER: (regionId: number) => `/api/v1/theater?regionId=${regionId}`,
   SCREEN_TIME: `/api/v1/screen/`,
-  SEAT_INFO: `/api/v1/seats?movieId=`,
+  SEAT_INFO: (movieId: number) => `/api/v1/seats?movieId=${movieId}`,
   RESERVE: `/api/v1/seats`,
 };
 
