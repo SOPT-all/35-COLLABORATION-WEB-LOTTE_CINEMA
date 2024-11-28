@@ -14,14 +14,15 @@ import TheaterLabel from './atom/TheaterLabel';
 
 type MovieInfoBarProps = {
   locs: string[];
+  onDelete: (loc: string) => void;
 };
 
-const MovieInfoBar = ({ locs }: MovieInfoBarProps) => {
+const MovieInfoBar = ({ locs, onDelete }: MovieInfoBarProps) => {
   const navigate = useNavigate();
   const [selectedMovie, setSelectedMovie] = useState({ title: '', rating: '', showtime: 0 });
   const [selectTitle, setSelectTitle] = useState('청설');
 
-  const { data, isLoading, isError } = useMovieListQuery();
+  const { data } = useMovieListQuery();
 
   const handlePosterClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const value = e.currentTarget.dataset.value;
@@ -75,7 +76,7 @@ const MovieInfoBar = ({ locs }: MovieInfoBarProps) => {
             <S.TheaterBox>
               {locs.map((loc, i) => (
                 <li key={`chip-${i}`}>
-                  <TheaterLabel label={loc} />
+                  <TheaterLabel label={loc} onDelete={onDelete} />
                 </li>
               ))}
             </S.TheaterBox>
