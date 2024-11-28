@@ -1,11 +1,37 @@
 import styled from '@emotion/styled';
 
-const TimeCard = () => {
+import { useNavigate } from 'react-router-dom';
+
+type TimeType = {
+  timesList: {
+    beginTime: string;
+    endTime: string;
+  };
+  selectTitle: string;
+  theater: string;
+  subTheaterInfo: string;
+  selectDate: Date;
+};
+
+const TimeCard = ({ timesList, selectTitle, theater, subTheaterInfo, selectDate }: TimeType) => {
+  const navigate = useNavigate();
+  const handleBtnClick = () => {
+    const prop = {
+      selectTitle,
+      theater,
+      subTheaterInfo,
+      selectDate,
+      beginTime: timesList.beginTime,
+      endTime: timesList.endTime,
+    };
+    console.log(prop);
+    navigate('/tickets/info', { state: prop });
+  };
   return (
-    <S.Wrapper>
+    <S.Wrapper onClick={handleBtnClick}>
       <S.TimeInfoItem>
-        <span className="bold_time">11:55</span>
-        <span className="thin_time">~ 13:17</span>
+        <span className="bold_time">{timesList.beginTime}</span>
+        <span className="thin_time">{`~ ${timesList.endTime}`}</span>
       </S.TimeInfoItem>
       <S.SeatInfoItem>
         <span className="filled_seat">79</span>

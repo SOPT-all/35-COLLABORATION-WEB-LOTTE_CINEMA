@@ -4,14 +4,15 @@ import { IcCloseGray1414 } from '@/assets/svg';
 
 interface LabelProps {
   label: string;
+  onDelete: (label: string) => void;
 }
 
-const TheaterLabel = ({ label }: LabelProps) => {
+const TheaterLabel = ({ label, onDelete }: LabelProps) => {
   return (
     <S.Wrapper>
       <p>{label}</p>
       <button>
-        <IcCloseGray1414 width="1.4rem" height="1.4rem" />
+        <IcCloseGray1414 width="1.4rem" height="1.4rem" onClick={() => onDelete(label)} />
       </button>
     </S.Wrapper>
   );
