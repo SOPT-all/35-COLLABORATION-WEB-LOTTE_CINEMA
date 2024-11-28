@@ -5,7 +5,6 @@ import { createPortal } from 'react-dom';
 
 interface ModalWrapperProps {
   children: ReactNode;
-  backdrop?: boolean;
 }
 
 export interface ModalWrapperRef {
@@ -38,11 +37,11 @@ export default ModalWrapper;
 const S = {
   ModalWrapper: styled.dialog`
     ::backdrop {
-      background-color: 'rgba(0, 0, 0, 0.50)';
+      background-color: var(${({ theme }) => theme.colors.BLACK50}, rgba(0, 0, 0, 0.5));
     }
+    padding: 0;
 
     border: none;
     border-radius: 20px;
-    padding: 0rem;
   `,
 };
