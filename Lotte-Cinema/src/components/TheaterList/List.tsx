@@ -6,7 +6,11 @@ import { THEATER_DETAIL_REGION, THEATER_REGION } from '@/constants/mocks/theater
 
 import theme from '@/styles';
 
-const List = () => {
+interface ListProps {
+  onClick: (name: string) => void;
+}
+
+const List = ({ onClick }: ListProps) => {
   const [selectedRegion, setSelectedRegion] = useState(0); // idx로 판단
 
   const handleClickRegion = (idx: number) => {
@@ -29,7 +33,9 @@ const List = () => {
 
       <S.DetailRegionContainer>
         {THEATER_DETAIL_REGION.map(({ id, name }) => (
-          <S.DetailRegion key={id}>{name}</S.DetailRegion>
+          <S.DetailRegion onClick={() => onClick(name)} key={id}>
+            {name}
+          </S.DetailRegion>
         ))}
       </S.DetailRegionContainer>
     </S.Wrapper>
