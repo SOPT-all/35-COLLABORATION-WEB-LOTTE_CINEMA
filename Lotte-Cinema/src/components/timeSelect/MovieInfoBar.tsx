@@ -1,11 +1,10 @@
 import styled from '@emotion/styled';
 
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getPopularList } from '@/apis/movie';
-import getExclusiveList from '@/apis/movie/getexclusiveList';
-
+// import { getPopularList } from '@/apis/movie';
+// import getExclusiveList from '@/apis/movie/getexclusiveList';
 import Img4m44s from '@/assets/img/Img4m44s.png';
 import ImgAmazonhms from '@/assets/img/ImgAmazonhms.png';
 import ImgDeadline from '@/assets/img/ImgDeadline.png';
