@@ -1,11 +1,18 @@
 import styled from '@emotion/styled';
 
-const TimeCard = () => {
+type TimeType = {
+  timesList: {
+    beginTime: string;
+    endTime: string;
+  };
+};
+
+const TimeCard = ({ timesList }: TimeType) => {
   return (
     <S.Wrapper>
       <S.TimeInfoItem>
-        <span className="bold_time">11:55</span>
-        <span className="thin_time">~ 13:17</span>
+        <span className="bold_time">{timesList.beginTime}</span>
+        <span className="thin_time">{`~ ${timesList.endTime}`}</span>
       </S.TimeInfoItem>
       <S.SeatInfoItem>
         <span className="filled_seat">79</span>

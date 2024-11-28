@@ -61,7 +61,7 @@ const MovieInfoBar = ({ locs, onDelete }: MovieInfoBarProps) => {
           </S.MovieInfoContainer>
           <S.PosterContainer>
             {data &&
-              data.map((poster, i) => (
+              data.map((poster) => (
                 <li
                   key={`poster-${poster.movieId}`}
                   data-value={poster.title}

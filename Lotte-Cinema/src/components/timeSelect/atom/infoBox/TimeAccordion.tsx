@@ -6,10 +6,22 @@ import { IcArrowDown20, IcArrowTop20 } from '@/assets/svg';
 
 import TimeCard from './TimeCard';
 
-// TODO API res 값에 따라 내부 정보 채울 예정
-const TimeAccordion = () => {
+type MovieTimeType = {
+  num: number;
+  info: {
+    name: string;
+    subname: string;
+    description: string;
+    timesList: {
+      beginTime: string;
+      endTime: string;
+    }[];
+  };
+  locs: string[];
+};
+
+const TimeAccordion = ({ num, info, locs }: MovieTimeType) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
-  const times = [1, 2, 3, 4, 5];
 
   const toggleAccordion = () => {
     setIsOpen((prev) => !prev);
@@ -18,7 +30,7 @@ const TimeAccordion = () => {
     <>
       <S.TitleHeader onClick={toggleAccordion}>
         <S.TitleContainer $isOpen={isOpen}>
-          <h1>건대 입구</h1>
+          <h1>{locs[num]}</h1>
           {isOpen ? <IcArrowTop20 width="2rem" /> : <IcArrowDown20 width="2rem" />}
         </S.TitleContainer>
       </S.TitleHeader>
@@ -26,13 +38,14 @@ const TimeAccordion = () => {
         <S.InfoAccordion $isOpen={isOpen}>
           <S.InfoContainer>
             <S.InfoTitle>
-              <p>4관 2D</p>
+              <p>{info.name}</p>
               <span />
-              <p>리클라이너</p>
+              {info.subname.trim() && <p>{info.subname}</p>}
             </S.InfoTitle>
+            <S.Description>{info.description}</S.Description>
             <S.InfoContent>
-              {times.map((e) => (
-                <TimeCard key={e} />
+              {info.timesList.map((timesList, i) => (
+                <TimeCard key={i} timesList={timesList} />
               ))}
             </S.InfoContent>
           </S.InfoContainer>
@@ -53,6 +66,12 @@ const S = {
     align-items: flex-start;
     gap: 1rem;
     align-self: stretch;
+  `,
+
+  Description: styled.p`
+    color: ${({ theme }) => theme.colors.GRAY09};
+    ${({ theme }) => theme.typographies.r_caption}
+    margin-bottom: 1rem;
   `,
 
   TitleContainer: styled.div<{ $isOpen: boolean }>`

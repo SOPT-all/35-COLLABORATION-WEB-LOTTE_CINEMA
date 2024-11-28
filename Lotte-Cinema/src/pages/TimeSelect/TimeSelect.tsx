@@ -7,8 +7,12 @@ import { CalendarBox, MovieInfoBar, TimeInfo } from '@/components/timeSelect';
 const TimeSelect = () => {
   const [locs, setLocs] = useState<string[]>(['건대입구', '강동', '청량리']);
 
-  const handleRemoveLoc = (locToRemove: string) => {
-    setLocs((prevLocs) => prevLocs.filter((loc) => loc !== locToRemove));
+  const handleRemoveLoc = (loctoDelete: string) => {
+    if (locs.length > 1) {
+      setLocs((prev) => prev.filter((loc) => loc !== loctoDelete));
+    } else {
+      alert('하나 이상의 상영권을 선택해주세요!');
+    }
   };
 
   return (
@@ -17,7 +21,7 @@ const TimeSelect = () => {
       <main>
         <MovieInfoBar locs={locs} onDelete={handleRemoveLoc} />
         <CalendarBox />
-        <TimeInfo />
+        <TimeInfo locs={locs} />
       </main>
     </MobileLayout>
   );
