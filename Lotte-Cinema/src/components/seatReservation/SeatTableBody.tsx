@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import { useEffect, useRef } from 'react';
 
-import { useSeatInfoQuery } from '@/hooks/query/useSeatInfoQuery';
+import { useSeatInfoQuery } from '@/hooks/query/SeatReservation';
 
 import { BtnSeatDefaultLarge, BtnSeatDisabledLarge } from '@/assets/svg';
 

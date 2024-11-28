@@ -2,7 +2,11 @@ import styled from '@emotion/styled';
 
 import SeatReservePayment from '@/components/seatReservation/SeatReservePayment';
 
+import { useReserveMutation } from '@/hooks/query/SeatReservation';
+
 import { BtnXsmall, IcArrowRightWhite10, IcEntrance10, IcSeatDisabled10, IcSeatRecliner10 } from '@/assets/svg';
+
+import { SEAT_INFO } from '@/constants';
 
 interface SeatReserveInfoProps {
   selectedSeats: string[];
@@ -10,6 +14,13 @@ interface SeatReserveInfoProps {
 }
 
 const SeatReserveInfo = ({ selectedSeats, reservatedNumber }: SeatReserveInfoProps) => {
+  const seatIndexes = selectedSeats.map((seat) => SEAT_INFO.findIndex((info) => info === seat));
+
+  const { mutate, error, data } = useReserveMutation(1, seatIndexes);
+
+  const handleSubmit = () => {
+    mutate({ movieId: 1, seats: seatIndexes }); // mutate 함수로 movieId와 seats 전달
+  };
   return (
     <S.SeatReserveInfoWrapper>
       <S.SeatTypeInfo>
@@ -41,7 +52,7 @@ const SeatReserveInfo = ({ selectedSeats, reservatedNumber }: SeatReserveInfoPro
           </S.SeatInfoRow>
         </S.SeatInfo>
       </S.MovieInfoWrapper>
-      {selectedSeats.length === reservatedNumber && <SeatReservePayment />}
+      {selectedSeats.length === reservatedNumber && <SeatReservePayment handleSubmit={handleSubmit} />}
     </S.SeatReserveInfoWrapper>
   );
 };
