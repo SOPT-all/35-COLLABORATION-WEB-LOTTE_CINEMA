@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import Header from '@/components/commons/header/Header';
 import MobileLayout from '@/components/mobileLayout/MobileLayout';
+import MiniMap from '@/components/seatReservation/MiniMap';
 import SeatReserveInfo from '@/components/seatReservation/SeatReserveInfo';
 import SeatTableBody from '@/components/seatReservation/SeatTableBody';
 
@@ -26,7 +27,8 @@ const SeatReservation = () => {
 
   return (
     <MobileLayout>
-      <S.SeatReserveLayout>
+      <MiniMap />
+      {/* <S.SeatReserveLayout>
         <Header title="좌석 선택" />
         <SeatTableBody
           handleClickSeat={handleClickSeat}
@@ -36,7 +38,7 @@ const SeatReservation = () => {
         <S.SeatReserveInfoWrapper>
           <SeatReserveInfo selectedSeats={selectedSeats} reservatedNumber={reservatedNumber} />
         </S.SeatReserveInfoWrapper>
-      </S.SeatReserveLayout>
+      </S.SeatReserveLayout> */}
     </MobileLayout>
   );
 };
