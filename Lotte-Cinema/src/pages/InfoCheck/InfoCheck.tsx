@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import AgeInfo from '@/components/InfoCheck/AgeInfo';
 import MovieInfoBanner from '@/components/InfoCheck/MovieInfoBanner';
@@ -13,8 +14,36 @@ import MobileLayout from '@/components/mobileLayout/MobileLayout';
 
 import { SeatNum } from '@/types/infoCheckType';
 
+export interface CountsType {
+  adult: number;
+  teen: number;
+  senior: number;
+}
 const InfoCheck = () => {
   const [isBtnActive, setIsBtnActive] = useState(false);
+  const [counts, setCounts] = useState({
+    adult: 0,
+    teen: 0,
+    senior: 0,
+  });
+  const navigate = useNavigate();
+
+  const handleCountChange = (type: keyof typeof counts, increment: number) => {
+    setCounts((prev) => {
+      const updatedCounts = {
+        ...prev,
+        [type]: Math.max(0, prev[type] + increment), // 0아래로 안내려가도록
+      };
+      handleBtnActive(updatedCounts);
+      return updatedCounts;
+    });
+  };
+
+  const moveSeatSelectPage = () => {
+    navigate('/tickets/seats', {
+      state: counts,
+    });
+  };
 
   // 다음 버튼 활성화 여부 판단 함수
   const handleBtnActive = (counts: SeatNum) => {
@@ -31,9 +60,11 @@ const InfoCheck = () => {
         <SeatInfo />
 
         <S.BottomSheet>
-          <SeatNumSelect onCountChange={handleBtnActive} />
+          <SeatNumSelect counts={counts} handleCountChange={handleCountChange} />
           <S.ButtonContainer>
-            <NextButton isActive={isBtnActive}>다음</NextButton>
+            <NextButton onClick={moveSeatSelectPage} isActive={isBtnActive}>
+              다음
+            </NextButton>
           </S.ButtonContainer>
         </S.BottomSheet>
       </S.Wrapper>

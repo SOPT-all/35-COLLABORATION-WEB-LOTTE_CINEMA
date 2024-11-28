@@ -5,10 +5,15 @@ import { ReactNode } from 'react';
 interface NextButtonProps {
   children: ReactNode;
   isActive: boolean;
+  onClick: () => void;
 }
 
-const NextButton = ({ children, isActive }: NextButtonProps) => {
-  return <S.Button $isActive={isActive}>{children}</S.Button>;
+const NextButton = ({ children, isActive, onClick }: NextButtonProps) => {
+  return (
+    <S.Button onClick={onClick} $isActive={isActive} disabled={!isActive}>
+      {children}
+    </S.Button>
+  );
 };
 
 const S = {
