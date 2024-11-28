@@ -9,8 +9,10 @@ interface SelectButtonProps {
 }
 
 const SelectButton = ({ children, onClick, selectedNum }: SelectButtonProps) => {
+  const isActive = selectedNum !== 0;
+
   return (
-    <S.Wrapper $isActive={selectedNum !== 0} onClick={onClick}>
+    <S.Wrapper $isActive={isActive} onClick={onClick} disabled={!isActive}>
       <S.Text>{children}</S.Text>
       <S.SelectedNum>({selectedNum})</S.SelectedNum>
     </S.Wrapper>
@@ -25,11 +27,10 @@ const S = {
     justify-content: center;
     width: 100%;
     height: 4.5rem;
-
     color: ${({ theme, $isActive }) => ($isActive ? theme.colors.WHITE100 : theme.colors.RED02)};
-
     background-color: ${({ theme, $isActive }) => ($isActive ? theme.colors.RED02 : theme.colors.WHITE100)};
     border-radius: 4px;
+    cursor: ${({ $isActive }) => ($isActive ? 'pointer' : 'not-allowed')};
   `,
   Text: styled.span`
     ${({ theme }) => theme.typographies.n_head03_reg}

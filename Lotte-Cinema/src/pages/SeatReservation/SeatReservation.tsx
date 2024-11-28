@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Header from '@/components/commons/header/Header';
 import MobileLayout from '@/components/mobileLayout/MobileLayout';
@@ -8,6 +9,8 @@ import SeatReserveInfo from '@/components/seatReservation/SeatReserveInfo';
 import SeatTableBody from '@/components/seatReservation/SeatTableBody';
 
 const SeatReservation = () => {
+  const location = useLocation();
+  console.log(location.state);
   const reservatedNumber = 2;
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
 
