@@ -9,3 +9,9 @@ export interface RegionResponse {
     regionList: Region[];
   };
 }
+
+export interface DetailRegionResponse {
+  data: {
+    theaterList: string[];
+  };
+}

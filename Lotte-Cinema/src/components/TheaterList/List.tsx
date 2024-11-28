@@ -2,9 +2,8 @@ import styled from '@emotion/styled';
 
 import { useState } from 'react';
 
+import { useGetDetailRegionsQuery } from '@/hooks/query/useGetDetailRegionsQuery';
 import { useGetRegionsQuery } from '@/hooks/query/useGetRegionsQuery';
-
-import { THEATER_DETAIL_REGION } from '@/constants/mocks/theaterRegion';
 
 import { IcCheckRed20 } from '@/assets/svg';
 
@@ -16,8 +15,9 @@ interface ListProps {
 }
 
 const List = ({ onClick, selectedDetail }: ListProps) => {
-  const [selectedRegion, setSelectedRegion] = useState(1); // idx로 판단
-  const { data } = useGetRegionsQuery();
+  const [selectedRegion, setSelectedRegion] = useState(1);
+  const { data: region } = useGetRegionsQuery();
+  const { data: detailRegion } = useGetDetailRegionsQuery(selectedRegion);
 
   const handleClickRegion = (idx: number) => {
     setSelectedRegion(idx);
@@ -26,7 +26,7 @@ const List = ({ onClick, selectedDetail }: ListProps) => {
   return (
     <S.Wrapper>
       <S.RegionContainer>
-        {data?.data.regionList.map(({ id, name, theaterCount }) => {
+        {region?.data.regionList.map(({ id, name, theaterCount }) => {
           const isActive = id === selectedRegion;
           return (
             <S.Region $isActive={isActive} onClick={() => handleClickRegion(id)} key={id}>
@@ -38,10 +38,10 @@ const List = ({ onClick, selectedDetail }: ListProps) => {
       </S.RegionContainer>
 
       <S.DetailRegionContainer>
-        {THEATER_DETAIL_REGION.map(({ id, name }) => {
+        {detailRegion?.data.theaterList.map((name, idx) => {
           const isActive = selectedDetail.includes(name);
           return (
-            <S.DetailRegion $isActive={isActive} onClick={() => onClick(name)} key={id}>
+            <S.DetailRegion $isActive={isActive} onClick={() => onClick(name)} key={idx}>
               {name}
               {isActive && <IcCheckRed20 width={'2rem'} />}
             </S.DetailRegion>
