@@ -1,3 +1,4 @@
+import getExclusiveList from './getExclusiveList';
 import getPopularList from './getPopularList';
 
-export { getPopularList };
+export { getPopularList, getExclusiveList };
