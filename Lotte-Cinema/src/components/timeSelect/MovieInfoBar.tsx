@@ -1,7 +1,10 @@
 import styled from '@emotion/styled';
 
+// import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// import { getPopularList } from '@/apis/movie';
+// import getExclusiveList from '@/apis/movie/getexclusiveList';
 import Img4m44s from '@/assets/img/Img4m44s.png';
 import ImgAmazonhms from '@/assets/img/ImgAmazonhms.png';
 import ImgDeadline from '@/assets/img/ImgDeadline.png';
@@ -18,6 +21,14 @@ import TheaterLabel from './atom/TheaterLabel';
 
 const MovieInfoBar = () => {
   const navigate = useNavigate();
+  // const [movieList, setMovieList] = useState([
+  //   { movieId: 0, title: '', showtime: 0, rating: '', releasedDate: '', imageUrl: '', reservedRate: '' },
+  // ]);
+
+  // const [res1, res2] = await Promise.all([getPopularList({ filter: '전체' }), getExclusiveList()]);
+  // console.log(res1, res2);
+  // return [res1, res2];
+
   // TODO API 완성시, 로직 분리할 예정
   const Title = '아마존 활명수';
   const runningTime = 122;

@@ -1,6 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const axiosInstance = axios.create({
-  //TODO: baseUrl 나오면 추가,
-  //TODO: header값 추가
+  baseURL: import.meta.env.VITE_DEV_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
