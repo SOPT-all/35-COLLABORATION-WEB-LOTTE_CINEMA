@@ -8,7 +8,7 @@ import useCalendar from './useCalendar';
 
 const useDateLocSelect = (today: Date) => {
   const location = useLocation();
-  const [selectedMovie, setSelectedMovie] = useState({ title: '', rating: '', showtime: 0 });
+  const [selectedMovie, setSelectedMovie] = useState({ title: '', rating: '', showtime: 0, movieId: 0 });
   const [selectTitle, setSelectTitle] = useState(location.state.title);
 
   const { data } = useMovieListQuery();

@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { useSeatInfoQuery } from '@/hooks/query/SeatReservation';
 
 import { TimeCardPropType } from '@/types/timeSelect';
 
@@ -14,6 +17,16 @@ const TimeCard = ({
   loc,
 }: TimeCardPropType) => {
   const navigate = useNavigate();
+  const [remainSeat, setRemainSeat] = useState<number>(75);
+
+  const { data } = useSeatInfoQuery(selectedMovie.movieId);
+
+  useEffect(() => {
+    if (data) {
+      setRemainSeat(75 - data.data.length);
+    }
+  }, [data]);
+
   const handleBtnClick = () => {
     const state = {
       theater,
@@ -34,8 +47,8 @@ const TimeCard = ({
         <span className="thin_time">{`~ ${timesList.endTime}`}</span>
       </S.TimeInfoItem>
       <S.SeatInfoItem>
-        <span className="filled_seat">79</span>
-        <span className="total_seat"> / 79</span>
+        <span className="filled_seat">{remainSeat}</span>
+        <span className="total_seat"> / 75</span>
       </S.SeatInfoItem>
     </S.Wrapper>
   );

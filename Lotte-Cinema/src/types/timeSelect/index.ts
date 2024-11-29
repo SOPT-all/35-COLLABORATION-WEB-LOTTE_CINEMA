@@ -5,6 +5,7 @@ export interface SelectedMovieType {
   title: string;
   rating: string;
   showtime: number;
+  movieId: number;
 }
 
 // 영화 시작 + 영화 끝 시간 타입

@@ -31,7 +31,7 @@ export interface MovieTimeType {
 }
 
 export interface MovieListType {
-  movieId: string;
+  movieId: number;
   title: string;
   showtime: number;
   rating: string;
