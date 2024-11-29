@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
-import { useEffect, useRef, useState } from 'react';
+import { RefCallback } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import Header from '@/components/commons/header/Header';
 import MobileLayout from '@/components/mobileLayout/MobileLayout';
@@ -16,27 +17,29 @@ const SeatReservation = () => {
   const largeMapWidth = 430; // 큰 좌석표의 너비
   const miniMapWidth = 50; // 미니맵의 너비
 
-  const updateViewport = () => {
-    if (!largeMapRef.current) return;
-
-    const scale = miniMapWidth / largeMapWidth;
-    const viewportLeft = largeMapRef.current.scrollLeft * scale;
-    const viewportWidth = largeMapRef.current.clientWidth * scale;
-
-    setViewport({ left: viewportLeft, width: viewportWidth });
-  };
+  const updateViewport = useCallback(() => {
+    if (largeMapRef.current) {
+      const scale = miniMapWidth / largeMapWidth;
+      const viewportLeft = largeMapRef.current.scrollLeft * scale;
+      const viewportWidth = largeMapRef.current.clientWidth * scale;
+      setViewport({ left: viewportLeft, width: viewportWidth });
+    }
+  }, []);
 
   useEffect(() => {
-    const largeMap = largeMapRef.current;
+    // 첫 번째 렌더링 시 viewport 초기화
+    updateViewport();
 
+    // scroll 이벤트 리스너 등록
+    const largeMap = largeMapRef.current;
     if (largeMap) {
-      updateViewport();
       largeMap.addEventListener('scroll', updateViewport);
     }
+
     return () => {
       if (largeMap) largeMap.removeEventListener('scroll', updateViewport);
     };
-  }, []);
+  }, [updateViewport]);
 
   const reservatedNumber = 2;
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
@@ -62,7 +65,7 @@ const SeatReservation = () => {
       <S.SeatReserveLayout>
         <Header title="좌석 선택" />
         <SeatTableBody
-          largeMapRef={largeMapRef}
+          setLargeMapRef={largeMapRef}
           handleClickSeat={handleClickSeat}
           selectedSeats={selectedSeats}
           reservatedNumber={reservatedNumber}
