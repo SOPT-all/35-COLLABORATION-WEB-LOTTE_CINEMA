@@ -1,5 +1,4 @@
-import getExclusiveList from '@/apis/movie/getExclusiveList';
-
+import getExclusiveList from './getExclusiveList';
 import getPopularList from './getPopularList';
 
 export { getPopularList, getExclusiveList };

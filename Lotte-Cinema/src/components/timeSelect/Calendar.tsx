@@ -3,19 +3,13 @@ import styled from '@emotion/styled';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-import useCalendar from '@/hooks/useCalendar';
-
 import { getDayClassName, getTileClassName, getWeekday, isToday } from '@/utils/calendarUtils';
 
-interface CalendarTileProperties {
-  date: Date;
-  view: 'month' | 'year' | 'decade' | 'century';
-}
+import { CalendarPropType, CalendarTileProperties } from '@/types/timeSelect';
 
-const CalendarBox = () => {
+const CalendarBox = ({ handleBtnClick, selectDate }: CalendarPropType) => {
   // 서버의 값과 동기화를 위해, 오늘 날짜를 11월 5일로 설정!
   const today = new Date(2024, 10, 5);
-  const { selectDate, handleBtnClick } = useCalendar(today);
 
   // 캘린더 하단의 요일 출력 로직 (오늘, 화, 수, .., 일)
   const tileContent = ({ date, view }: CalendarTileProperties) => {

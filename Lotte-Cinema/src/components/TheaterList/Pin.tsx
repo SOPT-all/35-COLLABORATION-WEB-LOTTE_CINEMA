@@ -5,14 +5,16 @@ import { ReactNode } from 'react';
 import { IcCloseGrayTemp } from '@/assets/svg';
 
 interface PinProps {
+  name: string;
   children: ReactNode;
+  deleteDetail: (name: string) => void;
 }
 
-const Pin = ({ children }: PinProps) => {
+const Pin = ({ name, children, deleteDetail }: PinProps) => {
   return (
     <S.Wrapper>
       <S.Text>{children}</S.Text>
-      <IcCloseGrayTemp width={14} />
+      <IcCloseGrayTemp onClick={() => deleteDetail(name)} width={14} style={{ cursor: 'pointer' }} />
     </S.Wrapper>
   );
 };
