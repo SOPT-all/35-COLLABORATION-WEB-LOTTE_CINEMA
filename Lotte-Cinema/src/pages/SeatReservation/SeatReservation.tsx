@@ -20,9 +20,6 @@ const SeatReservation = () => {
 
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
 
-  const location = useLocation();
-  console.log(location.state);
-
   const handleClickSeat = (seatId: string) => {
     setSelectedSeats((prev) => {
       if (prev.includes(seatId)) {
