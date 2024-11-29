@@ -4,25 +4,11 @@ import { useState } from 'react';
 
 import { IcArrowDown20, IcArrowTop20 } from '@/assets/svg';
 
+import { TimeTablePropType } from '@/types/timeSelect';
+
 import TimeCard from './TimeCard';
 
-type MovieTimeType = {
-  num: number;
-  info: {
-    name: string;
-    subname: string;
-    description: string;
-    timesList: {
-      beginTime: string;
-      endTime: string;
-    }[];
-  };
-  locs: string[];
-  selectTitle: string;
-  selectDate: Date;
-};
-
-const TimeAccordion = ({ num, info, locs, selectTitle, selectDate }: MovieTimeType) => {
+const TimeAccordion = ({ num, info, locs, selectDate, selectedMovie }: TimeTablePropType) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleAccordion = () => {
@@ -41,19 +27,26 @@ const TimeAccordion = ({ num, info, locs, selectTitle, selectDate }: MovieTimeTy
           <S.InfoContainer>
             <S.InfoTitle>
               <p>{info.name}</p>
-              <span />
-              {info.subname.trim() && <p>{info.subname}</p>}
+
+              {info.subname.trim() && (
+                <>
+                  <span />
+                  <p>{info.subname}</p>
+                </>
+              )}
             </S.InfoTitle>
             <S.Description>{info.description}</S.Description>
             <S.InfoContent>
               {info.timesList.map((timesList, i) => (
                 <TimeCard
                   key={i}
+                  loc={locs[num]}
+                  allTimeList={info.timesList}
                   timesList={timesList}
-                  selectTitle={selectTitle}
                   theater={info.name}
                   subTheaterInfo={info.subname}
                   selectDate={selectDate}
+                  selectedMovie={selectedMovie}
                 />
               ))}
             </S.InfoContent>
@@ -80,7 +73,6 @@ const S = {
   Description: styled.p`
     color: ${({ theme }) => theme.colors.GRAY09};
     ${({ theme }) => theme.typographies.r_caption}
-    margin-bottom: 1rem;
   `,
 
   TitleContainer: styled.div<{ $isOpen: boolean }>`
