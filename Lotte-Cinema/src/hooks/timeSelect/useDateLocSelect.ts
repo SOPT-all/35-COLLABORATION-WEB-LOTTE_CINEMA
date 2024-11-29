@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import useCalendar from './useCalendar';
 
 const useDateLocSelect = (today: Date) => {
-  const [locs, setLocs] = useState<string[]>(['건대입구', '강동', '청량리']);
+  const location = useLocation();
+
+  const [locs, setLocs] = useState<string[]>(location.state || []);
   const [selectTitle, setSelectTitle] = useState('청설');
 
   const { selectDate, handleBtnClick } = useCalendar(today);
