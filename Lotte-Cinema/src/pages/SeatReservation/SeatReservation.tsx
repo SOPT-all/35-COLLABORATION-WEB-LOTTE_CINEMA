@@ -46,7 +46,8 @@ const SeatReservation = () => {
         <SeatTableBody
           handleClickSeat={handleClickSeat}
           selectedSeats={selectedSeats}
-          reservatedNumber={reservatedNumber}
+          reservatedNumber={reservatedNumber.total}
+          movie={movie}
         />
         <S.SeatReserveInfoWrapper>
           <SeatReserveInfo movie={movie} selectedSeats={selectedSeats} reservatedNumber={reservatedNumber} />
