@@ -4,13 +4,14 @@ import { RefObject } from 'react';
 
 interface MiniMapProps {
   selectedSeats: string[];
+  miniMapRef: RefObject<HTMLDivElement>;
   miniMapViewportRef: RefObject<HTMLDivElement>;
   viewport: { left: number; width: number };
 }
 
-const MiniMap = ({ selectedSeats, miniMapViewportRef, viewport }: MiniMapProps) => {
+const MiniMap = ({ selectedSeats, miniMapViewportRef, viewport, miniMapRef }: MiniMapProps) => {
   return (
-    <S.MiniMapWrapper>
+    <S.MiniMapWrapper ref={miniMapRef}>
       <S.ScreenWrapper>Screen</S.ScreenWrapper>
       <div
         ref={miniMapViewportRef}

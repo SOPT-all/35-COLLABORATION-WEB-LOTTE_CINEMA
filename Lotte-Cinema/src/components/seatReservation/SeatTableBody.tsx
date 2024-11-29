@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-import { useEffect, useRef } from 'react';
 import { RefCallback, RefObject } from 'react';
 
 import { BtnSeatDefaultLarge, BtnSeatDisabledLarge } from '@/assets/svg';
@@ -11,21 +10,14 @@ interface SeatTableBodyProps {
   handleClickSeat: (seatId: string) => void;
   selectedSeats: string[];
   reservatedNumber: number;
-  setLargeMapRef: RefObject<HTMLDivElement>;
+  largeMapRef: RefObject<HTMLDivElement>;
 }
 
-const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber, setLargeMapRef }: SeatTableBodyProps) => {
-  const setSeatTableWrapperRef = (element: HTMLDivElement | null) => {
-    if (element) {
-      // DOM 요소가 렌더링되거나 변경될 때 동작
-      element.scrollLeft = (element.scrollWidth - element.clientWidth) / 2;
-    }
-  };
-
+const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber, largeMapRef }: SeatTableBodyProps) => {
   const isSeatDisabled = selectedSeats.length >= reservatedNumber;
 
   return (
-    <S.SeatTableWrapper ref={setSeatTableWrapperRef}>
+    <S.SeatTableWrapper ref={largeMapRef}>
       <S.SeatTableContainer>
         <S.ScreenComment>
           <p>S</p>
@@ -35,7 +27,7 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber, setLa
           <p>E</p>
           <p>N</p>
         </S.ScreenComment>
-        <S.SeatTableBody ref={setLargeMapRef}>
+        <S.SeatTableBody>
           {SEAT_ROWS.map((row) => (
             <S.SeatRowWrapper key={row}>
               {SEAT_INFO.filter((seat) => seat.startsWith(row)).map((seat) => {

@@ -12,22 +12,23 @@ import SeatTableBody from '@/components/seatReservation/SeatTableBody';
 const SeatReservation = () => {
   const largeMapRef = useRef<HTMLDivElement>(null);
   const miniMapViewportRef = useRef<HTMLDivElement>(null);
+  const miniMapRef = useRef<HTMLDivElement>(null);
   const [viewport, setViewport] = useState({ left: 0, width: 0 });
 
   const largeMapWidth = 430; // 큰 좌석표의 너비
   const miniMapWidth = 50; // 미니맵의 너비
 
-  const updateViewport = useCallback(() => {
-    if (largeMapRef.current) {
-      const scale = miniMapWidth / largeMapWidth;
-      const viewportLeft = largeMapRef.current.scrollLeft * scale;
-      const viewportWidth = largeMapRef.current.clientWidth * scale;
-      setViewport({ left: viewportLeft, width: viewportWidth });
-    }
-  }, []);
+  const updateViewport = () => {
+    if (!largeMapRef.current) return;
+
+    const scale = miniMapWidth / largeMapWidth;
+    const viewportLeft = largeMapRef.current.scrollLeft * scale;
+    const viewportWidth = largeMapRef.current.clientWidth * scale;
+
+    setViewport({ left: viewportLeft, width: viewportWidth });
+  };
 
   useEffect(() => {
-    // 첫 번째 렌더링 시 viewport 초기화
     updateViewport();
 
     // scroll 이벤트 리스너 등록
@@ -39,7 +40,7 @@ const SeatReservation = () => {
     return () => {
       if (largeMap) largeMap.removeEventListener('scroll', updateViewport);
     };
-  }, [updateViewport]);
+  }, []);
 
   const reservatedNumber = 2;
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
@@ -59,13 +60,18 @@ const SeatReservation = () => {
   return (
     <MobileLayout>
       <S.MiniMapWrapper>
-        <MiniMap selectedSeats={selectedSeats} miniMapViewportRef={miniMapViewportRef} viewport={viewport} />
+        <MiniMap
+          miniMapRef={miniMapRef}
+          selectedSeats={selectedSeats}
+          miniMapViewportRef={miniMapViewportRef}
+          viewport={viewport}
+        />
       </S.MiniMapWrapper>
 
       <S.SeatReserveLayout>
         <Header title="좌석 선택" />
         <SeatTableBody
-          setLargeMapRef={largeMapRef}
+          largeMapRef={largeMapRef}
           handleClickSeat={handleClickSeat}
           selectedSeats={selectedSeats}
           reservatedNumber={reservatedNumber}
