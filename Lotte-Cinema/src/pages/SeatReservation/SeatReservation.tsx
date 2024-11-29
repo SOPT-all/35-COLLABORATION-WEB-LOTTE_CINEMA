@@ -1,9 +1,7 @@
 import styled from '@emotion/styled';
 
-
 import { useLayoutEffect } from 'react';
 import { useRef, useState } from 'react';
-
 import { useLocation } from 'react-router-dom';
 
 import Header from '@/components/commons/header/Header';
@@ -13,7 +11,6 @@ import SeatReserveInfo from '@/components/seatReservation/SeatReserveInfo';
 import SeatTableBody from '@/components/seatReservation/SeatTableBody';
 
 const SeatReservation = () => {
-
   const largeMapRef = useRef<HTMLDivElement>(null);
   const miniMapViewportRef = useRef<HTMLDivElement>(null);
   const miniMapRef = useRef<HTMLDivElement>(null);
@@ -45,7 +42,6 @@ const SeatReservation = () => {
     };
   }, []);
 
-
   const location = useLocation();
 
   const movie = {
@@ -60,7 +56,6 @@ const SeatReservation = () => {
     teen: location.state.counts.teen,
     senior: location.state.counts.senior,
   };
-
 
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const handleClickSeat = (seatId: string) => {
@@ -90,11 +85,11 @@ const SeatReservation = () => {
       <S.SeatReserveLayout>
         <Header title="좌석 선택" />
         <SeatTableBody
+          movie={movie}
           largeMapRef={largeMapRef}
           handleClickSeat={handleClickSeat}
           selectedSeats={selectedSeats}
           reservatedNumber={reservatedNumber.total}
-          movie={movie}
         />
         <S.SeatReserveInfoWrapper>
           <SeatReserveInfo movie={movie} selectedSeats={selectedSeats} reservatedNumber={reservatedNumber} />

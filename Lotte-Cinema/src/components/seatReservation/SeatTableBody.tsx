@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
 
-
 import { MutableRefObject, useLayoutEffect, useRef } from 'react';
 
 import { useSeatInfoQuery } from '@/hooks/query/SeatReservation';
-
 
 import { BtnSeatDefaultLarge, BtnSeatDisabledLarge, BtnSeatSoldoutLarge } from '@/assets/svg';
 
@@ -20,11 +18,18 @@ interface SeatTableBodyProps {
   handleClickSeat: (seatId: string) => void;
   selectedSeats: string[];
   reservatedNumber: number;
-  movie: MovieType;
+
   largeMapRef: MutableRefObject<HTMLDivElement | null>;
+  movie: MovieType;
 }
 
-const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber, largeMapRef }: SeatTableBodyProps) => {
+const SeatTableBody = ({
+  handleClickSeat,
+  selectedSeats,
+  reservatedNumber,
+  largeMapRef,
+  movie,
+}: SeatTableBodyProps) => {
   const isSeatDisabled = selectedSeats.length >= reservatedNumber;
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -35,9 +40,8 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber, large
       const totalWidth = container.scrollWidth;
       const visibleWidth = container.clientWidth;
       container.scrollLeft = totalWidth / 2 - visibleWidth / 2;
-  }
-}, []);
-
+    }
+  }, []);
 
   const { data, isLoading, error } = useSeatInfoQuery(movie.movieId);
 
@@ -48,14 +52,12 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber, large
   if (error) return <div>Error loading seat info.</div>;
 
   return (
-
     <S.SeatTableWrapper
       ref={(node) => {
         largeMapRef.current = node;
         containerRef.current = node;
       }}
     >
-
       <S.SeatTableContainer>
         <S.ScreenComment>
           <p>S</p>
