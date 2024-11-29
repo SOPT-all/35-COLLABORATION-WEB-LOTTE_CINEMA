@@ -3,23 +3,16 @@ import { AxiosError } from 'axios';
 
 import getMovieTime from '@/apis/movie/getMovieTime';
 
-type MovieTimeType = {
-  name: string;
-  subname: string;
-  description: string;
-  timesList: {
-    beginTime: string;
-    endTime: string;
-  }[];
-};
+import { MovieTimeType } from '@/types/data';
 
-export const useMovieTimeQuery = (theaterCount: number): UseQueryResult<MovieTimeType[], AxiosError> => {
+// theater의 갯수에 따라서, 상영관의 종류와 시간을 반환하는 쿼리
+export const useMovieTimeQuery = (
+  theaterCount: number,
+  selectTitle: string | undefined,
+  selectDate: Date,
+): UseQueryResult<MovieTimeType[], AxiosError> => {
   return useQuery({
-    queryKey: ['movieTime', theaterCount],
-    queryFn: async () => {
-      const data = await getMovieTime({ theaterCount });
-
-      return data;
-    },
+    queryKey: ['movieTime', [theaterCount, selectTitle, selectDate]],
+    queryFn: () => getMovieTime({ theaterCount }),
   });
 };
