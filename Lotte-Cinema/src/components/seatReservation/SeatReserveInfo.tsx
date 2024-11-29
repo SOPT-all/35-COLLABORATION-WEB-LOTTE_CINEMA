@@ -8,15 +8,26 @@ import { BtnXsmall, IcArrowRightWhite10, IcEntrance10, IcSeatDisabled10, IcSeatR
 
 import { SEAT_INFO } from '@/constants';
 
+type ReservatedNumber = {
+  total: number;
+  adult: number;
+  teen: number;
+  senior: number;
+};
+
 interface SeatReserveInfoProps {
   selectedSeats: string[];
-  reservatedNumber: number;
+  reservatedNumber: ReservatedNumber;
 }
 
 const SeatReserveInfo = ({ selectedSeats, reservatedNumber }: SeatReserveInfoProps) => {
   const seatIndexes = selectedSeats.map((seat) => SEAT_INFO.findIndex((info) => info === seat));
 
   const { mutate } = useReserveMutation(1, seatIndexes);
+  const adultPrice = 14000 * reservatedNumber.adult;
+  const teenPrice = 11000 * reservatedNumber.teen;
+  const seniorPrice = 7000 * reservatedNumber.senior;
+  const totalPrice = adultPrice + teenPrice + seniorPrice;
 
   const handleSubmit = () => {
     mutate({ movieId: 1, seats: seatIndexes }); // mutate 함수로 movieId와 seats 전달
@@ -46,13 +57,19 @@ const SeatReserveInfo = ({ selectedSeats, reservatedNumber }: SeatReserveInfoPro
           <S.SeatInfoRow>
             <p>인원</p>
             <S.ChangeSelection>
-              <p>성인{reservatedNumber}</p>
+              <div>
+                {reservatedNumber.adult !== 0 && <p>성인{reservatedNumber.adult}</p>}
+                {reservatedNumber.teen !== 0 && <p>청소년{reservatedNumber.teen}</p>}
+                {reservatedNumber.senior !== 0 && <p>경로{reservatedNumber.senior}</p>}
+              </div>
               <BtnXsmall width={'7rem'} height={'2.5rem'} />
             </S.ChangeSelection>
           </S.SeatInfoRow>
         </S.SeatInfo>
       </S.MovieInfoWrapper>
-      {selectedSeats.length === reservatedNumber && <SeatReservePayment handleSubmit={handleSubmit} />}
+      {selectedSeats.length === reservatedNumber.total && (
+        <SeatReservePayment handleSubmit={handleSubmit} totalPrice={totalPrice} />
+      )}
     </S.SeatReserveInfoWrapper>
   );
 };
@@ -90,6 +107,7 @@ const S = {
   MovieInfo: styled.div`
     width: 100%;
     padding: 1.6rem 1.8rem;
+    margin: 0.5rem 0rem;
     border-bottom: 1px solid ${({ theme }) => theme.colors.GRAY03};
     ${({ theme }) => theme.typographies.n_head03_med};
   `,
@@ -97,6 +115,7 @@ const S = {
     display: flex;
     flex-direction: column;
     padding: 1.6rem 1.8rem;
+    margin: 0.5rem 0rem;
     height: 8.8rem;
     justify-content: space-between;
     text-align: center;
@@ -110,7 +129,11 @@ const S = {
   ChangeSelection: styled.div`
     align-items: center;
     display: flex;
-    gap: 0.4rem;
+    gap: 0.5rem;
+    div {
+      display: flex;
+      gap: 0.5rem;
+    }
   `,
 };
 
