@@ -20,6 +20,12 @@ type movieList = {
 };
 
 const PopularMovieChart = () => {
+  const ageLimitIcons = {
+    청불: <IcAge1916 height="100%" />,
+    ALL: <IcAgeAll16 height="100%" />,
+    '12': <IcAge1216 height="100%" />,
+  };
+
   const handleNavigate = (title: string) => {
     navigate('/theaters', {
       state: {
@@ -73,74 +79,9 @@ const PopularMovieChart = () => {
           const dDay = Number(newReleasedDate) - Number(todayDate);
           const daysDifference = Math.floor(dDay / (1000 * 60 * 60 * 24));
 
-          return index === 2 ? (
-            <>
-              <S.EachContentWrapper key={index + 'advertisement'}>
-                <ImgPosterLargeEvent width="13.4rem" />
-                <S.GridContainer advertiseComponent={true}>
-                  <S.AdvertisingTitle>헥토네이베션</S.AdvertisingTitle>
-                  <S.NoticeAdvertising>AD</S.NoticeAdvertising>
-                </S.GridContainer>
-                <S.ButtonAdvertising type="button">자세히 보기</S.ButtonAdvertising>
-              </S.EachContentWrapper>
-
-              <S.EachContentWrapper key={movieId}>
-                <S.ageLimitContainer>
-                  {(() => {
-                    switch (rating) {
-                      case '청불':
-                        return <IcAge1916 height="100%" />;
-                      case 'ALL':
-                        return <IcAgeAll16 height="100%" />;
-                      case '12':
-                        return <IcAge1216 height="100%" />;
-                      default:
-                        return <IcAgeAll16 height="100%" />;
-                    }
-                  })()}
-                </S.ageLimitContainer>
-                <S.MovieImage src={imageUrl} />
-                <S.GridContainer>
-                  <S.Ranking>{index + 1}</S.Ranking>
-                  <S.MovieTitle>{title}</S.MovieTitle>
-                  <S.ReservationRate>예매율 {reservedRate}&#37;</S.ReservationRate>
-                  <S.StarReview>
-                    {isReleased ? (
-                      <>
-                        <IcStarGray1010 width="1rem" height="1rem" />
-                        4.3
-                      </>
-                    ) : (
-                      `D-${daysDifference}`
-                    )}
-                  </S.StarReview>
-                </S.GridContainer>
-                <S.ButtonReservation
-                  type="button"
-                  onClick={() => {
-                    handleNavigate(title);
-                  }}
-                >
-                  예매하기
-                </S.ButtonReservation>
-              </S.EachContentWrapper>
-            </>
-          ) : (
+          return (
             <S.EachContentWrapper key={movieId}>
-              <S.ageLimitContainer>
-                {(() => {
-                  switch (rating) {
-                    case '청불':
-                      return <IcAge1916 height="100%" />;
-                    case 'ALL':
-                      return <IcAgeAll16 height="100%" />;
-                    case '12':
-                      return <IcAge1216 height="100%" />;
-                    default:
-                      return <IcAgeAll16 height="100%" />;
-                  }
-                })()}
-              </S.ageLimitContainer>
+              <S.ageLimitContainer>{ageLimitIcons[rating] || <IcAgeAll16 height="100%" />}</S.ageLimitContainer>
               <S.MovieImage src={imageUrl} />
               <S.GridContainer>
                 <S.Ranking>{index + 1}</S.Ranking>
@@ -168,6 +109,14 @@ const PopularMovieChart = () => {
             </S.EachContentWrapper>
           );
         })}
+        <S.EachContentWrapper>
+          <ImgPosterLargeEvent width="13.4rem" />
+          <S.GridContainer advertiseComponent={true}>
+            <S.AdvertisingTitle>헥토네이베션</S.AdvertisingTitle>
+            <S.NoticeAdvertising>AD</S.NoticeAdvertising>
+          </S.GridContainer>
+          <S.ButtonAdvertising type="button">자세히 보기</S.ButtonAdvertising>
+        </S.EachContentWrapper>
       </S.ContentWrapper>
       <EntireClickButton />
     </>
