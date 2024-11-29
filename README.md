@@ -2,9 +2,11 @@
 
 35기 AND SOPT 합동 세미나 모바일 웹 2팀 - 롯데시네마 레포지토리 🍿
 
----
 
-<br>
+![image](https://github.com/user-attachments/assets/b0ad0435-b6df-4559-bf10-4c8037bf57a6)
+
+<br/>
+<br/>
 
 ### FE developer 👩🏻‍💻👨🏻‍💻
 
@@ -13,7 +15,48 @@
 | <img src="https://velog.velcdn.com/images/gonn-i/post/c95e22ea-8ba1-417a-9cab-e153272ad6ef/image.png" alt="김고은" width="150" height="150"> | <img src="https://velog.velcdn.com/images/gonn-i/post/6b2a3029-cdc1-437b-af49-1661f1f40ea8/image.png" alt="김한서" width="150" height="150"> | <img src="https://velog.velcdn.com/images/gonn-i/post/f92e8946-2204-46db-a400-c869d1344261/image.png" alt="이진혁" width="150" height="150"> | <img src="https://velog.velcdn.com/images/gonn-i/post/3f107d8b-0e5f-47e2-812f-1b1c696cc2a8/image.png" alt="최정완" width="150" height="150"> |
 |                                                                시간선택 VIEW                                                                 |                                                                좌석선택 VIEW                                                                 |                                               상영관선택 VIEW <br>정보확인 및 인원선택<br>VIEW                                               |                                                                  메인 VIEW                                                                   |
 
----
+
+<br/>
+<br/>
+
+### 🔗 역할 분담
+
+### 🐶 고은
+
+|    종류    | 목록                                                                                            |
+| :--------: | ----------------------------------------------------------------------------------------------- |
+| setting ⚙️ | `폴더 구조 설정`  `react-router-dom` `.gitignore`     |
+|  view 📱   | `시간 선택 페이지` `MobileLayout`                                                                                  |
+|   api 📡   | `인기 차트 조회(GET)` `상영관 & 시간 조회(GET)` |
+
+### 🐭 한서
+
+|    종류    | 목록                 |
+| :--------: | -------------------- |
+| setting ⚙️ | `React Query` `Path Alias`  |
+|  view 📱   | `좌석 선택 페이지`        |
+|   api 📡   | `좌석 정보 조회(GET)` `예매하기(POST)`|
+
+### 😿 정완
+
+|    종류    | 목록                                                                                                                                                              |
+| :--------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| setting ⚙️ |  `ESlint & Prettier` `StyleLint`                                                                                                                                       |
+|  view 📱   | `메인 페이지`                                                                                                                |
+|   api 📡   | `인기 차트 조회(GET)` `단독 상영 조회(GET)` |
+
+### 🕊️ 진혁
+
+|    종류    | 목록                                                                                                                                                              |
+| :--------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| setting ⚙️ |  `GlobalStyle & theme` `svgr` `tsconfig`                                                                                                                         |
+|  view 📱   | `지역 선택 페이지` `정보 확인 페이지`                                                                                                                |
+|   api 📡   | `지역 조회(GET)` `지역별 영화관 지점 조회(GET)` `좌석 정보 조회(GET)`|
+
+
+<br/>
+<br/>
+
 
 ### ⚙️ 기술스택
 
@@ -73,7 +116,8 @@
   </tr>
 </table>
 
----
+<br/>
+<br/>
 
 ### 📂 프로젝트 구조
 
@@ -85,9 +129,9 @@
   |-- 📁 apis
   |-- 📁 assets
   |-- 📁 components
-		  |-- 📁 commons
-		  |-- 📁 페이지1
-		  |-- 📁 페이지2
+	|-- 📁 commons
+        |-- 📁 페이지1
+        |-- 📁 페이지2
   |-- 📁 constants
   |-- 📁 hooks
   |-- 📁 pages
@@ -112,7 +156,8 @@
 |-- yarn.lock
 ```
 
----
+<br/>
+<br/>
 
 ### 🤙 커밋컨벤션
 
