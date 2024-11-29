@@ -55,7 +55,7 @@ const SeatReserveInfo = ({ selectedSeats, reservatedNumber, movie }: SeatReserve
       </S.SeatTypeInfo>
       <S.MovieInfoWrapper>
         <S.MovieInfo>
-          {movie.name} ({movie.format})
+          {movie.name} {movie.format && `(${movie.format})`}
         </S.MovieInfo>
         <S.SeatInfo>
           <S.SeatInfoRow>
