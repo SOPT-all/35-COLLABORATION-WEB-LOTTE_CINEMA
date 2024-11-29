@@ -8,10 +8,17 @@ import { BtnSeatDefaultLarge, BtnSeatDisabledLarge, BtnSeatSoldoutLarge } from '
 
 import { SEAT_INFO, SEAT_ROWS } from '@/constants';
 
+type ReservatedNumber = {
+  total: number;
+  adult: number;
+  teen: number;
+  senior: number;
+};
+
 interface SeatTableBodyProps {
   handleClickSeat: (seatId: string) => void;
   selectedSeats: string[];
-  reservatedNumber: number;
+  reservatedNumber: ReservatedNumber;
 }
 
 const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: SeatTableBodyProps) => {
@@ -32,7 +39,7 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: Sea
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading seat info.</div>;
 
-  const isSeatDisabled = selectedSeats.length >= reservatedNumber;
+  const isSeatDisabled = selectedSeats.length >= reservatedNumber.total;
 
   return (
     <S.SeatTableWrapper ref={seatTableWrapperRef}>

@@ -10,8 +10,14 @@ import SeatTableBody from '@/components/seatReservation/SeatTableBody';
 
 const SeatReservation = () => {
   const location = useLocation();
-  console.log(location.state);
-  const reservatedNumber = 2;
+
+  const reservatedNumber = {
+    total: location.state.adult + location.state.teen + location.state.senior,
+    adult: location.state.adult,
+    teen: location.state.teen,
+    senior: location.state.senior,
+  };
+
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
 
   const handleClickSeat = (seatId: string) => {
@@ -20,7 +26,7 @@ const SeatReservation = () => {
         return prev.filter((id) => id !== seatId);
       }
 
-      if (prev.length < reservatedNumber) {
+      if (prev.length < reservatedNumber.total) {
         return [...prev, seatId];
       }
       return prev;
