@@ -1,14 +1,47 @@
 import styled from '@emotion/styled';
 
-import { useState } from 'react';
+import { useLayoutEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Header from '@/components/commons/header/Header';
 import MobileLayout from '@/components/mobileLayout/MobileLayout';
+import MiniMap from '@/components/seatReservation/MiniMap';
 import SeatReserveInfo from '@/components/seatReservation/SeatReserveInfo';
 import SeatTableBody from '@/components/seatReservation/SeatTableBody';
 
 const SeatReservation = () => {
+  const largeMapRef = useRef<HTMLDivElement>(null);
+  const miniMapViewportRef = useRef<HTMLDivElement>(null);
+  const miniMapRef = useRef<HTMLDivElement>(null);
+  const [viewport, setViewport] = useState({ left: 0, width: 0 });
+
+  const largeMapWidth = 230; // 큰 좌석표의 너비
+  const miniMapWidth = 40; // 미니맵의 너비
+
+  const updateViewport = () => {
+    if (!largeMapRef.current) return;
+
+    const scale = miniMapWidth / largeMapWidth;
+    const viewportLeft = largeMapRef.current.scrollLeft * scale;
+    const viewportWidth = largeMapRef.current.clientWidth * scale;
+
+    setViewport({ left: viewportLeft, width: viewportWidth });
+  };
+
+  useLayoutEffect(() => {
+    updateViewport();
+
+    const largeMap = largeMapRef.current;
+    if (largeMap) {
+      largeMap.addEventListener('scroll', updateViewport);
+    }
+
+    return () => {
+      if (largeMap) largeMap.removeEventListener('scroll', updateViewport);
+    };
+  }, []);
+
   const location = useLocation();
 
   const movie = {
@@ -25,7 +58,6 @@ const SeatReservation = () => {
   };
 
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
-
   const handleClickSeat = (seatId: string) => {
     setSelectedSeats((prev) => {
       if (prev.includes(seatId)) {
@@ -41,13 +73,23 @@ const SeatReservation = () => {
 
   return (
     <MobileLayout>
+      <S.MiniMapWrapper>
+        <MiniMap
+          miniMapRef={miniMapRef}
+          selectedSeats={selectedSeats}
+          miniMapViewportRef={miniMapViewportRef}
+          viewport={viewport}
+        />
+      </S.MiniMapWrapper>
+
       <S.SeatReserveLayout>
         <Header title="좌석 선택" />
         <SeatTableBody
+          movie={movie}
+          largeMapRef={largeMapRef}
           handleClickSeat={handleClickSeat}
           selectedSeats={selectedSeats}
           reservatedNumber={reservatedNumber.total}
-          movie={movie}
         />
         <S.SeatReserveInfoWrapper>
           <SeatReserveInfo movie={movie} selectedSeats={selectedSeats} reservatedNumber={reservatedNumber} />
@@ -58,6 +100,9 @@ const SeatReservation = () => {
 };
 
 const S = {
+  MiniMapWrapper: styled.div`
+    position: absolute;
+  `,
   SeatReserveLayout: styled.div`
     display: flex;
     flex-direction: column;
