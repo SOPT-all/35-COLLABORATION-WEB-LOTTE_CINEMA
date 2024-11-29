@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { useEffect, useRef } from 'react';
+import { RefObject } from 'react';
 
 import { BtnSeatDefaultLarge, BtnSeatDisabledLarge } from '@/assets/svg';
 
@@ -10,9 +11,10 @@ interface SeatTableBodyProps {
   handleClickSeat: (seatId: string) => void;
   selectedSeats: string[];
   reservatedNumber: number;
+  largeMapRef: RefObject<HTMLDivElement>;
 }
 
-const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: SeatTableBodyProps) => {
+const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber, largeMapRef }: SeatTableBodyProps) => {
   const seatTableWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: Sea
           <p>E</p>
           <p>N</p>
         </S.ScreenComment>
-        <S.SeatTableBody>
+        <S.SeatTableBody ref={largeMapRef}>
           {SEAT_ROWS.map((row) => (
             <S.SeatRowWrapper key={row}>
               {SEAT_INFO.filter((seat) => seat.startsWith(row)).map((seat) => {
@@ -43,16 +45,20 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: Sea
                 const isDisabled = !isSelected && isSeatDisabled;
                 const marginRight = [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0';
                 const commonProps = {
-                  key: seat,
                   width: '2.8rem',
                   style: { marginRight },
                 };
 
                 return isDisabled ? (
-                  <BtnSeatDisabledLarge {...commonProps} style={{ ...commonProps.style, cursor: 'not-allowed' }} />
+                  <BtnSeatDisabledLarge
+                    {...commonProps}
+                    key={seat}
+                    style={{ ...commonProps.style, cursor: 'not-allowed' }}
+                  />
                 ) : (
                   <BtnSeatDefaultLarge
                     seat={seat}
+                    key={seat}
                     onClick={() => handleClickSeat(seat)}
                     fill={isSelected ? '#FF243E' : '#1EAFFD'}
                     {...commonProps}
