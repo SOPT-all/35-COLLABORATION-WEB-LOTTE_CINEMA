@@ -71,10 +71,6 @@ const S = {
     gap: 0.2rem;
     display: flex;
     cursor: pointer;
-
-    &:hover {
-      color: ${({ theme }) => theme.colors.BLACK100};
-    }
   `,
   Advertisement: styled.div``,
 
@@ -105,11 +101,6 @@ const S = {
     cursor: pointer;
 
     &.InformationRegulation {
-      ${({ theme }) => theme.typographies.n_caption01_bold};
-      color: ${({ theme }) => theme.colors.BLACK100};
-    }
-
-    &:hover {
       ${({ theme }) => theme.typographies.n_caption01_bold};
       color: ${({ theme }) => theme.colors.BLACK100};
     }

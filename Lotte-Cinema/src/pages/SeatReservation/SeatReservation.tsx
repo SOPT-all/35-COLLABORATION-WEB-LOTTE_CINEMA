@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Header from '@/components/commons/header/Header';
 import MobileLayout from '@/components/mobileLayout/MobileLayout';
@@ -8,7 +9,21 @@ import SeatReserveInfo from '@/components/seatReservation/SeatReserveInfo';
 import SeatTableBody from '@/components/seatReservation/SeatTableBody';
 
 const SeatReservation = () => {
-  const reservatedNumber = 2;
+  const location = useLocation();
+
+  const movie = {
+    movieId: location.state.movieId,
+    name: location.state.name,
+    format: location.state.format,
+  };
+
+  const reservatedNumber = {
+    total: location.state.counts.adult + location.state.counts.teen + location.state.counts.senior,
+    adult: location.state.counts.adult,
+    teen: location.state.counts.teen,
+    senior: location.state.counts.senior,
+  };
+
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
 
   const handleClickSeat = (seatId: string) => {
@@ -17,7 +32,7 @@ const SeatReservation = () => {
         return prev.filter((id) => id !== seatId);
       }
 
-      if (prev.length < reservatedNumber) {
+      if (prev.length < reservatedNumber.total) {
         return [...prev, seatId];
       }
       return prev;
@@ -34,7 +49,7 @@ const SeatReservation = () => {
           reservatedNumber={reservatedNumber}
         />
         <S.SeatReserveInfoWrapper>
-          <SeatReserveInfo selectedSeats={selectedSeats} reservatedNumber={reservatedNumber} />
+          <SeatReserveInfo movie={movie} selectedSeats={selectedSeats} reservatedNumber={reservatedNumber} />
         </S.SeatReserveInfoWrapper>
       </S.SeatReserveLayout>
     </MobileLayout>

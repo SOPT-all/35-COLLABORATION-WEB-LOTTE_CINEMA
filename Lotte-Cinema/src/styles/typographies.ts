@@ -84,7 +84,7 @@ const notoBody = {
   n_body01_bold: css`
     ${notoFont};
     font-size: 1.4rem;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 16px;
 
     letter-spacing: -1px;

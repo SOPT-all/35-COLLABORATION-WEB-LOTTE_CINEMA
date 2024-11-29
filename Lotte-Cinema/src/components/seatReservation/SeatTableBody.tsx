@@ -1,31 +1,43 @@
 import styled from '@emotion/styled';
 
-import { useEffect, useRef } from 'react';
+import { useSeatInfoQuery } from '@/hooks/query/SeatReservation';
 
-import { BtnSeatDefaultLarge, BtnSeatDisabledLarge } from '@/assets/svg';
+import { BtnSeatDefaultLarge, BtnSeatDisabledLarge, BtnSeatSoldoutLarge } from '@/assets/svg';
 
 import { SEAT_INFO, SEAT_ROWS } from '@/constants';
+
+type ReservatedNumber = {
+  total: number;
+  adult: number;
+  teen: number;
+  senior: number;
+};
 
 interface SeatTableBodyProps {
   handleClickSeat: (seatId: string) => void;
   selectedSeats: string[];
-  reservatedNumber: number;
+  reservatedNumber: ReservatedNumber;
 }
 
 const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: SeatTableBodyProps) => {
-  const seatTableWrapperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const wrapper = seatTableWrapperRef.current;
-    if (wrapper) {
-      wrapper.scrollLeft = (wrapper.scrollWidth - wrapper.clientWidth) / 2;
+  const setSeatTableWrapperRef = (element: HTMLDivElement) => {
+    if (element) {
+      element.scrollLeft = (element.scrollWidth - element.clientWidth) / 2;
     }
-  }, []);
+  };
 
-  const isSeatDisabled = selectedSeats.length >= reservatedNumber;
+  const { data, isLoading, error } = useSeatInfoQuery(1);
+
+  const soldoutIdx = data?.data;
+  const soldoutSeats = soldoutIdx?.map((idx) => SEAT_INFO[idx]);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading seat info.</div>;
+
+  const isSeatDisabled = selectedSeats.length >= reservatedNumber.total;
 
   return (
-    <S.SeatTableWrapper ref={seatTableWrapperRef}>
+    <S.SeatTableWrapper ref={setSeatTableWrapperRef}>
       <S.SeatTableContainer>
         <S.ScreenComment>
           <p>S</p>
@@ -41,18 +53,33 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: Sea
               {SEAT_INFO.filter((seat) => seat.startsWith(row)).map((seat) => {
                 const isSelected = selectedSeats.includes(seat);
                 const isDisabled = !isSelected && isSeatDisabled;
+                const isSoldOut = soldoutSeats?.includes(seat);
                 const marginRight = [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0';
                 const commonProps = {
-                  key: seat,
                   width: '2.8rem',
                   style: { marginRight },
                 };
 
+                if (isSoldOut) {
+                  return (
+                    <BtnSeatSoldoutLarge
+                      {...commonProps}
+                      key={seat}
+                      style={{ ...commonProps.style, cursor: 'not-allowed' }}
+                    />
+                  );
+                }
+
                 return isDisabled ? (
-                  <BtnSeatDisabledLarge {...commonProps} style={{ ...commonProps.style, cursor: 'not-allowed' }} />
+                  <BtnSeatDisabledLarge
+                    {...commonProps}
+                    key={seat}
+                    style={{ ...commonProps.style, cursor: 'not-allowed' }}
+                  />
                 ) : (
                   <BtnSeatDefaultLarge
                     seat={seat}
+                    key={seat}
                     onClick={() => handleClickSeat(seat)}
                     fill={isSelected ? '#FF243E' : '#1EAFFD'}
                     {...commonProps}
@@ -88,7 +115,7 @@ const S = {
     justify-content: center;
     gap: 1.4rem;
     margin-top: 12rem;
-    margin-bottom: 4.4rem;
+    margin-bottom: 6rem;
     ${({ theme }) => theme.typographies.n_head02_reg};
     background-color: ${({ theme }) => theme.colors.BG_THEATER};
     color: ${({ theme }) => theme.colors.GRAY10};

@@ -136,10 +136,10 @@ const Reset = css`
   }
 
   button {
-  background-color: inherit;
-  border: none;
-  outline: none;
-  cursor: pointer;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
   }
 `;
 
