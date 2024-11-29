@@ -4,12 +4,16 @@ import { useSeatInfoQuery } from '@/hooks/query/SeatReservation';
 
 import { IcSeatReclinerMedium, IcSeatSoldoutMedium } from '@/assets/svg';
 
-const SeatInfo = () => {
+interface SeatInfoProps {
+  movieId: number;
+}
+
+const SeatInfo = ({ movieId }: SeatInfoProps) => {
   const ROW = Array.from({ length: 6 }, (_, row) => row);
   const SEAT_PER_ROW = [11, 13, 13, 12, 13, 13];
   const ALL_SEAT_NUM = 75;
 
-  const { data } = useSeatInfoQuery(1);
+  const { data } = useSeatInfoQuery(movieId);
 
   // 좌석 배치 배열을 생성하는 함수
   const generateSeats = () => {
