@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 
-import { useEffect, useRef } from 'react';
-
 import { useSeatInfoQuery } from '@/hooks/query/SeatReservation';
 
 import { BtnSeatDefaultLarge, BtnSeatDisabledLarge, BtnSeatSoldoutLarge } from '@/assets/svg';
@@ -22,14 +20,11 @@ interface SeatTableBodyProps {
 }
 
 const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: SeatTableBodyProps) => {
-  const seatTableWrapperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const wrapper = seatTableWrapperRef.current;
-    if (wrapper) {
-      wrapper.scrollLeft = (wrapper.scrollWidth - wrapper.clientWidth) / 2;
+  const setSeatTableWrapperRef = (element: HTMLDivElement) => {
+    if (element) {
+      element.scrollLeft = (element.scrollWidth - element.clientWidth) / 2;
     }
-  }, []);
+  };
 
   const { data, isLoading, error } = useSeatInfoQuery(1);
 
@@ -42,7 +37,7 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: Sea
   const isSeatDisabled = selectedSeats.length >= reservatedNumber.total;
 
   return (
-    <S.SeatTableWrapper ref={seatTableWrapperRef}>
+    <S.SeatTableWrapper ref={setSeatTableWrapperRef}>
       <S.SeatTableContainer>
         <S.ScreenComment>
           <p>S</p>
