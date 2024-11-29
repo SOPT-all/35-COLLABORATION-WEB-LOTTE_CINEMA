@@ -109,6 +109,7 @@ const Reset = css`
   }
 
   body {
+    background-color: '#EBEBEB';
     line-height: 1;
   }
 
