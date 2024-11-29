@@ -120,7 +120,7 @@ const S = {
     justify-content: center;
     gap: 1.4rem;
     margin-top: 12rem;
-    margin-bottom: 4.4rem;
+    margin-bottom: 6rem;
     ${({ theme }) => theme.typographies.n_head02_reg};
     background-color: ${({ theme }) => theme.colors.BG_THEATER};
     color: ${({ theme }) => theme.colors.GRAY10};

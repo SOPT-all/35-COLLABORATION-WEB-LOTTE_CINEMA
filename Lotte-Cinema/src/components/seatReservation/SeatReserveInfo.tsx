@@ -107,6 +107,7 @@ const S = {
   MovieInfo: styled.div`
     width: 100%;
     padding: 1.6rem 1.8rem;
+    margin: 0.5rem 0rem;
     border-bottom: 1px solid ${({ theme }) => theme.colors.GRAY03};
     ${({ theme }) => theme.typographies.n_head03_med};
   `,
@@ -114,6 +115,7 @@ const S = {
     display: flex;
     flex-direction: column;
     padding: 1.6rem 1.8rem;
+    margin: 0.5rem 0rem;
     height: 8.8rem;
     justify-content: space-between;
     text-align: center;
@@ -127,10 +129,10 @@ const S = {
   ChangeSelection: styled.div`
     align-items: center;
     display: flex;
-    gap: 0.4rem;
+    gap: 0.5rem;
     div {
       display: flex;
-      gap: 0.3rem;
+      gap: 0.5rem;
     }
   `,
 };
