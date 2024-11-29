@@ -25,7 +25,6 @@ const TimeCard = ({
       endTime: timesList.endTime,
       selectedMovie,
     };
-    console.log(state);
     navigate('/tickets/info', { state: state });
   };
   return (

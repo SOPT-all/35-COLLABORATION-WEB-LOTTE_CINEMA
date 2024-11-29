@@ -1,18 +1,27 @@
 import styled from '@emotion/styled';
 
-import { TIME_SEAT_INFO_DATA } from '@/constants/mocks/TimeSeatInfoData';
+import { TimeListType } from '@/types/infoCheck';
 
-const TimeInfoList = () => {
+interface TimeInfoListProps {
+  allTimeList: TimeListType[];
+  selectedTime: string;
+}
+
+const TimeInfoList = ({ allTimeList, selectedTime }: TimeInfoListProps) => {
   return (
     <S.Wrapper>
-      {TIME_SEAT_INFO_DATA.map(({ id, time, seat }) => (
-        <S.TimeInfo key={id}>
-          <S.Time>{time}</S.Time>
-          <S.Seat>
-            <span>{seat.selected}</span> / {seat.all}
-          </S.Seat>
-        </S.TimeInfo>
-      ))}
+      {allTimeList.map(({ beginTime }, idx) => {
+        const isActive = beginTime === selectedTime;
+
+        return (
+          <S.TimeInfo key={idx} $isActive={isActive}>
+            <S.Time>{beginTime}</S.Time>
+            <S.Seat $isActive={isActive}>
+              <span>70</span> / 75
+            </S.Seat>
+          </S.TimeInfo>
+        );
+      })}
     </S.Wrapper>
   );
 };
@@ -30,7 +39,7 @@ const S = {
     }
   `,
 
-  TimeInfo: styled.div`
+  TimeInfo: styled.div<{ $isActive: boolean }>`
     width: 6.4rem;
     padding: 0.4rem 0;
     display: flex;
@@ -39,21 +48,18 @@ const S = {
     gap: 0.4rem;
     border-radius: 0.4rem;
 
-    /* 스타일 분기는 이후 데이터 연결에 이후 진행 */
-    outline: 1px solid ${({ theme }) => theme.colors.GRAY04};
-    background-color: ${({ theme }) => theme.colors.WHITE100};
-
-    cursor: pointer;
+    outline: 1px solid ${({ theme, $isActive }) => ($isActive ? 'none' : theme.colors.GRAY04)};
+    background-color: ${({ theme, $isActive }) => ($isActive ? theme.colors.RED02 : theme.colors.WHITE100)};
+    color: ${({ theme, $isActive }) => ($isActive ? theme.colors.WHITE100 : theme.colors.BLACK100)};
   `,
   Time: styled.p`
     ${({ theme }) => theme.typographies.r_body01}
   `,
-  Seat: styled.p`
+  Seat: styled.p<{ $isActive: boolean }>`
     ${({ theme }) => theme.typographies.r_caption}
 
-    /* 스타일 분기는 이후 데이터 연결에 이후 진행 */
     & > span {
-      color: ${({ theme }) => theme.colors.GREEN};
+      color: ${({ theme, $isActive }) => ($isActive ? theme.colors.WHITE100 : theme.colors.GREEN)};
     }
   `,
 };

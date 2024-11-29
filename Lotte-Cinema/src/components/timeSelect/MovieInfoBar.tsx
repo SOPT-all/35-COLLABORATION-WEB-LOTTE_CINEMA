@@ -83,7 +83,6 @@ const MovieInfoBar = ({
             <ArrowBtn
               label="극장 추가"
               onClick={() => {
-                console.log(locs);
                 navigate('/theaters', { state: locs });
               }}
             />

@@ -19,6 +19,7 @@ export interface CountsType {
   teen: number;
   senior: number;
 }
+
 const InfoCheck = () => {
   const [isBtnActive, setIsBtnActive] = useState(false);
   const [counts, setCounts] = useState({
@@ -56,8 +57,8 @@ const InfoCheck = () => {
       <Header title="인원 선택" />
       <S.Wrapper>
         <MovieInfoBanner movieInfo={location.state} />
-        <TimeInfoList />
-        <AgeInfo />
+        <TimeInfoList allTimeList={location.state.allTimeList} selectedTime={location.state.beginTime} />
+        <AgeInfo age={location.state.selectedMovie.rating} />
         <SeatInfo />
 
         <S.BottomSheet>
