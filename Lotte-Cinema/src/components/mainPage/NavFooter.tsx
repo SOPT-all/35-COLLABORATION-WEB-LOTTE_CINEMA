@@ -16,7 +16,7 @@ const NavFooter = () => {
       </S.MenuBox>
       <S.MenuBox className="CenterMenu">
         <S.ImgCircleContainer>
-          <ImgCircle56 width="5.6rem" height="5.6rem" />
+          <ImgCircle56 width="5.6rem" height="100%" />
         </S.ImgCircleContainer>
         <S.OverlayContainer>
           <IcTicketWhite24 width="2.4rem" height="2.4rem" />
