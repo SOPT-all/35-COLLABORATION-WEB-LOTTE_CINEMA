@@ -11,9 +11,10 @@ import { ImgLpayLogo } from '@/assets/svg';
 
 interface PaymentProps {
   handleSubmit: () => void;
+  totalPrice: number;
 }
 
-const SeatReservePayment = ({ handleSubmit }: PaymentProps) => {
+const SeatReservePayment = ({ handleSubmit, totalPrice }: PaymentProps) => {
   const dialogRef = useRef<ModalWrapperRef>(null);
   const navigate = useNavigate();
   const showModal = () => {
@@ -29,7 +30,7 @@ const SeatReservePayment = ({ handleSubmit }: PaymentProps) => {
       <S.TotalPriceWrapper>
         <p>결제금액</p>
         <S.TotalPrice>
-          총<p>28,000</p>원
+          총<p>{totalPrice.toLocaleString()}</p>원
         </S.TotalPrice>
       </S.TotalPriceWrapper>
 

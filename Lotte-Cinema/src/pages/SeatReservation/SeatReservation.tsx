@@ -9,8 +9,15 @@ import SeatReserveInfo from '@/components/seatReservation/SeatReserveInfo';
 import SeatTableBody from '@/components/seatReservation/SeatTableBody';
 
 const SeatReservation = () => {
-  // const location = useLocation(); // build 때문에 잠시 주석처리
-  const reservatedNumber = 2;
+  const location = useLocation();
+
+  const reservatedNumber = {
+    total: location.state.adult + location.state.teen + location.state.senior,
+    adult: location.state.adult,
+    teen: location.state.teen,
+    senior: location.state.senior,
+  };
+
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
 
   const location = useLocation();
@@ -22,7 +29,7 @@ const SeatReservation = () => {
         return prev.filter((id) => id !== seatId);
       }
 
-      if (prev.length < reservatedNumber) {
+      if (prev.length < reservatedNumber.total) {
         return [...prev, seatId];
       }
       return prev;
