@@ -12,9 +12,17 @@ import { runningTimeFormat } from '@/utils';
 import ArrowBtn from '../commons/ArrowBtn';
 import TheaterLabel from './atom/TheaterLabel';
 
-const MovieInfoBar = ({ locs, onDelete, setSelectTitle, selectTitle }: MovieInfoBarProps) => {
+const MovieInfoBar = ({
+  locs,
+  onDelete,
+  setSelectTitle,
+  selectTitle,
+  data,
+  handleMovieSelect,
+  selectedMovie,
+}: MovieInfoBarProps) => {
   const navigate = useNavigate();
-  const { data, selectedMovie } = useMovieSelect(selectTitle);
+  useMovieSelect(selectTitle, data, handleMovieSelect);
 
   const handlePosterClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const value = e.currentTarget.dataset.value;

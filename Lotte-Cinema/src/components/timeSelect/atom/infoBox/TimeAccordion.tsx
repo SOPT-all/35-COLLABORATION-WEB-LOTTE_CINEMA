@@ -8,7 +8,7 @@ import { TimeTablePropType } from '@/types/timeSelect';
 
 import TimeCard from './TimeCard';
 
-const TimeAccordion = ({ num, info, locs, selectTitle, selectDate }: TimeTablePropType) => {
+const TimeAccordion = ({ num, info, locs, selectDate, selectedMovie }: TimeTablePropType) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleAccordion = () => {
@@ -40,11 +40,13 @@ const TimeAccordion = ({ num, info, locs, selectTitle, selectDate }: TimeTablePr
               {info.timesList.map((timesList, i) => (
                 <TimeCard
                   key={i}
+                  loc={locs[num]}
+                  allTimeList={info.timesList}
                   timesList={timesList}
-                  selectTitle={selectTitle}
                   theater={info.name}
                   subTheaterInfo={info.subname}
                   selectDate={selectDate}
+                  selectedMovie={selectedMovie}
                 />
               ))}
             </S.InfoContent>

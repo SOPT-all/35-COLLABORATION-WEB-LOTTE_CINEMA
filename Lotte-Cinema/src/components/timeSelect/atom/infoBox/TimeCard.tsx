@@ -4,17 +4,28 @@ import { useNavigate } from 'react-router-dom';
 
 import { TimeCardPropType } from '@/types/timeSelect';
 
-const TimeCard = ({ timesList, selectTitle, theater, subTheaterInfo, selectDate }: TimeCardPropType) => {
+const TimeCard = ({
+  timesList,
+  theater,
+  subTheaterInfo,
+  allTimeList,
+  selectDate,
+  selectedMovie,
+  loc,
+}: TimeCardPropType) => {
   const navigate = useNavigate();
   const handleBtnClick = () => {
     const state = {
-      selectTitle,
       theater,
       subTheaterInfo,
       selectDate,
+      loc,
+      allTimeList,
       beginTime: timesList.beginTime,
       endTime: timesList.endTime,
+      selectedMovie,
     };
+    console.log(state);
     navigate('/tickets/info', { state: state });
   };
   return (

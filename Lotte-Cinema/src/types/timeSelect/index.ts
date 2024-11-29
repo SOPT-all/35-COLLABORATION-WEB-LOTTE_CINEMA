@@ -1,8 +1,16 @@
-export interface MovieInfoBarProps {
-  locs: string[];
-  onDelete: (loc: string) => void;
-  setSelectTitle: (value: string) => void;
-  selectTitle: string;
+import { MovieListType } from '../data';
+
+// 선택한 영화의 정보를 담은 타입
+export interface SelectedMovieType {
+  title: string;
+  rating: string;
+  showtime: number;
+}
+
+// 영화 시작 + 영화 끝 시간 타입
+export interface TimeRangeType {
+  beginTime: string;
+  endTime: string;
 }
 
 export interface CalendarTileProperties {
@@ -15,32 +23,43 @@ export interface CalendarPropType {
   selectDate: Date;
 }
 
-export interface TimeInfoPropType {
+// Time 내부 Info의 공통 타입 (영화관 / 선택된 영화제목 / 선택된 영화날짜 / 선택된 영화상세정보)
+export interface TimeInfoBaseType {
   locs: string[];
-  selectTitle: string;
+  selectTitle?: string;
   selectDate: Date;
+  selectedMovie: SelectedMovieType;
 }
 
-export type TimeTablePropType = TimeInfoPropType & {
+// TimeTable 관련 타입 (상영관별 시간과 상영관 정보)
+export interface TimeTablePropType extends TimeInfoBaseType {
   num: number;
   info: {
     name: string;
     subname: string;
     description: string;
-    timesList: {
-      beginTime: string;
-      endTime: string;
-    }[];
+    timesList: TimeRangeType[];
   };
-};
+}
 
-export type TimeCardPropType = {
-  timesList: {
-    beginTime: string;
-    endTime: string;
-  };
+// TimeCard 관련 타입
+export interface TimeCardPropType {
+  timesList: TimeRangeType;
+  allTimeList: TimeRangeType[];
   theater: string;
+  loc: string;
   subTheaterInfo: string;
-  selectTitle: string;
   selectDate: Date;
-};
+  selectedMovie: SelectedMovieType;
+}
+
+// MovieInfoBar 관련 타입
+export interface MovieInfoBarProps {
+  onDelete: (loc: string) => void;
+  setSelectTitle: (value: string) => void;
+  data: MovieListType[] | undefined;
+  handleMovieSelect: (movie: MovieListType) => void;
+  selectTitle?: string;
+  selectedMovie: SelectedMovieType;
+  locs: string[];
+}

@@ -8,7 +8,7 @@ import { MovieTimeType } from '@/types/data';
 // theater의 갯수에 따라서, 상영관의 종류와 시간을 반환하는 쿼리
 export const useMovieTimeQuery = (
   theaterCount: number,
-  selectTitle: string,
+  selectTitle: string | undefined,
   selectDate: Date,
 ): UseQueryResult<MovieTimeType[], AxiosError> => {
   return useQuery({

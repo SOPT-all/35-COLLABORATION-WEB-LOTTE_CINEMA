@@ -1,22 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-import { useMovieListQuery } from '../query';
+import { MovieListType } from '@/types/data';
 
-const useMovieSelect = (selectTitle: string) => {
-  const [selectedMovie, setSelectedMovie] = useState({ title: '', rating: '', showtime: 0 });
+type HandleMovieSelect = (movie: MovieListType) => void;
 
-  const { data } = useMovieListQuery();
-
+const useMovieSelect = (
+  selectTitle: string | undefined,
+  data: MovieListType[] | undefined,
+  handleMovieSelect: HandleMovieSelect,
+) => {
   useEffect(() => {
     if (data) {
       const movieInfo = data.find((e) => e.title === selectTitle);
       if (movieInfo) {
-        setSelectedMovie(movieInfo);
+        handleMovieSelect(movieInfo);
       }
     }
   }, [data, selectTitle]);
 
-  return { selectedMovie, data };
+  return { data };
 };
 
 export default useMovieSelect;
