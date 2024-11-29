@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { RefCallback, RefObject } from 'react';
+import { MutableRefObject, useLayoutEffect, useRef } from 'react';
 
 import { BtnSeatDefaultLarge, BtnSeatDisabledLarge } from '@/assets/svg';
 
@@ -10,14 +10,31 @@ interface SeatTableBodyProps {
   handleClickSeat: (seatId: string) => void;
   selectedSeats: string[];
   reservatedNumber: number;
-  largeMapRef: RefObject<HTMLDivElement>;
+  largeMapRef: MutableRefObject<HTMLDivElement | null>;
 }
 
 const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber, largeMapRef }: SeatTableBodyProps) => {
   const isSeatDisabled = selectedSeats.length >= reservatedNumber;
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  // 가로 스크롤 중앙화
+  useLayoutEffect(() => {
+    if (containerRef.current) {
+      const container = containerRef.current;
+      const totalWidth = container.scrollWidth;
+      const visibleWidth = container.clientWidth;
+
+      container.scrollLeft = totalWidth / 2 - visibleWidth / 2;
+    }
+  }, []);
 
   return (
-    <S.SeatTableWrapper ref={largeMapRef}>
+    <S.SeatTableWrapper
+      ref={(node) => {
+        largeMapRef.current = node;
+        containerRef.current = node;
+      }}
+    >
       <S.SeatTableContainer>
         <S.ScreenComment>
           <p>S</p>

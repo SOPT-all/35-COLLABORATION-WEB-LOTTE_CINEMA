@@ -15,8 +15,8 @@ const SeatReservation = () => {
   const miniMapRef = useRef<HTMLDivElement>(null);
   const [viewport, setViewport] = useState({ left: 0, width: 0 });
 
-  const largeMapWidth = 430; // 큰 좌석표의 너비
-  const miniMapWidth = 50; // 미니맵의 너비
+  const largeMapWidth = 230; // 큰 좌석표의 너비
+  const miniMapWidth = 40; // 미니맵의 너비
 
   const updateViewport = () => {
     if (!largeMapRef.current) return;
