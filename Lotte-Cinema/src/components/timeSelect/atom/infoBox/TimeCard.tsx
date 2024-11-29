@@ -24,7 +24,6 @@ const TimeCard = ({ timesList, selectTitle, theater, subTheaterInfo, selectDate 
       beginTime: timesList.beginTime,
       endTime: timesList.endTime,
     };
-    console.log(prop);
     navigate('/tickets/info', { state: prop });
   };
   return (

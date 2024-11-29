@@ -5,7 +5,6 @@ const useCalendar = (initialDate: Date) => {
 
   const handleBtnClick = (date: Date) => {
     setSelectDate(date);
-    console.log(date); // TODO 명세서 보고 날짜 포멧팅
   };
 
   return {

@@ -19,8 +19,6 @@ export const useMovieTimeQuery = (theaterCount: number): UseQueryResult<MovieTim
     queryFn: async () => {
       const data = await getMovieTime({ theaterCount });
 
-      console.log('Movie Time Data:', data);
-
       return data;
     },
   });

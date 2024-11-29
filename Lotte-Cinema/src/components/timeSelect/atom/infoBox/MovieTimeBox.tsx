@@ -15,7 +15,6 @@ type Prop = {
 const MovieTimeBox = ({ locs, selectTitle, selectDate }: Prop) => {
   const { data } = useMovieTimeQuery(locs.length);
 
-  console.log(data);
   return (
     <S.Wrapper>
       {data &&
