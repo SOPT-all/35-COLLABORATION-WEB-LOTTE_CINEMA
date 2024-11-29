@@ -30,7 +30,6 @@ const S = {
     min-width: 360px;
     max-width: 430px;
     min-height: 100vh;
-    overflow-y: hidden;
 
     background-color: ${({ theme }) => theme.colors.WHITE100};
 
