@@ -6,12 +6,6 @@ import { BtnSeatDefaultLarge, BtnSeatDisabledLarge, BtnSeatSoldoutLarge } from '
 
 import { SEAT_INFO, SEAT_ROWS } from '@/constants';
 
-type ReservatedNumber = {
-  total: number;
-  adult: number;
-  teen: number;
-  senior: number;
-};
 interface MovieType {
   movieId: number;
   name: string;
@@ -21,7 +15,7 @@ interface MovieType {
 interface SeatTableBodyProps {
   handleClickSeat: (seatId: string) => void;
   selectedSeats: string[];
-  reservatedNumber: ReservatedNumber;
+  reservatedNumber: number;
   movie: MovieType;
 }
 
@@ -40,7 +34,7 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber, movie
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading seat info.</div>;
 
-  const isSeatDisabled = selectedSeats.length >= reservatedNumber.total;
+  const isSeatDisabled = selectedSeats.length >= reservatedNumber;
 
   return (
     <S.SeatTableWrapper ref={setSeatTableWrapperRef}>
