@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import AgeInfo from '@/components/InfoCheck/AgeInfo';
 import MovieInfoBanner from '@/components/InfoCheck/MovieInfoBanner';
@@ -27,6 +27,7 @@ const InfoCheck = () => {
     senior: 0,
   });
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleCountChange = (type: keyof typeof counts, increment: number) => {
     setCounts((prev) => {
@@ -54,7 +55,7 @@ const InfoCheck = () => {
     <MobileLayout>
       <Header title="인원 선택" />
       <S.Wrapper>
-        <MovieInfoBanner />
+        <MovieInfoBanner movieInfo={location.state} />
         <TimeInfoList />
         <AgeInfo />
         <SeatInfo />
