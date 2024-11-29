@@ -12,21 +12,27 @@ type ReservatedNumber = {
   teen: number;
   senior: number;
 };
+interface MovieType {
+  movieId: number;
+  name: string;
+  format: string;
+}
 
 interface SeatTableBodyProps {
   handleClickSeat: (seatId: string) => void;
   selectedSeats: string[];
   reservatedNumber: ReservatedNumber;
+  movie: MovieType;
 }
 
-const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber }: SeatTableBodyProps) => {
+const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber, movie }: SeatTableBodyProps) => {
   const setSeatTableWrapperRef = (element: HTMLDivElement) => {
     if (element) {
       element.scrollLeft = (element.scrollWidth - element.clientWidth) / 2;
     }
   };
 
-  const { data, isLoading, error } = useSeatInfoQuery(1);
+  const { data, isLoading, error } = useSeatInfoQuery(movie.movieId);
 
   const soldoutIdx = data?.data;
   const soldoutSeats = soldoutIdx?.map((idx) => SEAT_INFO[idx]);
