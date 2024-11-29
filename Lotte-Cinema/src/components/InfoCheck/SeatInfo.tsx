@@ -1,12 +1,19 @@
 import styled from '@emotion/styled';
 
-import { AVAILABLE_IDX_ARRAY } from '@/constants/mocks/availableIdxData';
+import { useSeatInfoQuery } from '@/hooks/query/SeatReservation';
 
 import { IcSeatReclinerMedium, IcSeatSoldoutMedium } from '@/assets/svg';
 
-const SeatInfo = () => {
+interface SeatInfoProps {
+  movieId: number;
+}
+
+const SeatInfo = ({ movieId }: SeatInfoProps) => {
   const ROW = Array.from({ length: 6 }, (_, row) => row);
   const SEAT_PER_ROW = [11, 13, 13, 12, 13, 13];
+  const ALL_SEAT_NUM = 75;
+
+  const { data } = useSeatInfoQuery(movieId);
 
   // 좌석 배치 배열을 생성하는 함수
   const generateSeats = () => {
@@ -19,8 +26,8 @@ const SeatInfo = () => {
 
   // SeatIcon 분기 함수
   const renderSeatIcon = (seatIdx: number, colIdx: number) => {
-    const isAvailable = AVAILABLE_IDX_ARRAY.includes(seatIdx);
-    const Icon = isAvailable ? IcSeatReclinerMedium : IcSeatSoldoutMedium;
+    const isReserved = data?.data.includes(seatIdx);
+    const Icon = isReserved ? IcSeatSoldoutMedium : IcSeatReclinerMedium;
     const marginRight = [1, 10].includes(colIdx) ? '1.1rem' : '0';
 
     return <Icon width={11} style={{ marginRight }} key={seatIdx} />;
@@ -36,7 +43,7 @@ const SeatInfo = () => {
         ))}
       </S.SeatTableLayout>
       <S.SeatNum>
-        잔여좌석<span>{AVAILABLE_IDX_ARRAY.length}</span>/77석
+        잔여좌석<span>{ALL_SEAT_NUM - (data?.data.length ?? 0)}</span>/{ALL_SEAT_NUM}석
       </S.SeatNum>
     </S.Wrapper>
   );

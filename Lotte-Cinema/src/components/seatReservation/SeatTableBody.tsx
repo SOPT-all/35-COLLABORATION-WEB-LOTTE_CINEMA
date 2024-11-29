@@ -1,15 +1,26 @@
 import styled from '@emotion/styled';
 
+
 import { MutableRefObject, useLayoutEffect, useRef } from 'react';
 
-import { BtnSeatDefaultLarge, BtnSeatDisabledLarge } from '@/assets/svg';
+import { useSeatInfoQuery } from '@/hooks/query/SeatReservation';
+
+
+import { BtnSeatDefaultLarge, BtnSeatDisabledLarge, BtnSeatSoldoutLarge } from '@/assets/svg';
 
 import { SEAT_INFO, SEAT_ROWS } from '@/constants';
+
+interface MovieType {
+  movieId: number;
+  name: string;
+  format: string;
+}
 
 interface SeatTableBodyProps {
   handleClickSeat: (seatId: string) => void;
   selectedSeats: string[];
   reservatedNumber: number;
+  movie: MovieType;
   largeMapRef: MutableRefObject<HTMLDivElement | null>;
 }
 
@@ -23,18 +34,28 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber, large
       const container = containerRef.current;
       const totalWidth = container.scrollWidth;
       const visibleWidth = container.clientWidth;
-
       container.scrollLeft = totalWidth / 2 - visibleWidth / 2;
-    }
-  }, []);
+  }
+}, []);
+
+
+  const { data, isLoading, error } = useSeatInfoQuery(movie.movieId);
+
+  const soldoutIdx = data?.data;
+  const soldoutSeats = soldoutIdx?.map((idx) => SEAT_INFO[idx]);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading seat info.</div>;
 
   return (
+
     <S.SeatTableWrapper
       ref={(node) => {
         largeMapRef.current = node;
         containerRef.current = node;
       }}
     >
+
       <S.SeatTableContainer>
         <S.ScreenComment>
           <p>S</p>
@@ -50,11 +71,22 @@ const SeatTableBody = ({ handleClickSeat, selectedSeats, reservatedNumber, large
               {SEAT_INFO.filter((seat) => seat.startsWith(row)).map((seat) => {
                 const isSelected = selectedSeats.includes(seat);
                 const isDisabled = !isSelected && isSeatDisabled;
+                const isSoldOut = soldoutSeats?.includes(seat);
                 const marginRight = [2, 11].includes(parseInt(seat.slice(1))) ? '2.8rem' : '0';
                 const commonProps = {
                   width: '2.8rem',
                   style: { marginRight },
                 };
+
+                if (isSoldOut) {
+                  return (
+                    <BtnSeatSoldoutLarge
+                      {...commonProps}
+                      key={seat}
+                      style={{ ...commonProps.style, cursor: 'not-allowed' }}
+                    />
+                  );
+                }
 
                 return isDisabled ? (
                   <BtnSeatDisabledLarge
@@ -101,7 +133,7 @@ const S = {
     justify-content: center;
     gap: 1.4rem;
     margin-top: 12rem;
-    margin-bottom: 4.4rem;
+    margin-bottom: 6rem;
     ${({ theme }) => theme.typographies.n_head02_reg};
     background-color: ${({ theme }) => theme.colors.BG_THEATER};
     color: ${({ theme }) => theme.colors.GRAY10};

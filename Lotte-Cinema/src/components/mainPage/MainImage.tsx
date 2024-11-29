@@ -5,7 +5,7 @@ import { ImgPosterMainAprilcomeshewill } from '@/assets/svg';
 const MainImage = () => {
   return (
     <S.MainImageContainer>
-      <ImgPosterMainAprilcomeshewill width="100%" />
+      <ImgPosterMainAprilcomeshewill width="100%" height="100%" />
     </S.MainImageContainer>
   );
 };

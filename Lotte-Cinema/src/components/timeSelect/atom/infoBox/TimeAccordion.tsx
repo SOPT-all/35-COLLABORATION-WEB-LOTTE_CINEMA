@@ -4,12 +4,12 @@ import { useState } from 'react';
 
 import { IcArrowDown20, IcArrowTop20 } from '@/assets/svg';
 
+import { TimeTablePropType } from '@/types/timeSelect';
+
 import TimeCard from './TimeCard';
 
-// TODO API res 값에 따라 내부 정보 채울 예정
-const TimeAccordion = () => {
+const TimeAccordion = ({ num, info, locs, selectDate, selectedMovie }: TimeTablePropType) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
-  const times = [1, 2, 3, 4, 5];
 
   const toggleAccordion = () => {
     setIsOpen((prev) => !prev);
@@ -18,7 +18,7 @@ const TimeAccordion = () => {
     <>
       <S.TitleHeader onClick={toggleAccordion}>
         <S.TitleContainer $isOpen={isOpen}>
-          <h1>건대 입구</h1>
+          <h1>{locs[num]}</h1>
           {isOpen ? <IcArrowTop20 width="2rem" /> : <IcArrowDown20 width="2rem" />}
         </S.TitleContainer>
       </S.TitleHeader>
@@ -26,13 +26,28 @@ const TimeAccordion = () => {
         <S.InfoAccordion $isOpen={isOpen}>
           <S.InfoContainer>
             <S.InfoTitle>
-              <p>4관 2D</p>
-              <span />
-              <p>리클라이너</p>
+              <p>{info.name}</p>
+
+              {info.subname.trim() && (
+                <>
+                  <span />
+                  <p>{info.subname}</p>
+                </>
+              )}
             </S.InfoTitle>
+            <S.Description>{info.description}</S.Description>
             <S.InfoContent>
-              {times.map((e) => (
-                <TimeCard key={e} />
+              {info.timesList.map((timesList, i) => (
+                <TimeCard
+                  key={i}
+                  loc={locs[num]}
+                  allTimeList={info.timesList}
+                  timesList={timesList}
+                  theater={info.name}
+                  subTheaterInfo={info.subname}
+                  selectDate={selectDate}
+                  selectedMovie={selectedMovie}
+                />
               ))}
             </S.InfoContent>
           </S.InfoContainer>
@@ -55,6 +70,11 @@ const S = {
     align-self: stretch;
   `,
 
+  Description: styled.p`
+    color: ${({ theme }) => theme.colors.GRAY09};
+    ${({ theme }) => theme.typographies.r_caption}
+  `,
+
   TitleContainer: styled.div<{ $isOpen: boolean }>`
     display: flex;
     width: 100%;
@@ -68,14 +88,13 @@ const S = {
   `,
 
   InfoAccordion: styled.section<{ $isOpen: boolean }>`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
 
-  border-bottom : ${({ $isOpen, theme }) => ($isOpen ? `0.6rem solid ${theme.colors.GRAY02}` : `none`)}
-  }
-`,
+    border-bottom: ${({ $isOpen, theme }) => ($isOpen ? `0.6rem solid ${theme.colors.GRAY02}` : `none`)};
+  `,
 
   InfoContainer: styled.section`
     width: 100%;

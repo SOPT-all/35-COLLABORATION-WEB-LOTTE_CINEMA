@@ -1,3 +1,5 @@
+import styled from '@emotion/styled';
+
 import EventAdvertising from '@/components/mainPage/EventAdvertising';
 import ExclusiveChart from '@/components/mainPage/ExclusiveChart';
 import Footer from '@/components/mainPage/Footer';
@@ -11,8 +13,8 @@ import MobileLayout from '@/components/mobileLayout/MobileLayout';
 const MainPage = () => {
   return (
     <MobileLayout>
-      <main>
-        <MainPageHeader />
+      <MainPageHeader />
+      <S.Wrapper>
         <MainImage />
         <PopularMovieChart />
         <ExclusiveChart />
@@ -20,9 +22,18 @@ const MainPage = () => {
         <EventAdvertising />
         <Footer />
         <NavFooter />
-      </main>
+      </S.Wrapper>
     </MobileLayout>
   );
 };
 
 export default MainPage;
+
+const S = {
+  Wrapper: styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  `,
+};

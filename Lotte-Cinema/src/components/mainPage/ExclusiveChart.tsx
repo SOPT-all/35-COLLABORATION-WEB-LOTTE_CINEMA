@@ -1,10 +1,43 @@
 import styled from '@emotion/styled';
 
-import { exclusiveItems } from '@/constants/mocks/exclusiveMovie';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { getExclusiveList } from '@/apis/movie';
+
+import { IcAge1216, IcAge1916, IcAgeAll16 } from '@/assets/svg';
 import { IcPic2816 } from '@/assets/svg';
 
 const ExclusiveChart = () => {
+  const ageLimitIcons = {
+    청불: <IcAge1916 height="100%" />,
+    ALL: <IcAgeAll16 height="100%" />,
+    '12': <IcAge1216 height="100%" />,
+  };
+
+  const navigate = useNavigate();
+  const handleNavigate = (title: string) => {
+    navigate('/theaters', {
+      state: {
+        title,
+      },
+    });
+  };
+
+  const [exclusiveList, setExclusiveList] = useState([]);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const movieList = await getExclusiveList();
+        setExclusiveList(movieList);
+      } catch (err) {
+        console.error('Error fetching movie list:', err);
+      }
+    };
+    fetchMovies();
+  }, []);
+
   return (
     <>
       <S.HeaderWrapper>
@@ -12,23 +45,26 @@ const ExclusiveChart = () => {
       </S.HeaderWrapper>
 
       <S.ContentWrapper>
-        {exclusiveItems.map((item, index) => {
-          const AgeLimitIcon = item.ageLimit;
-          const Image = item.image;
-          const Title = item.title;
-
+        {exclusiveList.map(({ movieId, title, rating, imageUrl }) => {
           return (
-            <S.EachContentWrapper key={index}>
+            <S.EachContentWrapper key={movieId}>
               <S.ImageWrapper>
                 <S.CinemaPickContainer>
                   <IcPic2816 height="100%" />
                 </S.CinemaPickContainer>
-                <S.AgeLimitContainer>{AgeLimitIcon && <AgeLimitIcon height="100%" />}</S.AgeLimitContainer>
-                <Image width="13.4rem" />
+                <S.AgeLimitContainer>{ageLimitIcons[rating] || <IcAgeAll16 height="100%" />}</S.AgeLimitContainer>
+                <S.MovieImage src={imageUrl} />
               </S.ImageWrapper>
               <S.TextWrapper>
-                <S.MovieTitle>{Title}</S.MovieTitle>
-                <S.ButtonReservation type="button">예매하기</S.ButtonReservation>
+                <S.MovieTitle>{title}</S.MovieTitle>
+                <S.ButtonReservation
+                  type="button"
+                  onClick={() => {
+                    handleNavigate(title);
+                  }}
+                >
+                  예매하기
+                </S.ButtonReservation>
               </S.TextWrapper>
             </S.EachContentWrapper>
           );
@@ -54,6 +90,14 @@ const S = {
     ${({ theme }) => theme.typographies.n_head01};
     width: 100%;
   `,
+
+  MovieImage: styled.img`
+    width: 13.4rem;
+    height: 100%;
+    border-radius: 0.6rem;
+    overflow: hidden;
+  `,
+
   ContentWrapper: styled.section`
     display: flex;
     gap: 1.6rem;
