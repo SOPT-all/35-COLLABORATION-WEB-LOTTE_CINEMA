@@ -10,7 +10,6 @@ import TimeAccordion from './TimeAccordion';
 const MovieTimeBox = ({ locs, selectTitle, selectDate }: TimeInfoPropType) => {
   const { data } = useMovieTimeQuery(locs.length, selectTitle, selectDate);
 
-  console.log(data);
   return (
     <S.Wrapper>
       {data &&

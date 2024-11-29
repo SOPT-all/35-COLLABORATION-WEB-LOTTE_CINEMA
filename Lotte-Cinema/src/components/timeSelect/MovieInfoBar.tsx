@@ -75,7 +75,8 @@ const MovieInfoBar = ({ locs, onDelete, setSelectTitle, selectTitle }: MovieInfo
             <ArrowBtn
               label="극장 추가"
               onClick={() => {
-                navigate('/theaters');
+                console.log(locs);
+                navigate('/theaters', { state: locs });
               }}
             />
           </S.TheaterContainer>
