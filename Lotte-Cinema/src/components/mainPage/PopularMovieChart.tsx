@@ -20,6 +20,13 @@ type movieList = {
 };
 
 const PopularMovieChart = () => {
+  const handleNavigate = (title: string) => {
+    navigate('/theaters', {
+      state: {
+        title,
+      },
+    });
+  };
   const [filter, setFilter] = useState('전체');
   const [FilteredItems, setFilteredItems] = useState([]);
   const todayDate = new Date();
@@ -74,18 +81,7 @@ const PopularMovieChart = () => {
                   <S.AdvertisingTitle>헥토네이베션</S.AdvertisingTitle>
                   <S.NoticeAdvertising>AD</S.NoticeAdvertising>
                 </S.GridContainer>
-                <S.ButtonAdvertising
-                  type="button"
-                  onClick={() => {
-                    navigate('/theaters', {
-                      state: {
-                        title,
-                      },
-                    });
-                  }}
-                >
-                  자세히 보기
-                </S.ButtonAdvertising>
+                <S.ButtonAdvertising type="button">자세히 보기</S.ButtonAdvertising>
               </S.EachContentWrapper>
 
               <S.EachContentWrapper key={movieId}>
@@ -119,7 +115,14 @@ const PopularMovieChart = () => {
                     )}
                   </S.StarReview>
                 </S.GridContainer>
-                <S.ButtonReservation type="button">예매하기</S.ButtonReservation>
+                <S.ButtonReservation
+                  type="button"
+                  onClick={() => {
+                    handleNavigate(title);
+                  }}
+                >
+                  예매하기
+                </S.ButtonReservation>
               </S.EachContentWrapper>
             </>
           ) : (
@@ -157,11 +160,7 @@ const PopularMovieChart = () => {
               <S.ButtonReservation
                 type="button"
                 onClick={() => {
-                  navigate('/theaters', {
-                    state: {
-                      title,
-                    },
-                  });
+                  handleNavigate(title);
                 }}
               >
                 예매하기
