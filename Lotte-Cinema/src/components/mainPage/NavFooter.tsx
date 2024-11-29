@@ -55,6 +55,11 @@ const S = {
     justify-content: center;
     ${({ theme }) => theme.typographies.n_caption02_med};
 
+    &:hover {
+      transform: scale(1.1);
+      transition-duration: 0.5s;
+    }
+
     &.CenterMenu {
       position: relative;
       width: 5.4rem;
