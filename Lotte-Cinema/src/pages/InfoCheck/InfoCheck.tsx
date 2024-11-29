@@ -30,6 +30,9 @@ const InfoCheck = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const { selectedMovie, theater } = location.state;
+  const [_, format] = theater.split(' '); // "6관 2D" -> ["6관", "2D"]
+
   const handleCountChange = (type: keyof typeof counts, increment: number) => {
     setCounts((prev) => {
       const updatedCounts = {
@@ -43,7 +46,12 @@ const InfoCheck = () => {
 
   const moveSeatSelectPage = () => {
     navigate('/tickets/seats', {
-      state: counts,
+      state: {
+        movieId: selectedMovie.movieId,
+        name: selectedMovie.title,
+        format,
+        counts,
+      },
     });
   };
 

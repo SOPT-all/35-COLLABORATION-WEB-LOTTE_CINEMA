@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Header from '@/components/commons/header/Header';
 import MobileLayout from '@/components/mobileLayout/MobileLayout';
@@ -11,6 +12,9 @@ const SeatReservation = () => {
   // const location = useLocation(); // build 때문에 잠시 주석처리
   const reservatedNumber = 2;
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
+
+  const location = useLocation();
+  console.log(location.state);
 
   const handleClickSeat = (seatId: string) => {
     setSelectedSeats((prev) => {
