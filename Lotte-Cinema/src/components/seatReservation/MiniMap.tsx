@@ -2,27 +2,26 @@ import styled from '@emotion/styled';
 
 import { RefObject } from 'react';
 
-import { SEAT_ROWS } from '@/constants';
-
 interface MiniMapProps {
   selectedSeats: string[];
-  miniMapRef: RefObject<HTMLDivElement>;
   miniMapViewportRef: RefObject<HTMLDivElement>;
   viewport: { left: number; width: number };
 }
 
-const MiniMap = ({ selectedSeats, miniMapRef, miniMapViewportRef, viewport }: MiniMapProps) => {
+const MiniMap = ({ selectedSeats, miniMapViewportRef, viewport }: MiniMapProps) => {
   return (
-    <S.MiniMapWrapper ref={miniMapRef}>
+    <S.MiniMapWrapper>
       <S.ScreenWrapper>Screen</S.ScreenWrapper>
-
-      <S.MiniMapViewport
+      <div
         ref={miniMapViewportRef}
         style={{
+          position: 'absolute',
           top: 0,
           left: `${viewport.left}px`,
           width: `${viewport.width}px`,
           height: '100%',
+          border: `1px solid red`,
+          boxSizing: 'border-box',
         }}
       />
     </S.MiniMapWrapper>
@@ -48,11 +47,5 @@ const S = {
     ${({ theme }) => theme.typographies.n_caption01_reg};
     color: ${({ theme }) => theme.colors.GRAY12};
     border-bottom: 1px solid ${({ theme }) => theme.colors.GRAY12};
-  `,
-
-  MiniMapViewport: styled.div`
-    position: absolute;
-    border: 1px solid ${({ theme }) => theme.colors.RED02};
-    box-sizing: border-box;
   `,
 };

@@ -10,31 +10,27 @@ import SeatTableBody from '@/components/seatReservation/SeatTableBody';
 
 const SeatReservation = () => {
   const largeMapRef = useRef<HTMLDivElement>(null);
-  const miniMapRef = useRef<HTMLDivElement>(null);
   const miniMapViewportRef = useRef<HTMLDivElement>(null);
   const [viewport, setViewport] = useState({ left: 0, width: 0 });
 
   const largeMapWidth = 430; // 큰 좌석표의 너비
   const miniMapWidth = 50; // 미니맵의 너비
-  const scale = miniMapWidth / largeMapWidth;
 
   const updateViewport = () => {
     if (!largeMapRef.current) return;
 
-    const largeMap = largeMapRef.current;
-    const visibleWidth = largeMap.clientWidth; // 보이는 화면 크기
-    const scrollLeft = largeMap.scrollLeft; // 좌우 스크롤 위치
+    const scale = miniMapWidth / largeMapWidth;
+    const viewportLeft = largeMapRef.current.scrollLeft * scale;
+    const viewportWidth = largeMapRef.current.clientWidth * scale;
 
-    setViewport({
-      left: scrollLeft * scale,
-      width: visibleWidth * scale,
-    });
+    setViewport({ left: viewportLeft, width: viewportWidth });
   };
 
   useEffect(() => {
     const largeMap = largeMapRef.current;
+
     if (largeMap) {
-      updateViewport(); // 초기 뷰포트 설정
+      updateViewport();
       largeMap.addEventListener('scroll', updateViewport);
     }
     return () => {
@@ -60,12 +56,7 @@ const SeatReservation = () => {
   return (
     <MobileLayout>
       <S.MiniMapWrapper>
-        <MiniMap
-          selectedSeats={selectedSeats}
-          miniMapRef={miniMapRef}
-          miniMapViewportRef={miniMapViewportRef}
-          viewport={viewport}
-        />
+        <MiniMap selectedSeats={selectedSeats} miniMapViewportRef={miniMapViewportRef} viewport={viewport} />
       </S.MiniMapWrapper>
 
       <S.SeatReserveLayout>
