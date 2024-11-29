@@ -8,16 +8,18 @@ import SelectButton from './SelectButton';
 interface SelectActionsProps {
   selectedDetail: string[];
   deleteDetail: (name: string) => void;
+  title: string;
 }
 
-const SelectActions = ({ selectedDetail, deleteDetail }: SelectActionsProps) => {
+const SelectActions = ({ selectedDetail, deleteDetail, title }: SelectActionsProps) => {
   const navigate = useNavigate();
 
   const moveTimeSelectPage = () => {
     navigate('/tickets', {
-      state: selectedDetail,
+      state: { selectedDetail, title },
     });
   };
+
   return (
     <S.Wrapper>
       <S.PinContainer>

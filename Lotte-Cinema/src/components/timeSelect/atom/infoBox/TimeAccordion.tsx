@@ -88,14 +88,13 @@ const S = {
   `,
 
   InfoAccordion: styled.section<{ $isOpen: boolean }>`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
 
-  border-bottom : ${({ $isOpen, theme }) => ($isOpen ? `0.6rem solid ${theme.colors.GRAY02}` : `none`)}
-  }
-`,
+    border-bottom: ${({ $isOpen, theme }) => ($isOpen ? `0.6rem solid ${theme.colors.GRAY02}` : `none`)};
+  `,
 
   InfoContainer: styled.section`
     width: 100%;

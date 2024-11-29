@@ -1,16 +1,46 @@
 import styled from '@emotion/styled';
 
-import { ImgPosterSmallAmazonhms } from '@/assets/svg';
+import { calculateDuration, formatDate } from '@/utils/calculateMovieInfo';
 
-const MovieInfoBanner = () => {
+import { MovieListType } from '@/types/data';
+import { TimeListType } from '@/types/infoCheck';
+
+interface MovieInfoBannerProps {
+  movieInfo: {
+    allTimeList: TimeListType[];
+    beginTime: string;
+    endTime: string;
+    loc: string;
+    selectDate: Date;
+    selectedMovie: MovieListType;
+    subTheaterInfo: string;
+    theater: string;
+  };
+}
+
+const MovieInfoBanner = ({ movieInfo }: MovieInfoBannerProps) => {
+  const { beginTime, endTime, subTheaterInfo, selectedMovie, selectDate, theater, loc } = movieInfo;
+  const { imageUrl, title } = selectedMovie;
+
+  const [hall, format] = theater.split(' '); // "6관 2D" -> ["6관", "2D"]
+  const formattedDate = formatDate(selectDate);
+  const duration = calculateDuration(beginTime, endTime); // 분 계산
+
   return (
     <S.Wrapper>
-      <ImgPosterSmallAmazonhms width={45} />
+      <S.PosterImg src={imageUrl} />
       <S.InfoLayout>
-        <S.Title>아마존 활명수 (2D 리클라이너)</S.Title>
+        <S.Title>
+          {title} ({format}
+          {subTheaterInfo.trim() && ` ${subTheaterInfo}`})
+        </S.Title>
         <S.DetailInfoContainer>
-          <S.Time>24.11.09 (수) · 16:10 ~ 18:12 (122분)</S.Time>
-          <S.Theater>용산 · 4관 리클라이너(4층)</S.Theater>
+          <S.Time>
+            {formattedDate} · {beginTime} ~ {endTime} ({duration}분)
+          </S.Time>
+          <S.Theater>
+            {loc} · {hall} {subTheaterInfo}
+          </S.Theater>
         </S.DetailInfoContainer>
       </S.InfoLayout>
     </S.Wrapper>
@@ -24,6 +54,12 @@ const S = {
     display: flex;
     gap: 1.6rem;
     background-color: ${({ theme }) => theme.colors.BG_THEATER};
+  `,
+
+  PosterImg: styled.img`
+    width: 4.5rem;
+    height: 6rem;
+    border-radius: 0.2rem;
   `,
 
   InfoLayout: styled.section`

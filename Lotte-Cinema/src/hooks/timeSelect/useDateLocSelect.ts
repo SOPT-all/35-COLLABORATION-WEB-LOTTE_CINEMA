@@ -7,12 +7,12 @@ import { useMovieListQuery } from '../query';
 import useCalendar from './useCalendar';
 
 const useDateLocSelect = (today: Date) => {
+  const location = useLocation();
   const [selectedMovie, setSelectedMovie] = useState({ title: '', rating: '', showtime: 0 });
-  const [selectTitle, setSelectTitle] = useState('청설');
+  const [selectTitle, setSelectTitle] = useState(location.state.title);
 
   const { data } = useMovieListQuery();
-  const location = useLocation();
-  const [locs, setLocs] = useState<string[]>(location.state || []);
+  const [locs, setLocs] = useState<string[]>(location.state.selectedDetail || []);
 
   const { selectDate, handleBtnClick } = useCalendar(today);
 

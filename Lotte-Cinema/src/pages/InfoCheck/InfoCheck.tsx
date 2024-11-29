@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import AgeInfo from '@/components/InfoCheck/AgeInfo';
 import MovieInfoBanner from '@/components/InfoCheck/MovieInfoBanner';
@@ -19,6 +19,7 @@ export interface CountsType {
   teen: number;
   senior: number;
 }
+
 const InfoCheck = () => {
   const [isBtnActive, setIsBtnActive] = useState(false);
   const [counts, setCounts] = useState({
@@ -27,6 +28,10 @@ const InfoCheck = () => {
     senior: 0,
   });
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { selectedMovie, theater } = location.state;
+  const [_, format] = theater.split(' '); // "6관 2D" -> ["6관", "2D"]
 
   const handleCountChange = (type: keyof typeof counts, increment: number) => {
     setCounts((prev) => {
@@ -41,7 +46,12 @@ const InfoCheck = () => {
 
   const moveSeatSelectPage = () => {
     navigate('/tickets/seats', {
-      state: counts,
+      state: {
+        movieId: selectedMovie.movieId,
+        name: selectedMovie.title,
+        format,
+        counts,
+      },
     });
   };
 
@@ -54,9 +64,9 @@ const InfoCheck = () => {
     <MobileLayout>
       <Header title="인원 선택" />
       <S.Wrapper>
-        <MovieInfoBanner />
-        <TimeInfoList />
-        <AgeInfo />
+        <MovieInfoBanner movieInfo={location.state} />
+        <TimeInfoList allTimeList={location.state.allTimeList} selectedTime={location.state.beginTime} />
+        <AgeInfo age={location.state.selectedMovie.rating} />
         <SeatInfo />
 
         <S.BottomSheet>

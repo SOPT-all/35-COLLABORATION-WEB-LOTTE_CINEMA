@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import List from '@/components/TheaterList/List';
 import SelectActions from '@/components/TheaterList/SelectActions';
@@ -10,6 +11,13 @@ import MobileLayout from '@/components/mobileLayout/MobileLayout';
 
 const TheaterList = () => {
   const [selectedDetail, setSelectedDetail] = useState<string[]>([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state.regions) {
+      setSelectedDetail(location.state.regions);
+    }
+  }, []);
 
   // detail 상태 삭제 로직 (리스트 + 핀)
   const deleteDetail = (name: string) => {
@@ -39,7 +47,7 @@ const TheaterList = () => {
       <S.Wrapper>
         <TabBar />
         <List onClick={handleDetailClick} selectedDetail={selectedDetail} />
-        <SelectActions selectedDetail={selectedDetail} deleteDetail={deleteDetail} />
+        <SelectActions selectedDetail={selectedDetail} deleteDetail={deleteDetail} title={location.state.title} />
       </S.Wrapper>
     </MobileLayout>
   );
