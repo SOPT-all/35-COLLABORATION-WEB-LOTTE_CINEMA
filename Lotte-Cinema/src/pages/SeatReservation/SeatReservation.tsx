@@ -11,11 +11,17 @@ import SeatTableBody from '@/components/seatReservation/SeatTableBody';
 const SeatReservation = () => {
   const location = useLocation();
 
+  const movie = {
+    movieId: location.state.movieId,
+    name: location.state.name,
+    format: location.state.format,
+  };
+
   const reservatedNumber = {
-    total: location.state.adult + location.state.teen + location.state.senior,
-    adult: location.state.adult,
-    teen: location.state.teen,
-    senior: location.state.senior,
+    total: location.state.counts.adult + location.state.counts.teen + location.state.counts.senior,
+    adult: location.state.counts.adult,
+    teen: location.state.counts.teen,
+    senior: location.state.counts.senior,
   };
 
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
@@ -43,7 +49,7 @@ const SeatReservation = () => {
           reservatedNumber={reservatedNumber}
         />
         <S.SeatReserveInfoWrapper>
-          <SeatReserveInfo selectedSeats={selectedSeats} reservatedNumber={reservatedNumber} />
+          <SeatReserveInfo movie={movie} selectedSeats={selectedSeats} reservatedNumber={reservatedNumber} />
         </S.SeatReserveInfoWrapper>
       </S.SeatReserveLayout>
     </MobileLayout>

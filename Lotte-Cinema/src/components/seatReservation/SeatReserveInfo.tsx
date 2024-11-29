@@ -14,23 +14,29 @@ type ReservatedNumber = {
   teen: number;
   senior: number;
 };
+interface MovieType {
+  movieId: number;
+  name: string;
+  format: string;
+}
 
 interface SeatReserveInfoProps {
   selectedSeats: string[];
   reservatedNumber: ReservatedNumber;
+  movie: MovieType;
 }
 
-const SeatReserveInfo = ({ selectedSeats, reservatedNumber }: SeatReserveInfoProps) => {
+const SeatReserveInfo = ({ selectedSeats, reservatedNumber, movie }: SeatReserveInfoProps) => {
   const seatIndexes = selectedSeats.map((seat) => SEAT_INFO.findIndex((info) => info === seat));
 
-  const { mutate } = useReserveMutation(1, seatIndexes);
+  const { mutate } = useReserveMutation(movie.movieId, seatIndexes);
   const adultPrice = 14000 * reservatedNumber.adult;
   const teenPrice = 11000 * reservatedNumber.teen;
   const seniorPrice = 7000 * reservatedNumber.senior;
   const totalPrice = adultPrice + teenPrice + seniorPrice;
 
   const handleSubmit = () => {
-    mutate({ movieId: 1, seats: seatIndexes }); // mutate 함수로 movieId와 seats 전달
+    mutate({ movieId: movie.movieId, seats: seatIndexes }); // mutate 함수로 movieId와 seats 전달
   };
   return (
     <S.SeatReserveInfoWrapper>
@@ -48,7 +54,9 @@ const SeatReserveInfo = ({ selectedSeats, reservatedNumber }: SeatReserveInfoPro
         </div>
       </S.SeatTypeInfo>
       <S.MovieInfoWrapper>
-        <S.MovieInfo>아마존 활명수 (2D)</S.MovieInfo>
+        <S.MovieInfo>
+          {movie.name} ({movie.format})
+        </S.MovieInfo>
         <S.SeatInfo>
           <S.SeatInfoRow>
             <p>좌석</p>
