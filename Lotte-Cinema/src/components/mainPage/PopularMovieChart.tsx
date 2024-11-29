@@ -19,14 +19,6 @@ type movieList = {
   reservedRate: string;
 };
 
-// 전체 / 상영중 / 상영예정 -> 디폴트로 전체로 해놓고, 눌러진 부분은 검정색, 안 눌러진 부분은 회색으로 수정
-
-// 상영중도 구현하기 !!
-
-// 별점이랑 옆에 숫자 세로축 중앙 정렬되게 하기
-// 스크롤 영역 -> 캐러셀 사용하기
-
-// 개봉일 예정인 애들은 별 아이콘 없고 대신에 디데이 표시하게 바꾸기
 const PopularMovieChart = () => {
   const [filter, setFilter] = useState('전체');
   const [FilteredItems, setFilteredItems] = useState([]);
@@ -69,7 +61,6 @@ const PopularMovieChart = () => {
 
       <S.ContentWrapper>
         {FilteredItems.map(({ movieId, title, rating, releasedDate, imageUrl, reservedRate }, index) => {
-          // 6일 // 13일 // 지금 -> 15일
           const newReleasedDate = new Date(releasedDate);
           const isReleased = newReleasedDate <= todayDate;
           const dDay = Number(newReleasedDate) - Number(todayDate);
@@ -234,7 +225,7 @@ const S = {
   ContentWrapper: styled.div`
     display: flex;
     gap: 1.6rem;
-    width: 100%; // width 값 안 주면 스크롤이 적용되지 않는다
+    width: 100%;
     height: 28rem;
     margin: 1rem 0;
     overflow: scroll;

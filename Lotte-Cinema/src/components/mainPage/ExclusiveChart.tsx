@@ -9,7 +9,21 @@ import { IcAge1216, IcAge1916, IcAgeAll16 } from '@/assets/svg';
 import { IcPic2816 } from '@/assets/svg';
 
 const ExclusiveChart = () => {
+  const ageLimitIcons = {
+    청불: <IcAge1916 height="100%" />,
+    ALL: <IcAgeAll16 height="100%" />,
+    '12': <IcAge1216 height="100%" />,
+  };
+
   const navigate = useNavigate();
+  const handleNavigate = (title: string) => {
+    navigate('/theaters', {
+      state: {
+        title,
+      },
+    });
+  };
+
   const [exclusiveList, setExclusiveList] = useState([]);
 
   useEffect(() => {
@@ -23,6 +37,7 @@ const ExclusiveChart = () => {
     };
     fetchMovies();
   }, []);
+
   return (
     <>
       <S.HeaderWrapper>
@@ -31,29 +46,13 @@ const ExclusiveChart = () => {
 
       <S.ContentWrapper>
         {exclusiveList.map(({ movieId, title, rating, imageUrl }) => {
-          // const AgeLimitIcon = item.ageLimit;
-          // const Image = item.image;
-
           return (
             <S.EachContentWrapper key={movieId}>
               <S.ImageWrapper>
                 <S.CinemaPickContainer>
                   <IcPic2816 height="100%" />
                 </S.CinemaPickContainer>
-                <S.AgeLimitContainer>
-                  {(() => {
-                    switch (rating) {
-                      case '청불':
-                        return <IcAge1916 height="100%" />;
-                      case 'ALL':
-                        return <IcAgeAll16 height="100%" />;
-                      case '12':
-                        return <IcAge1216 height="100%" />;
-                      default:
-                        return <IcAgeAll16 height="100%" />;
-                    }
-                  })()}
-                </S.AgeLimitContainer>
+                <S.AgeLimitContainer>{ageLimitIcons[rating] || <IcAgeAll16 height="100%" />}</S.AgeLimitContainer>
                 <S.MovieImage src={imageUrl} />
               </S.ImageWrapper>
               <S.TextWrapper>
@@ -61,11 +60,7 @@ const ExclusiveChart = () => {
                 <S.ButtonReservation
                   type="button"
                   onClick={() => {
-                    navigate('/theaters', {
-                      state: {
-                        title,
-                      },
-                    });
+                    handleNavigate(title);
                   }}
                 >
                   예매하기
