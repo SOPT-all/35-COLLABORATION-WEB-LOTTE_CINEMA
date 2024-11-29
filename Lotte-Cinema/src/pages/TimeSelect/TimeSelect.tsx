@@ -19,7 +19,7 @@ const TimeSelect = () => {
   } = useDateLocSelect(today);
 
   return (
-    <MobileLayout>
+    <MobileLayout label="time">
       <Header title="영화별 예매" />
       <main>
         <MovieInfoBar
