@@ -28,9 +28,16 @@ const InfoCheck = () => {
     senior: 0,
   });
   const navigate = useNavigate();
-  const location = useLocation();
+  const { state } = useLocation();
 
-  const { selectedMovie, theater } = location.state;
+  const {
+    selectedMovie,
+    theater,
+    allTimeList,
+    beginTime,
+    selectedMovie: { rating },
+  } = state;
+
   const [_, format] = theater.split(' '); // "6관 2D" -> ["6관", "2D"]
 
   const handleCountChange = (type: keyof typeof counts, increment: number) => {
@@ -64,10 +71,10 @@ const InfoCheck = () => {
     <MobileLayout>
       <Header title="인원 선택" />
       <S.Wrapper>
-        <MovieInfoBanner movieInfo={location.state} />
-        <TimeInfoList allTimeList={location.state.allTimeList} selectedTime={location.state.beginTime} />
-        <AgeInfo age={location.state.selectedMovie.rating} />
-        <SeatInfo />
+        <MovieInfoBanner movieInfo={state} />
+        <TimeInfoList allTimeList={allTimeList} selectedTime={beginTime} />
+        <AgeInfo age={rating} />
+        <SeatInfo movieId={selectedMovie.movieId} />
 
         <S.BottomSheet>
           <SeatNumSelect counts={counts} handleCountChange={handleCountChange} />
