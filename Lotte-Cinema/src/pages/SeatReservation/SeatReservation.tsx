@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { RefCallback } from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useLayoutEffect } from 'react';
+import { useRef, useState } from 'react';
 
 import Header from '@/components/commons/header/Header';
 import MobileLayout from '@/components/mobileLayout/MobileLayout';
@@ -28,10 +28,9 @@ const SeatReservation = () => {
     setViewport({ left: viewportLeft, width: viewportWidth });
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     updateViewport();
 
-    // scroll 이벤트 리스너 등록
     const largeMap = largeMapRef.current;
     if (largeMap) {
       largeMap.addEventListener('scroll', updateViewport);

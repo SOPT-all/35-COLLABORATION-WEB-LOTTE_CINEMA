@@ -9,7 +9,7 @@ interface MiniMapProps {
   viewport: { left: number; width: number };
 }
 
-const MiniMap = ({ selectedSeats, miniMapViewportRef, viewport, miniMapRef }: MiniMapProps) => {
+const MiniMap = ({ miniMapViewportRef, viewport, miniMapRef }: MiniMapProps) => {
   return (
     <S.MiniMapWrapper ref={miniMapRef}>
       <S.ScreenWrapper>Screen</S.ScreenWrapper>
