@@ -5,15 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 
 import { getDayClassName, getTileClassName, getWeekday, isToday } from '@/utils/calendarUtils';
 
-interface CalendarTileProperties {
-  date: Date;
-  view: 'month' | 'year' | 'decade' | 'century';
-}
-
-type CalendarPropType = {
-  handleBtnClick: (date: Date) => void;
-  selectDate: Date;
-};
+import { CalendarPropType, CalendarTileProperties } from '@/types/timeSelect';
 
 const CalendarBox = ({ handleBtnClick, selectDate }: CalendarPropType) => {
   // 서버의 값과 동기화를 위해, 오늘 날짜를 11월 5일로 설정!
