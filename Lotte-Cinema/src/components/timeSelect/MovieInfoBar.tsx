@@ -1,52 +1,43 @@
 import styled from '@emotion/styled';
 
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useMovieListQuery } from '@/hooks/query';
+import { useMovieSelect } from '@/hooks/timeSelect';
 
 import { IcAge1216, IcAge1916, IcAgeAll16 } from '@/assets/svg';
 
+import { MovieInfoBarProps } from '@/types/timeSelect';
 import { runningTimeFormat } from '@/utils';
 
 import ArrowBtn from '../commons/ArrowBtn';
 import TheaterLabel from './atom/TheaterLabel';
 
-type MovieInfoBarProps = {
-  locs: string[];
-  onDelete: (loc: string) => void;
-  setSelectTitle: (value: string) => void;
-  selectTitle: string;
-};
-
 const MovieInfoBar = ({ locs, onDelete, setSelectTitle, selectTitle }: MovieInfoBarProps) => {
   const navigate = useNavigate();
-  const [selectedMovie, setSelectedMovie] = useState({ title: '', rating: '', showtime: 0 });
-
-  const { data } = useMovieListQuery();
+  const { data, selectedMovie } = useMovieSelect(selectTitle);
 
   const handlePosterClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const value = e.currentTarget.dataset.value;
     if (value) setSelectTitle(value);
   };
 
-  useEffect(() => {
-    if (data) {
-      const movieInfo = data.find((e) => e.title === selectTitle);
-      if (movieInfo) {
-        setSelectedMovie(movieInfo);
-      }
-    }
-  }, [data, selectTitle]);
-
   const { title, showtime, rating } = selectedMovie;
 
-  const ageIcons: Record<string, JSX.Element> = {
-    '12': <IcAge1216 width="1.6rem" />,
-    청불: <IcAge1916 width="1.6rem" />,
-    ALL: <IcAgeAll16 width="1.6rem" />,
-  };
-  const ageIcon = ageIcons[rating] || <></>;
+  let ageIcon: JSX.Element;
+  switch (rating) {
+    case '12':
+      ageIcon = <IcAge1216 width="1.6rem" />;
+      break;
+    case '청불':
+      ageIcon = <IcAge1916 width="1.6rem" />;
+      break;
+    case 'ALL':
+      ageIcon = <IcAgeAll16 width="1.6rem" />;
+      break;
+    default:
+      ageIcon = <></>;
+      break;
+  }
 
   return (
     <>
